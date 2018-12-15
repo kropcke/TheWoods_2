@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{7765B4EB-3C56-EDC1-0AAA-381E709B674A}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/MouseDownYes.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Player.cs" Line="26" Column="9" />
+      <File FileName="Assets/MouseDownYes.cs" Line="18" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

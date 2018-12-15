@@ -1,0 +1,15 @@
+﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/camera_logic.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MouseDownYes.cs" Line="28" Column="12" />
+      <File FileName="Assets/Scripts/camera_logic.cs" Line="23" Column="23" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
