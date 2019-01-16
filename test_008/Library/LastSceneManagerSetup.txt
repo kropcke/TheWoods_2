@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_002.unity
+  isLoaded: 1
+  isActive: 1
