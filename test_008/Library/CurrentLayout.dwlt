@@ -116,10 +116,10 @@ MonoBehaviour:
     y: 30
     width: 1436
     height: 805
-  m_MinSize: {x: 1311, y: 492}
-  m_MaxSize: {x: 18006, y: 14042}
+  m_MinSize: {x: 1313, y: 492}
+  m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 173
+  controlID: 131
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_MinSize: {x: 1036, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 174
+  controlID: 132
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_MinSize: {x: 510, y: 221}
   m_MaxSize: {x: 12010, y: 4021}
   vertical: 0
-  controlID: 175
+  controlID: 133
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -503,7 +503,7 @@ MonoBehaviour:
       stateName: 
       stateNames: []
       transitionIndex: 0
-      scrollPosition: {x: -150, y: -64}
+      scrollPosition: {x: 0, y: 0}
       zoom: 1
     selectionHistory:
       backList:
@@ -701,8 +701,7 @@ MonoBehaviour:
     m_ScenePaths: []
     m_ShowAllHits: 0
     m_SearchArea: 0
-    m_Folders:
-    - Assets/Scenes/Scott_WIP/_materials
+    m_Folders: []
   m_ViewMode: 0
   m_StartGridSize: 16
   m_LastFolders:
@@ -715,7 +714,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 518}
     m_SelectedIDs: 223d0000
     m_LastClickedID: 15650
-    m_ExpandedIDs: 00000000163500009436000000370000e43700001438000042380000ca38000022390000603a0000ca3a00000a3b00008e3b0000363c0000d83c0000663d00004e3f000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000183500009a3600000a370000f0370000203800004e380000d63800002e39000066390000283a0000723a0000dc3a00001e3b0000a23b00004a3c0000ee3c00007c3d000002400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -740,10 +739,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 8355.706}
+    scrollPos: {x: 0, y: 8316}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000163500009436000000370000e43700001438000042380000ca3800002239000058390000603a0000ca3a00000a3b00008e3b0000363c0000d83c0000663d00004e3f00000a4f0000
+    m_ExpandedIDs: 00000000183500009a3600000a370000f0370000203800004e3800002e39000066390000283a0000723a0000dc3a00001e3b0000a23b00004a3c0000ee3c00007c3d000002400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -861,7 +860,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0efde7fff0fde7ffd601e8ffa6e9efff7ceaefff4eeeefff3af8effff444f0ffd845f0ffa249f0ffa2c7fbff4ee9fcff1c92fdff94cbfdff74ccfdff2cd0fdffb4e3fdff54e5fdff10e9fdff7a19feff1a1bfeffd61efeff3045feff1046feffc849fefff485feff9487feff508bfeff3e96feffde97feff9a9bfeffa8aafeff48acfeff04b0fefff0cbfeffa0cdfeff5cd1feffd201ffffc202ffff7a06ffff047cffff027dffffba80fffff0fbffff00000000b03e0000dc3e00005a4200007a450000a24b00004e4d0000687b0000
+    m_ExpandedIDs: 205cfcff3e5dfcfff460fcff148afcfffab1fffff0fbffff00000000483f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -880,7 +879,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 7}
     m_SearchString: 
   m_ExpandedScenes:
-  - game_state_machine_002
+  - game_state_machine_003
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -946,13 +945,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.51359916, y: -0.039608125, z: 0.02375174, w: 0.8568132}
+    m_Target: {x: 0.2492693, y: -0.53014463, z: 0.16661021, w: 0.7931586}
     speed: 2
-    m_Value: {x: 0.5135874, y: -0.03960722, z: 0.023751196, w: 0.8567936}
+    m_Value: {x: 0.24926333, y: -0.53013194, z: 0.16660622, w: 0.7931396}
   m_Size:
-    m_Target: 51.545547
+    m_Target: 79.23916
     speed: 2
-    m_Value: 51.545547
+    m_Value: 79.23916
   m_Ortho:
     m_Target: 0
     speed: 2
