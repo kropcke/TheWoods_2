@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - tr_1a
+  - first_cam
+  - Player1
+  - Player2
+  - Server
   layers:
   - Default
   - TransparentFX
