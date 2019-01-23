@@ -9,10 +9,17 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
+<<<<<<< HEAD
     path: Assets/Scenes/Scott_WIP/scene_001.unity
     guid: 8a154f649199f4880a40f1a2bf745e21
   - enabled: 0
     path: Assets/Scenes/Scott_WIP/scene_002.unity
+=======
+    path: Assets/Scenes/Scott_WIP/_scenes/scene_001.unity
+    guid: 8a154f649199f4880a40f1a2bf745e21
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/scene_002.unity
+>>>>>>> master
     guid: ecc0ed077459a4a7aafa361772ae5b34
   - enabled: 0
     path: 
@@ -42,13 +49,21 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
+<<<<<<< HEAD
     path: Assets/Scenes/Scott_WIP/scene_003.unity
+=======
+    path: Assets/Scenes/Scott_WIP/_scenes/scene_003.unity
+>>>>>>> master
     guid: 6d63983b54b0843dcbf9f92698514ca9
   - enabled: 0
     path: Assets/UnityARKitPlugin/Examples/ARKit1.5/UnityARImageAnchor/UnityARImageAnchor.unity
     guid: befc06ba4fe0046439ef5dac5a33c0e7
   - enabled: 0
+<<<<<<< HEAD
     path: Assets/Scenes/Scott_WIP/AR_test_scene_000.unity
+=======
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_000.unity
+>>>>>>> master
     guid: d43ac40a6d409468085118b4955fa0cd
   - enabled: 0
     path: 
@@ -60,6 +75,7 @@ EditorBuildSettings:
     path: Assets/UnityARKitPlugin/Examples/UnityARShadows/UnityARShadows.unity
     guid: 14d17ec7304f440b48e6b953ba7a5895
   - enabled: 0
+<<<<<<< HEAD
     path: Assets/Scenes/Scott_WIP/AR_test_scene_000_camera.unity
     guid: 04df0da1029794e429fa30537f6adc47
   - enabled: 0
@@ -79,11 +95,44 @@ EditorBuildSettings:
     guid: 308cba580f2934ef59f8958490854e6d
   - enabled: 0
     path: Assets/Scenes/Scott_WIP/AR_test_scene_007_camera.unity
+=======
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_000_camera.unity
+    guid: 04df0da1029794e429fa30537f6adc47
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_001_camera.unity
+    guid: 5c9365fcefedd4c5a8e4530ad526cd5e
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_002_camera.unity
+    guid: f91b496943120436fb52ea2a1707c891
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_003_camera.unity
+    guid: 5b9e9ff5554f4468fb43b94bdfd96874
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_005_camera.unity
+    guid: 0866bba3b677f4c56955b0844b140069
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_006_camera.unity
+    guid: 308cba580f2934ef59f8958490854e6d
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/AR_test_scene_007_camera.unity
+>>>>>>> master
     guid: 048efba89c1fb4344b4f9b2357e5eb52
   - enabled: 0
     path: Assets/Scenes/AR_test_scene_008_camera.unity
     guid: 24c4bad515cac48cd83c02704a0f8898
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Scenes/Skylar_WIP/SkylarTestScene.unity
     guid: 777e88304f924424cbba11a6d516f03d
+=======
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_001.unity
+    guid: 00691fccbf3fa4db8b02214c29dd69c3
+  - enabled: 0
+    path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_002.unity
+    guid: cb0bb9daee2e54cc9b6eaa195ef5b0b5
+  - enabled: 1
+    path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_003.unity
+    guid: effe3008a2aab4c969b09a341e787503
+>>>>>>> master
   m_configObjects: {}

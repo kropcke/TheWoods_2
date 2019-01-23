@@ -847,13 +847,17 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scenes\Scott_WIP\_scripts\Patrol.cs" />
     <Compile Include="Assets\Scripts\camera_logic.cs" />
     <Compile Include="Assets\Scripts\DestroyNonARCameras.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\LighteningScript.cs" />
     <Compile Include="Assets\Scripts\MouseDownYes.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\SkylarsNetworkManager.cs" />
+=======
+>>>>>>> master
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\CompressionHelper.cs" />
