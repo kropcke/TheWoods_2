@@ -89,7 +89,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_002.unity
     guid: cb0bb9daee2e54cc9b6eaa195ef5b0b5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_003.unity
     guid: effe3008a2aab4c969b09a341e787503
+  - enabled: 1
+    path: Assets/Scenes/Scott_WIP/_scenes/game_state_machine_004.unity
+    guid: f7e786f9713ca488baad17a1281a0db8
   m_configObjects: {}
