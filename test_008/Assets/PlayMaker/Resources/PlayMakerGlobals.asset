@@ -27,6 +27,12 @@ MonoBehaviour:
       value: 0
     intVariables:
     - useVariable: 1
+      name: var_Part_xx
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 1
+    - useVariable: 1
       name: var_tr_1a
       tooltip: 
       showInInspector: 0
@@ -53,7 +59,7 @@ MonoBehaviour:
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 00000000000000000000000000000000
+    variableCategoryIDs: 0000000000000000000000000000000000000000
   events:
   - event_mouseDown
   - event_mouseUp
