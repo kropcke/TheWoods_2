@@ -7,6 +7,7 @@ TagManager:
   - tr_1a
   - Player 1
   - Player 2
+  - geo_Orb
   layers:
   - Default
   - TransparentFX

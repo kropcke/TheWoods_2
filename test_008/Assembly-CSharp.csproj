@@ -849,6 +849,7 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scenes\Scott_WIP\_scripts\Billboard.cs" />
     <Compile Include="Assets\Scenes\Scott_WIP\_scripts\Patrol.cs" />
     <Compile Include="Assets\Scripts\camera_logic.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
