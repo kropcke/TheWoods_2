@@ -9,6 +9,7 @@ TagManager:
   - Player1
   - Player2
   - Server
+  - ARCameraManager
   layers:
   - Default
   - TransparentFX

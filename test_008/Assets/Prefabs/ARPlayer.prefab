@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 81935828502681764}
   - component: {fileID: 114788034218834084}
   - component: {fileID: 114223309451052490}
-  - component: {fileID: 114663563656997884}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -45,24 +44,9 @@ GameObject:
   - component: {fileID: 114016554439209614}
   - component: {fileID: 114566544180760362}
   - component: {fileID: 114926298877258190}
+  - component: {fileID: 114707731491599420}
   m_Layer: 0
   m_Name: ARPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1655057486562606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4655239367162148}
-  - component: {fileID: 114709741182034194}
-  m_Layer: 0
-  m_Name: ARCameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +95,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4107620682795998}
-  - {fileID: 4655239367162148}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,19 +110,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4107620682795998}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4655239367162148
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655057486562606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4180094487298106}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20562321734507912
 Camera:
@@ -171,7 +141,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -332,38 +302,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eb86bccf1e24cc2a05b5a4339ae681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114663563656997884
+--- !u!114 &114707731491599420
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026326249570412}
+  m_GameObject: {fileID: 1568651156548346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d281e357164bd419f92ec433e0896860, type: 3}
+  m_Script: {fileID: 11500000, guid: b3ba4ca0d33624f4c9212659dc65c9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114709741182034194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1655057486562606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462d46d2423bb4f738d2497a397b1590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_camera: {fileID: 20562321734507912}
-  startAlignment: 0
-  planeDetection: 1
-  getPointCloud: 1
-  enableLightEstimation: 1
-  enableAutoFocus: 1
-  environmentTexturing: 0
-  detectionImages: {fileID: 11400000, guid: 99f631f78c5d14f8cb9cc4e02da07eee, type: 2}
-  maximumNumberOfTrackedImages: 2
-  detectionObjects: {fileID: 0}
+  camera: {fileID: 20562321734507912}
+  ARCameraManager: {fileID: 1069956484413628, guid: b645da5c6550849e0affb3ccb7367ddd,
+    type: 2}
 --- !u!114 &114788034218834084
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,27 +1,111 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviourPunCallbacks
+{
+    static public GameController Instance;
+    public string startScene;
+    private GameObject instance;
 
-    public GameObject lightning, lightningEnd1, lightningEnd2;
+    [Tooltip("The prefab to use for representing the player")]
+    [SerializeField]
+    private GameObject playerPrefab;
 
-   
+    [Tooltip("The prefab to use for representing the server")]
+    [SerializeField]
+    private GameObject serverPrefab;
 
-    private void Update()
+    void Start()
     {
-        if(GameObject.FindWithTag("Player1") && GameObject.FindWithTag("Player2"))
+        Instance = this;
+        if (!PhotonNetwork.IsConnected)
         {
-            lightning.SetActive(true);
-            lightningEnd1.transform.position = GameObject.FindWithTag("Player1").transform.position;
-            lightningEnd2.transform.position = GameObject.FindWithTag("Player2").transform.position;
+            SceneManager.LoadScene(startScene);
+            return;
+        }
 
+        if (playerPrefab == null)
+        { 
+            print("playerPrefab reference null. Please set it up in GameObject Game Controller");
+        }
+        else if (serverPrefab == null)
+        {
+            print("serverPrefab reference null. Please set it up in GameObject Game Controller");
+        }
+        else if (PhotonNetwork.IsMasterClient)
+        {
+            if (ServerScript.LocalServerInstance == null)
+            {
+                Debug.LogFormat("We are Instantiating LocalServer from {0}", SceneManagerHelper.ActiveSceneName);
+                PhotonNetwork.Instantiate(this.serverPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+            }
+            else
+            {
+                Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+            }
         }
         else
         {
-            lightning.SetActive(false);
+            if (PlayerScript.LocalPlayerInstance == null)
+            {
+                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                GameObject p = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+                /*
+                photonView.RPC(GameObject.FindWithTag("Player1") ? "Player2" : "Player1", PhotonTargets.All, gameObject.tag);
+                PhotonView photonView = PhotonView.Get(this);
+                photonView.RPC("ChatMessage", RpcTarget.All, "jup", "and jup!");
+                */              
+            }
+            else
+            {
+                Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+            }            
+        }
+
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitApplication();
         }
     }
+    public override void OnPlayerEnteredRoom(Player other)
+    {
+        Debug.Log("OnPlayerEnteredRoom() " + other.NickName); 
 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); 
+        }
+    }
+    
+    public override void OnPlayerLeftRoom(Player other)
+    {
+        Debug.Log("OnPlayerLeftRoom() " + other.NickName); 
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); 
+        }
+    }
+    
+    public override void OnLeftRoom()
+    {
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+    }
+    
 }
