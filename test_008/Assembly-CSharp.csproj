@@ -1038,7 +1038,9 @@
     <Compile Include="Assets\Scripts\PlayerSpawn.cs" />
     <Compile Include="Assets\Scripts\ServerScript.cs" />
     <Compile Include="Assets\Scripts\SkylarsNetworkManager.cs" />
+    <Compile Include="Assets\Scripts\SoundClipGameObjects.cs" />
     <Compile Include="Assets\Scripts\SoundClipParticles.cs" />
+    <Compile Include="Assets\Scripts\StaticVariables.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\CompressionHelper.cs" />
