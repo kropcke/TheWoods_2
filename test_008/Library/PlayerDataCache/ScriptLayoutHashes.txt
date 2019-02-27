@@ -1,9 +1,15 @@
 iOS
 PlayerPath?
+<<<<<<< HEAD
 /Users/Skylar/Desktop/TheWoods2
 SceneListBegin?
 Assets/Scenes/SkylarNetworkingStartScene.unity
 Assets/Scenes/SkylarNetworkingMainScene.unity
+=======
+/Users/swearingen.16/TheWoods_2_builds/game_state_machine_004_01.app
+SceneListBegin?
+Assets/Scenes/Scott_WIP/_scenes/game_state_machine_004.unity
+>>>>>>> master
 SceneListEnd?
 501888fb5d0cecdd7c7e87c84035d44e Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PlayerListCell
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.UtilityScripts.PunTeams

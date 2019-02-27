@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - tr_1a
+<<<<<<< HEAD
   - first_cam
   - Player1
   - Player2
@@ -12,6 +13,11 @@ TagManager:
   - ARCameraManager
   - ARImage
   - AudioVisualization
+=======
+  - Player 1
+  - Player 2
+  - geo_Orb
+>>>>>>> master
   layers:
   - Default
   - TransparentFX

@@ -61,8 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\FindMidPoint.cs" />
     <Compile Include="Assets\iTween\iTween.cs" />
     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Photon\PhotonChat\Code\ChatChannel.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Code\ChatClient.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Code\ChatDisconnectCause.cs" />
@@ -240,6 +242,9 @@
     <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TabViewManager.cs" />
     <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TextButtonTransition.cs" />
     <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TextToggleIsOnTransition.cs" />
+=======
+    <Compile Include="Assets\PlayerInput.cs" />
+>>>>>>> master
     <Compile Include="Assets\PlayMaker\Actions\ActivateGameObject.cs" />
     <Compile Include="Assets\PlayMaker\Actions\AddAnimationClip.cs" />
     <Compile Include="Assets\PlayMaker\Actions\AddComponent.cs" />
@@ -1024,6 +1029,7 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scenes\Scott_WIP\_scripts\Billboard.cs" />
     <Compile Include="Assets\Scenes\Scott_WIP\_scripts\Patrol.cs" />
     <Compile Include="Assets\Scripts\ARContentPlacer.cs" />
     <Compile Include="Assets\Scripts\camera_logic.cs" />
@@ -1182,8 +1188,10 @@
     <None Include="Assets\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
+    <None Include="Assets\Scenes\Scott_WIP\_shaders\InvisibleMask.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
+    <None Include="Assets\Scenes\Scott_WIP\_shaders\InvisibleShadowCaster.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShaderLinear.shader" />
