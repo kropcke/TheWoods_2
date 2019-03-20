@@ -199,6 +199,7 @@
     <Compile Include="Assets\UnityARKitPlugin\Examples\UnityParticlePainter\HSVPicker\Editor\BoxSliderEditor.cs" />
     <Compile Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Editor\UnityARBuildPostprocessor.cs" />
     <Compile Include="Assets\Vuforia\Editor\Scripts\OpenSourceInitializer.cs" />
+    <None Include="Assets\Editor\Vuforia\Emulator\VuforiaEmulator.xml" />
     <None Include="Assets\PlayMaker\Editor\Install\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/Skylar/TheWoods_2/test_008/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

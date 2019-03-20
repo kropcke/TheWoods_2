@@ -41,7 +41,8 @@ public class GameController : MonoBehaviourPunCallbacks
             if (ServerScript.LocalServerInstance == null)
             {
                 Debug.LogFormat("We are Instantiating LocalServer from {0}", SceneManagerHelper.ActiveSceneName);
-                PhotonNetwork.Instantiate(this.serverPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+                GameObject g = PhotonNetwork.Instantiate(this.serverPrefab.name, new Vector3(0f, 4f, 0f), Quaternion.identity, 0);
+                g.transform.eulerAngles = new Vector3(90, 0, 0);
             }
             else
             {
@@ -54,11 +55,8 @@ public class GameController : MonoBehaviourPunCallbacks
             {
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                 GameObject p = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
-                /*
-                photonView.RPC(GameObject.FindWithTag("Player1") ? "Player2" : "Player1", PhotonTargets.All, gameObject.tag);
-                PhotonView photonView = PhotonView.Get(this);
-                photonView.RPC("ChatMessage", RpcTarget.All, "jup", "and jup!");
-                */              
+                p.GetPhotonView().RPC("SetTag", RpcTarget.All, "Player");
+                      
             }
             else
             {

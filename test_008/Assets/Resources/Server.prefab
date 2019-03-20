@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 81532608061524748}
   m_Layer: 0
   m_Name: Server
-  m_TagString: Untagged
+  m_TagString: Server
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b805fca59404b8b9306b07cfa060f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magneticRadius: 0.33
+  magneticSpeed: 0.1
+  collectionRadius: 0.1
+  timeBetweenSpawns: 5
+  numAudioBubblesAtOneTime: 2
+  numDistractionsAtOneTime: 10
+  audioBubblePrefab: {fileID: 1515904315747702, guid: a4863af48b99e4bad95159ee053ec1f2,
+    type: 2}
+  distractionPrefab: {fileID: 1207250665978278, guid: 249b9848edc7746f9acac36bb81d8804,
+    type: 2}
 --- !u!114 &114116483535423524
 MonoBehaviour:
   m_ObjectHideFlags: 1

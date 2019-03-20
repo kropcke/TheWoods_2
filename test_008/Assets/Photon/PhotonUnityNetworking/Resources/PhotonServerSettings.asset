@@ -34,5 +34,6 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - setTag
+  - SetTag
   DisableAutoOpenWizard: 1
   ShowSettings: 0

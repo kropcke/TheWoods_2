@@ -32,7 +32,7 @@ public class SoundClipGameObjects : MonoBehaviour
         {
             GameObject c = GameObject.CreatePrimitive(PrimitiveType.Cube);
             c.transform.localScale = new Vector3(visObjectSize, visObjectSize, visObjectSize);
-            c.GetComponent<Renderer>().material.color = Color.black;
+            c.GetComponent<Renderer>().material.color = Color.white;
             bars.Add(c);
 
         }

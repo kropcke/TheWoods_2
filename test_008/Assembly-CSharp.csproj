@@ -64,7 +64,6 @@
     <Compile Include="Assets\FindMidPoint.cs" />
     <Compile Include="Assets\iTween\iTween.cs" />
     <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Photon\PhotonChat\Code\ChatChannel.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Code\ChatClient.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Code\ChatDisconnectCause.cs" />
@@ -242,9 +241,7 @@
     <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TabViewManager.cs" />
     <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TextButtonTransition.cs" />
     <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\UI\TextToggleIsOnTransition.cs" />
-=======
     <Compile Include="Assets\PlayerInput.cs" />
->>>>>>> master
     <Compile Include="Assets\PlayMaker\Actions\ActivateGameObject.cs" />
     <Compile Include="Assets\PlayMaker\Actions\AddAnimationClip.cs" />
     <Compile Include="Assets\PlayMaker\Actions\AddComponent.cs" />
@@ -1158,10 +1155,14 @@
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
+    <None Include="Assets\Vuforia\Shaders\ColoredLines.shader" />
+    <None Include="Assets\Vuforia\Shaders\CameraDiffuse.shader" />
     <None Include="Assets\PlayMaker\Templates\readme.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
     <None Include="Assets\PlayMaker\Readme.txt" />
+    <None Include="Assets\StreamingAssets\Vuforia\TheWoodsTargets.xml" />
+    <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
@@ -1171,6 +1172,7 @@
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
+    <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
@@ -1181,10 +1183,10 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
-    <None Include="Assets\StreamingAssets\Vuforia\TheWoodsTargets.xml" />
     <None Include="Assets\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Common.cginc" />
+    <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
     <None Include="Assets\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\UnityARKitPlugin\ARKitRemote\ARKITREMOTE.txt" />
@@ -1207,12 +1209,15 @@
     <None Include="Assets\PlayMaker\Resources\PlayMakerAssemblies.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
     <None Include="Assets\UnityARKitPlugin\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />
+    <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
+    <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\PlayMaker\Versions\readme.txt" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+    <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/Skylar/TheWoods_2/test_008/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

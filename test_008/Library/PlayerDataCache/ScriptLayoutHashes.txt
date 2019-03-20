@@ -1,15 +1,9 @@
 iOS
 PlayerPath?
-<<<<<<< HEAD
-/Users/Skylar/Desktop/TheWoods2
+/Users/Skylar/Desktop/TheWoods
 SceneListBegin?
-Assets/Scenes/SkylarNetworkingStartScene.unity
 Assets/Scenes/SkylarNetworkingMainScene.unity
-=======
-/Users/swearingen.16/TheWoods_2_builds/game_state_machine_004_01.app
-SceneListBegin?
-Assets/Scenes/Scott_WIP/_scenes/game_state_machine_004.unity
->>>>>>> master
+Assets/Scenes/SkylarNetworkingStartScene.unity
 SceneListEnd?
 501888fb5d0cecdd7c7e87c84035d44e Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PlayerListCell
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.UtilityScripts.PunTeams
@@ -17,6 +11,7 @@ SceneListEnd?
 4d0187d1ee26ceba125a106f0dde0360 Assembly-CSharp.dll:Photon.Pun.UtilityScripts.SmoothSyncMovement
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARKitControl
 7b8e7866f51a0817662577a68d076786 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
+8479c9773e80016a8fbff3715ce670bb Assembly-CSharp.dll:.FindMidPoint
 691fc8f190e2bd7159b96f7b9ab9abc9 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.RegionListView
 12096ddf91bc99172a48b0419861fd00 Assembly-CSharp.dll:.PointCloudParticleExample
 a8d930527bf604f820c1c45cacf437c6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -189,6 +184,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 5dc04e627cc0a846ca76ba5fc502cf7b Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.SendRateOnSerializeField
+bdd2cc340234a703e5f307960450e7c0 Assembly-CSharp.dll:.SoundClipGameObjects
 8522a63b29f58cdb856046ee8a832464 Assembly-CSharp.dll:Photon.Pun.UtilityScripts.TabViewManager
 5833a86cc374f497ae8d9fb9d8c3e5f4 Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
 58bb83f23a38f1962bddf96033a5bc5d Assembly-CSharp.dll:Photon.Pun.Demo.Asteroids.AsteroidsGameManager
@@ -209,6 +205,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 47cf20cc289832e9d0a08b6a7ca8c787 Assembly-CSharp.dll:.ARCameraTracker
 78a2a366a0a3b585e1178d2dd9d006ab Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.WaypointProgressTracker
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Billboard
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DefaultInitializationErrorHandler
 5d578f6e8917faff01e7e2dc9f392ee7 Assembly-CSharp.dll:Photon.Pun.PhotonRigidbody2DView
@@ -505,7 +502,7 @@ f757b593dbed708afb4ad4f6d6e0e92c PlayMaker.dll:.PlayMakerFSM
 05524b8f659e7bfe5756d1335fec24ba PlayMaker.dll:.PlayMakerTriggerExit2D
 05524b8f659e7bfe5756d1335fec24ba PlayMaker.dll:.PlayMakerTriggerStay
 05524b8f659e7bfe5756d1335fec24ba PlayMaker.dll:.PlayMakerTriggerStay2D
-1a82002edf7f41d6a1121915c2c7cf93 Assembly-CSharp.dll:.PlayerScript
+08ca8c1dfae96c06130b9033ff90289f Assembly-CSharp.dll:.PlayerScript
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -525,12 +522,13 @@ a764ed39791e886a53f13cfce418447e Assembly-CSharp.dll:UnityEngine.PostProcessing.
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.UtilityScripts.EventSystemSpawner
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARUserAnchorComponent
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+f3a0553920438a9e94fc08c256dfb407 Assembly-CSharp.dll:.PlayerInput
 5facd58f774e4892eb3aedd9c0c811be Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PlayerListView
 db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.FollowTarget
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.Demo.Procedural.ProceduralController
 a8796ecdc9d5c260bbe32f30c4b10708 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ServerScript
+c1a4c75266b76a371ae07b0f3c7cf3bf Assembly-CSharp.dll:.ServerScript
 b7f557c19cce3b6f593e26edfe1ec859 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.Ball
 ec0082b40adf3b0930cd87250ffdbf1d Assembly-CSharp.dll:Photon.Realtime.SupportLogger
 0ad469aca31264c6140b1e503c43ab6b Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.TimedObjectDestructor

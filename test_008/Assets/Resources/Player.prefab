@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114282797785504236}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120980513646626}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -97,8 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d38edbbf4734a2438b4f53f96bc04cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ARCameraPrefab: {fileID: 1632734608917338, guid: 038e197ee056a4a3eaa588d1ece2a3e5,
-    type: 2}
+  cubeSize: 0.1
 --- !u!114 &114282797785504236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
 --- !u!114 &114435059123166686
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,10 +7,13 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
+
+    public float cubeSize = 0.1f;
+
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
-    public GameObject ARCameraPrefab;
+
 
     GameObject ARCam, testPos;
 
@@ -34,7 +37,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     [PunRPC]
-    void setTag(string text)
+    public void SetTag(string text)
     {
         this.tag = text;
     }
@@ -42,11 +45,13 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            ARCam = Instantiate(ARCameraPrefab);
+            ARCam = GameObject.Find("ARCamera");
+            ARCam.GetComponent<Vuforia.VuforiaBehaviour>().enabled = true;
             //GameObject.FindWithTag("ARImage").GetPhotonView().RequestOwnership();
             //testPos = PhotonNetwork.Instantiate("Cube", Vector3.zero, Quaternion.identity);
             //GameObject.FindWithTag("ARImage").transform.GetChild(0).gameObject.
             //GetPhotonView().RequestOwnership();
+            transform.localScale = Vector3.one * cubeSize;
         }
 
     }
@@ -55,10 +60,13 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine && ARCam)
         {
+            /*
             if (GameObject.FindWithTag("ARImage").transform.GetChild(0).GetComponent<Renderer>().enabled)
             {
                 oriented = true;
             }
+            */
+            oriented = true;
             if (oriented)
             {
 
@@ -69,14 +77,16 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 transform.rotation = ARCam.transform.rotation;
 
                 // Correct for rotating around
+                /*
                 Vector3 axis1 = new Vector3();
                 Vector3 axis2 = new Vector3();
                 float angle1, angle2;
                 GameObject.FindWithTag("ARImage").transform.rotation.ToAngleAxis(out angle1, out axis1);
                 GameObject.FindWithTag("ARImage").transform.GetChild(0).rotation.ToAngleAxis(out angle2, out axis2);
+                */               
                 //transform.RotateAround(Vector3.zero, axis1, -angle1);
                 //transform.RotateAround(Vector3.zero, axis2, -angle2);
-
+                /*
                 GameObject.Find("DebugText").GetComponent<Text>().text =
                     "ARImage Position: " + GameObject.FindWithTag("ARImage").transform.GetChild(0).position + "\n"
                     + "ARImage Rotation: " + GameObject.FindWithTag("ARImage").transform.GetChild(0).rotation + "\n"
@@ -84,7 +94,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                     + "ARCAM rotation: " + ARCam.transform.rotation + "\n"
                     + "ARImage parent position :" + GameObject.FindWithTag("ARImage").transform.position + "\n"
                     + "ARImage parent rotation :" + GameObject.FindWithTag("ARImage").transform.rotation + "\n";
-
+                    */
                 //transform.position = ARCam.transform.position;
                 //transform.rotation = ARCam.transform.rotation;
                 //transform.position = GameObject.FindWithTag("ARImage").transform.GetChild(0).position;
