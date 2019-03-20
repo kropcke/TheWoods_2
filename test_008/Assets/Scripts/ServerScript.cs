@@ -189,7 +189,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     void UpdateSpawning()
     {
         if(audioBubbles.Count < numAudioBubblesAtOneTime && Time.time - lastSpawnTime > timeBetweenSpawns
-        && clipsCollected < totalClips)
+        && audioNumbersLeft.Count > 0)
         {
             CreateAudioBubbleRandomClip();
             lastSpawnTime = Time.time;
@@ -206,13 +206,22 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (players.Length == 2)
         {
             Vector3 center = (players[0].transform.position + players[1].transform.position) *0.5f;
-            for(int i = 0; i < audioBubbles.Count; i++)
+            Ray ray = new Ray(players[0].transform.position, players[1].transform.position - players[0].transform.position);
+
+            for (int i = 0; i < audioBubbles.Count; i++)
             {
+                if (Vector3.Cross(ray.direction, audioBubbles[i].transform.position - ray.origin).magnitude < collectionRadius)
+                {
+                    audioBubbles[i].transform.position +=
+                        (center - audioBubbles[i].transform.position).normalized * magneticSpeed * Time.deltaTime;
+                }
+                /*
                 if(Vector3.Distance(center, audioBubbles[i].transform.position) < magneticRadius)
                 {
                     audioBubbles[i].transform.position +=
                         (center - audioBubbles[i].transform.position).normalized * magneticSpeed * Time.deltaTime;
                 }
+                */
             }
         }
     }
@@ -220,12 +229,20 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(players.Length == 2) {
             Vector3 center = (players[0].transform.position + players[1].transform.position) * 0.5f;
+            Ray ray = new Ray(players[0].transform.position, players[1].transform.position - players[0].transform.position);
+
             for (int i = 0; i < audioBubbles.Count; i++)
             {
+                if(Vector3.Cross(ray.direction, audioBubbles[i].transform.position - ray.origin).magnitude < collectionRadius)
+                {
+                    AudioPickedUp(audioBubbles[i]);
+                }
+                /*
                 if (Vector3.Distance(center, audioBubbles[i].transform.position) < collectionRadius)
                 {
                     AudioPickedUp(audioBubbles[i]);
                 }
+                */
             }
         }
 
@@ -235,12 +252,20 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (players.Length == 2)
         {
             Vector3 center = (players[0].transform.position + players[1].transform.position) * 0.5f;
+            Ray ray = new Ray(players[0].transform.position, players[1].transform.position - players[0].transform.position);
+
             for (int i = 0; i < distractions.Count; i++)
             {
+                if (Vector3.Cross(ray.direction, distractions[i].transform.position - ray.origin).magnitude < collectionRadius)
+                {
+                    DistractionPickedUp(distractions[i]);
+                }
+                /*
                 if (Vector3.Distance(center, distractions[i].transform.position) < collectionRadius)
                 {
                     DistractionPickedUp(distractions[i]);
                 }
+                */
             }
         }
     }
@@ -277,7 +302,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     void CreateAudioBubbleRandomClip()
     {
 
-        int clipNumber = audioNumbersLeft[(int)Random.Range(0, audioNumbersLeft.Count - 1)];
+        int clipNumber = audioNumbersLeft[(int)Random.Range(0, audioNumbersLeft.Count)];
         GameObject bubble = PhotonNetwork.Instantiate("AudioBubblePrefab", CreateNewRandomPosition(), Quaternion.identity);
         audioNumbersLeft.Remove(clipNumber);
         audioBubbles.Add(bubble);

@@ -115,6 +115,8 @@ public class SoundClipGameObjects : MonoBehaviour
             bars[i - startIndex].transform.position += 
             bars[i - startIndex].transform.up * 
                 bars[i - startIndex].transform.localScale.y / 2f;
+            bars[i - startIndex].GetComponent<Renderer>().material.color =
+                Color.HSVToRGB(startIndex / (float)(numPartitions), 1, 1);
         }
     }
 

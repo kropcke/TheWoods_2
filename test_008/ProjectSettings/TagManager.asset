@@ -11,6 +11,8 @@ TagManager:
   - ARImage
   - WorldCenter
   - ARCam
+  - ARCameraManager
+  - tr_1a
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PostProcessing
   - 
   - 
   - 
