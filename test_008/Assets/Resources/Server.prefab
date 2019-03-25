@@ -52,8 +52,8 @@ Camera:
   m_GameObject: {fileID: 1132180518109702}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -62,9 +62,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  field of view: 70
+  orthographic: 1
+  orthographic size: 2.5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -98,16 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b805fca59404b8b9306b07cfa060f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticRadius: 0.33
+  magneticRadius: 0.25
   magneticSpeed: 0.1
   collectionRadius: 0.1
   timeBetweenSpawns: 5
   numAudioBubblesAtOneTime: 2
   numDistractionsAtOneTime: 10
-  audioBubblePrefab: {fileID: 1515904315747702, guid: a4863af48b99e4bad95159ee053ec1f2,
-    type: 2}
-  distractionPrefab: {fileID: 1207250665978278, guid: 249b9848edc7746f9acac36bb81d8804,
-    type: 2}
+  audioBubblePrefab: GoodSphere
+  distractionPrefabs:
+  - BadSphere
+  - BadSphere_purple
+  distractionSounds:
+  - {fileID: 8300000, guid: 6a539d23b34384da88f5ea9812cb8533, type: 3}
+  - {fileID: 8300000, guid: 521d1d07798a14a32a585d1076ff5356, type: 3}
+  - {fileID: 8300000, guid: 3e2229ab9b9ab4c608f1cc4da56d0df6, type: 3}
+  - {fileID: 8300000, guid: 4bbb593dc85d64db5b7091f6a280b9af, type: 3}
+  - {fileID: 8300000, guid: d5baa7df197134136a4bc1b818c081c4, type: 3}
 --- !u!114 &114116483535423524
 MonoBehaviour:
   m_ObjectHideFlags: 1

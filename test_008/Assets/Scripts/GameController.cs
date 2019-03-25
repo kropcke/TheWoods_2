@@ -41,7 +41,7 @@ public class GameController : MonoBehaviourPunCallbacks
             if (ServerScript.LocalServerInstance == null)
             {
                 Debug.LogFormat("We are Instantiating LocalServer from {0}", SceneManagerHelper.ActiveSceneName);
-                GameObject g = PhotonNetwork.Instantiate(this.serverPrefab.name, new Vector3(0f, 4f, 0f), Quaternion.identity, 0);
+                GameObject g = PhotonNetwork.Instantiate(this.serverPrefab.name, new Vector3(0f, 3.5f, 0f), Quaternion.identity, 0);
                 g.transform.eulerAngles = new Vector3(90, 0, 0);
             }
             else

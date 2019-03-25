@@ -1,15 +1,18 @@
-iOS
+OSXStandalone
 PlayerPath?
-/Users/Skylar/Desktop/TheWoods
+/Users/Skylar/TheWoods_2/test_008/Builds/MacBuild.app
 SceneListBegin?
 Assets/Scenes/SkylarNetworkingMainScene.unity
 Assets/Scenes/SkylarNetworkingStartScene.unity
 SceneListEnd?
+42d3f1628283c56b568e7ddfc535642f com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessLayer
 501888fb5d0cecdd7c7e87c84035d44e Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PlayerListCell
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.UtilityScripts.PunTeams
 7289f4b9a0dc296e26413244af6e0f86 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.DocLinkButton
 4d0187d1ee26ceba125a106f0dde0360 Assembly-CSharp.dll:Photon.Pun.UtilityScripts.SmoothSyncMovement
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARKitControl
+1d64545a16ed3784c1d7c53917c5e245 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ColorGrading
+b43cb4e73e582d55726b700a4bbe3be5 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.LensDistortion
 7b8e7866f51a0817662577a68d076786 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 8479c9773e80016a8fbff3715ce670bb Assembly-CSharp.dll:.FindMidPoint
 691fc8f190e2bd7159b96f7b9ab9abc9 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.RegionListView
@@ -40,7 +43,9 @@ d3b7cc55d6cc0845540ac2070b985024 Assembly-CSharp.dll:.ObjectScanSessionManager
 0ea7e3a1b65cd933d7a007e6774c4eaa Assembly-CSharp-firstpass.dll:UnityStandardAssets.Characters.ThirdPerson.AICharacterControl
 7c4009185d1e3bcf3491adeea097f83e Assembly-CSharp-firstpass.dll:UnityStandardAssets.Characters.FirstPerson.FirstPersonController
 b0e6f931f4c3163843d44b8ebc9f254a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.LayoutElementMatchSize
+b83009540b71447b717777282285b417 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Bloom
 4e15dcc3534dc36a76ac419785cf197a Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
+7285365fe3efdee684e7e2ee30bebbdc com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.MotionBlur
 4b46cecd59f2a619ae8f720821af6f33 Assembly-CSharp.dll:Photon.Pun.Demo.PunBasics.PlayerAnimatorManager
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CurrentRoomIsOpenProperty
 6fce0feadba7642a361e87ebfcfe753e Assembly-CSharp.dll:Photon.Pun.PhotonAnimatorView
@@ -85,6 +90,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+374e54dc617116d8e29c804a1b8131cf com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.DepthOfField
 715a3a5e1e928ce77514d4e84e265356 Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARHitTestExample
 4cca0eebefde9e9c2b957e8319d8d20b Unity.TextMeshPro.dll:TMPro.TMP_InputField
 8e9f5b922979e9356a11d2ee2b32ee60 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TiltInput
@@ -125,11 +131,13 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 293898d1b401864ff20cf1e6575dbad5 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PunCockpit
 5ed32df694ce54d1c987b5674d7d2eaf Assembly-CSharp.dll:Photon.Realtime.Demo.ConnectAndJoinRandomLb
+6c627aa0af011192e2d8522361a3a3d9 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
 3ecea0c2e43f5d97a17c441bfcf59a7d Assembly-CSharp.dll:UnityEngine.PostProcessing.PostProcessingBehaviour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.BallUserControl
 e24f7b0a71a5adf64cb689ba2fdc2e05 Assembly-CSharp.dll:.BallMaker
 875ad9a07bde133f83b571cc01f30262 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.RoomListCell
 7ded119fefc3dd9b506ccb1ed910ed3c Assembly-CSharp.dll:.ARReferenceObjectsSetAsset
+dc267bfbc7cacfcb4ee38a4c60fe73ea com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessProfile
 11eb173182a82f0da318ebfe576e7f04 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.FriendListCell
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.Demo.Procedural.IngameControlPanel
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CountOfPlayersProperty
@@ -163,6 +171,7 @@ f757b593dbed708afb4ad4f6d6e0e92c PlayMaker.dll:.PlayMakerFSM
 05524b8f659e7bfe5756d1335fec24ba PlayMaker.dll:.PlayMakerTriggerStay
 05524b8f659e7bfe5756d1335fec24ba PlayMaker.dll:.PlayMakerTriggerStay2D
 9ed622f1ea1aeb5f5018ad143a2009df Assembly-CSharp.dll:.UnityARFaceMeshManager
+03188e5fd6cfd9ac27794e7236d330d4 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Vignette
 1f04e5babf7c9610256f88582d16d72a Assembly-CSharp.dll:Photon.Pun.Demo.SlotRacer.Utils.BezierCurve
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.Demo.Hub.ToDemoHubButton
 977c873f67252ed523aa425f8e3d6284 Assembly-CSharp.dll:Photon.Pun.PhotonHandler
@@ -221,6 +230,7 @@ d7c3cc9e6aeec9a00634f6abffbe35e2 Assembly-CSharp.dll:Photon.Pun.UtilityScripts.C
 6a057fcd882a2eb3ba81f932c22e6801 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PunCockpitEmbed
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
+62b73255601105dd2f3414b408719074 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessEffectSettings
 6e714b24188cddfc9ae1e07d05ed4ddd Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.ParticleSystemDestroyer
 879b3df2ab67cfd00172f75f85a7a583 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.SimpleMouseRotator
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DontDestroyOnLoad
@@ -305,6 +315,7 @@ c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.Cur
 149e538468c9a609cf26b23682c996c7 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.PlatformSpecificContent
 37bf4d6a6d424731cb4a9b998783e5c6 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityEngine.XR.iOS.ConnectToEditor
+0705ebe095451623f52921701110149a com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ChromaticAberration
 bc79872c81f3cda9be1ec427f70f92aa Vuforia.UnityExtensions.dll:Vuforia.AnchorBehaviour
 0561521e336e270e6e5a9c61387cb838 Vuforia.UnityExtensions.dll:Vuforia.AnchorInputListenerBehaviour
 bc79872c81f3cda9be1ec427f70f92aa Vuforia.UnityExtensions.dll:Vuforia.AnchorStageBehaviour
@@ -374,6 +385,7 @@ c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.Pin
 205965134a5874db410d674ebdf33ba7 Assembly-CSharp.dll:.ExampleWheelController
 7b599feab784e5ef6cfe76ebd2556cca Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PlayerDetailsController
 22c235e1272a48f3e20a15f3f5552e59 Assembly-CSharp.dll:.UnityARFaceAnchorManager
+d1b8c4da5934cada56f589ef74da6e6c com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessResources
 5dc04e627cc0a846ca76ba5fc502cf7b Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.GameVersionField
 05524b8f659e7bfe5756d1335fec24ba Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 2041c871bc804feaa14f1713988c5c33 Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARVideo
@@ -382,6 +394,7 @@ c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.Pin
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CurrentRoomPropertiesListedInLobbyProperty
 e31ef279e8d06182f0817ebd899ff54c Assembly-CSharp.dll:.UnityARUserAnchorExample
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.MobileControlRig
+9e4c48f122d669679d66cf52b1cbd2b9 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.AutoExposure
 3885d2bcb0cb11de3c9809f2d5130fa6 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.PropertyListenerBase
 5dc04e627cc0a846ca76ba5fc502cf7b Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.BackgroundTimeOutField
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CountOfPlayersInRoomProperty
@@ -394,6 +407,7 @@ ee90b1fc7d21e858cce7de56c6098300 Assembly-CSharp.dll:.GameController
 609883ba9b3462e00c79080cdb51d119 Assembly-CSharp.dll:.iTween
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CurrentRoomIsVisibleProperty
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CurrentRoomEmptyRoomTtlProperty
+853178ec35ebc3a7ff09429b78771c4d com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessDebug
 f4bd1aee67eeef7953cce6c44588b3d7 Unity.TextMeshPro.dll:TMPro.TextContainer
 7636fddfa184138414573b7bd079d4c0 Assembly-CSharp.dll:.SoundClipParticles
 e353101906474689643fc3c6d0a3ba4a Assembly-CSharp.dll:.ColorPicker
@@ -528,7 +542,7 @@ db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp-firstpass.dll:UnityStandardAsse
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.Demo.Procedural.ProceduralController
 a8796ecdc9d5c260bbe32f30c4b10708 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
-c1a4c75266b76a371ae07b0f3c7cf3bf Assembly-CSharp.dll:.ServerScript
+dac705f8c660121b4df8d3c14b88927e Assembly-CSharp.dll:.ServerScript
 b7f557c19cce3b6f593e26edfe1ec859 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.Ball
 ec0082b40adf3b0930cd87250ffdbf1d Assembly-CSharp.dll:Photon.Realtime.SupportLogger
 0ad469aca31264c6140b1e503c43ab6b Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.TimedObjectDestructor
@@ -553,12 +567,15 @@ e871a8cc552d2e139870f2a2ec59430d Assembly-CSharp.dll:Photon.Pun.Demo.SlotRacer.S
 2ba36b6a81a4caef27f07fa7511b83ea Assembly-CSharp.dll:UnityEngine.XR.iOS.ARKitFaceTrackingRemoteConnection
 47d4dbb91b8073a64be47276b7d4f29a Assembly-CSharp.dll:Photon.Pun.Demo.PunBasics.GameManager
 805420659d0cca5e63ca98f6c31c0c1e Assembly-CSharp.dll:.GenerateEnvironmentProbeAnchors
+f3a7d6b7ba2834fa390d7aee0d4a2173 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessVolume
 1f2368e17eaf077dcdf3ac73a029060c Assembly-CSharp.dll:Photon.Pun.Demo.SlotRacer.Utils.SplinePosition
+35e865cc5175d234df47214c8f8ec47c com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Grain
 bf22e89fa4b77e86d45d7ae313079474 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 22d0936cb538dc6053295cc40731687c Assembly-CSharp.dll:Photon.Pun.Demo.SlotRacer.Utils.Line
 374b7d36d8f94aa1deb1e06c687663c6 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.FPSCounter
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CurrentRoomAutoCleanupProperty
+62a2e00b0bc2c3e206b20b2a66df2735 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.AmbientOcclusion
 30430b73cd4c104347de45dc3a0518a3 Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.FriendListView
 c3a9e82914d368e0b53a5de37fb3627a Assembly-CSharp.dll:Photon.Pun.Demo.Cockpit.CurrentRoomPlayerCountProperty
 aad57787e40999567e08289d921727bc Assembly-CSharp.dll:Photon.Pun.PhotonView
@@ -651,20 +668,3 @@ ad4ede464ae743b4514f752be6cc0a4a Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UnityARCameraNearFar
 0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
-62b73255601105dd2f3414b408719074 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessEffectSettings
-d1b8c4da5934cada56f589ef74da6e6c com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessResources
-03188e5fd6cfd9ac27794e7236d330d4 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Vignette
-b83009540b71447b717777282285b417 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Bloom
-374e54dc617116d8e29c804a1b8131cf com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.DepthOfField
-0705ebe095451623f52921701110149a com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ChromaticAberration
-6c627aa0af011192e2d8522361a3a3d9 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
-f3a7d6b7ba2834fa390d7aee0d4a2173 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessVolume
-dc267bfbc7cacfcb4ee38a4c60fe73ea com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessProfile
-42d3f1628283c56b568e7ddfc535642f com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessLayer
-b43cb4e73e582d55726b700a4bbe3be5 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.LensDistortion
-1d64545a16ed3784c1d7c53917c5e245 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.ColorGrading
-9e4c48f122d669679d66cf52b1cbd2b9 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.AutoExposure
-7285365fe3efdee684e7e2ee30bebbdc com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.MotionBlur
-62a2e00b0bc2c3e206b20b2a66df2735 com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.AmbientOcclusion
-853178ec35ebc3a7ff09429b78771c4d com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessDebug
-35e865cc5175d234df47214c8f8ec47c com.unity.postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Grain

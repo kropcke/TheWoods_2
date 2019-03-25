@@ -13,6 +13,7 @@ TagManager:
   - ARCam
   - ARCameraManager
   - tr_1a
+  - DistractionSoundsGO
   layers:
   - Default
   - TransparentFX
