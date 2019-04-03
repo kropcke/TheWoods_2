@@ -35,5 +35,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - setTag
   - SetTag
+  - TakeControl
+  - SetState
   DisableAutoOpenWizard: 1
   ShowSettings: 1

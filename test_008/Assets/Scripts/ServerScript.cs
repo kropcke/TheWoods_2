@@ -17,6 +17,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public string audioBubblePrefab;
     public string[] distractionPrefabs;
     GameObject distractionSoundsGO;
+    public GameObject ShieldPrefab;
     public List<AudioClip> distractionSounds;
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalServerInstance;
@@ -26,7 +27,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     int distractionsPickedUp = 0;
     int clipsCollected = 0;
     int totalClips = 8;
-
+    GameObject shield;
     float lastSpawnTime = 0;
 
     List<GameObject> audioVisualizations;
@@ -40,14 +41,19 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     List<float> distractionSpawnTimes;
     List<float> distractionDestroyTimes;
 
+    List<GameObject> holdingAudioClips;
+
     float distToChangeTarget = 0.25f;
-    float moveSpeed = 0.01f;
+    float moveSpeed = 0.02f;
     List<int> audioNumbersLeft;
 
     Dictionary<GameObject, int> audioBubbleToAudioClipNumber;
     GameObject[] players;
     bool startedGameOver = false;
     bool gameOver = false;
+
+    bool lighteningAssigned = false;
+    bool invincible = false;
     public void Awake()
     {
         if (photonView.IsMine)
@@ -67,6 +73,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             targetPositions = new List<Vector3>();
             distractionSpawnTimes = new List<float>();
             distractionDestroyTimes = new List<float>();
+            holdingAudioClips = new List<GameObject>();
             distractionTargetPositions = new List<Vector3>();
             audioBubbleToAudioClipNumber = new Dictionary<GameObject, int>();
             audioNumbersLeft = new List<int>();
@@ -113,16 +120,22 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             if (players.Length == 2)
             {
-                if (lightening)
+                if (lightening && !lighteningAssigned)
                 {
                     lightening.SetActive(true);
-                    lightening.transform.GetChild(0).GetChild(0).transform.position = players[0].transform.position;
-                    lightening.transform.GetChild(0).GetChild(1).transform.position = players[1].transform.position;
+                    players[0].GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All,
+                    lightening.transform.GetChild(0).GetChild(0).gameObject.name);
+                    players[1].GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All,
+                    lightening.transform.GetChild(0).GetChild(1).gameObject.name);
+                    lighteningAssigned = true;
+                    //lightening.transform.GetChild(0).GetChild(0).transform.position = players[0].transform.position;
+                    //lightening.transform.GetChild(0).GetChild(1).transform.position = players[1].transform.position;
                 }
             }
             else
             {
                 if(lightening) lightening.SetActive(false);
+                lighteningAssigned = false;
             }
             if (clipsCollected == totalClips)
             {
@@ -137,18 +150,65 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 UpdateDistractionsTimeout();
                 UpdateSpawning();
                 UpdateAudioClipMovement();
+                UpdateAttachedAudioPosition();
                 UpdateDistractionMovement();
+
+                CheckAudioAttachPickup();
                 CheckAudioPickups();
                 CheckDistractionPickups();
                 MagneticAudioMovement();
+                UpdateInvicibility();
             }
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                clipsCollected = totalClips;
+                Reset();
             }
         }
     }
-
+    void Reset()
+    {
+        distractionSoundsGO.GetComponent<AudioSource>().Stop();
+        for (int j = 0; j < audioVisualizations.Count; j++)
+        {
+            audioVisualizations[j].GetComponent<AudioSource>().Stop();
+        }
+        while (distractions.Count > 0)
+        {
+            PhotonNetwork.Destroy(distractions[0]);
+            distractions.RemoveAt(0);
+        }
+        while (audioBubbles.Count > 0)
+        {
+            PhotonNetwork.Destroy(audioBubbles[0]);
+            audioBubbles.RemoveAt(0);
+        }
+        while(holdingAudioClips.Count > 0)
+        {
+            PhotonNetwork.Destroy(holdingAudioClips[0]);
+            holdingAudioClips.RemoveAt(0);
+        }
+        for (int i = 0; i < audioVisualizations.Count; i++)
+        {
+            audioVisualizations[i].GetComponent<SoundClipGameObjects>().Reset();
+        }
+        distractions = new List<GameObject>();
+        audioBubbles = new List<GameObject>();
+        movementVectors = new List<Vector3>();
+        distractionMoveVectors = new List<Vector3>();
+        targetPositions = new List<Vector3>();
+        distractionSpawnTimes = new List<float>();
+        distractionDestroyTimes = new List<float>();
+        holdingAudioClips = new List<GameObject>();
+        distractionTargetPositions = new List<Vector3>();
+        audioBubbleToAudioClipNumber = new Dictionary<GameObject, int>();
+        audioNumbersLeft = new List<int>();
+        for (int i = 0; i < audioVisualizations.Count; i++)
+        {
+            audioNumbersLeft.Add(i);
+        }
+        clipsCollected = 0;
+        distractionsPickedUp = 0;
+    }
     IEnumerator endGameSequence() {
         distractionSoundsGO.GetComponent<AudioSource>().Stop();
         for(int j = 0; j < audioVisualizations.Count; j++)
@@ -188,6 +248,36 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     }
 
 
+    void UpdateInvicibility()
+    {
+        if(players.Length == 2)
+        {
+            if(Vector3.Distance(players[0].transform.position, players[1].transform.position) < 1f)
+            {
+                if (!shield)
+                {
+                    shield = PhotonNetwork.Instantiate(ShieldPrefab.name,
+                    (players[0].transform.position + players[1].transform.position) / 2f,
+                        Quaternion.identity);
+                    shield.transform.localScale = Vector3.one * 2f;
+                }
+                else
+                {
+                    shield.transform.position = Vector3.Lerp(shield.transform.position,
+                    (players[0].transform.position + players[1].transform.position) / 2f,
+                        Time.deltaTime);
+                }
+                invincible = true;
+                distractionSoundsGO.GetComponent<AudioSource>().volume = 0;
+            }
+            else
+            {
+                invincible = false;
+                distractionSoundsGO.GetComponent<AudioSource>().volume = 1;
+                if(shield) PhotonNetwork.Destroy(shield);
+            }
+        }
+    }
     void UpdateDistractionsTimeout()
     {
         for(int i =0; i < distractions.Count; i++)
@@ -225,21 +315,31 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         for (int i = 0; i < distractions.Count; i++)
         {
+            if (invincible)
+            {
+                if(Vector3.Distance(shield.transform.position, distractions[i].transform.position) < shield.transform.localScale.x / 2f)
+                {
+                    distractionMoveVectors[i] = (distractions[i].transform.position - shield.transform.position).normalized
+                    * moveSpeed * 1f;
+                }
+            }
             distractions[i].transform.position += distractionMoveVectors[i];
 
             distractionMoveVectors[i] = Vector3.Lerp(distractionMoveVectors[i],
             (distractionTargetPositions[i] - distractions[i].transform.position).normalized * moveSpeed / 2f,
-                0.1f * Time.deltaTime);
+                0.5f * Time.deltaTime);
             if (Vector3.Distance(distractions[i].transform.position, distractionTargetPositions[i]) < distToChangeTarget)
             {
                 distractionTargetPositions[i] = CreateNewRandomPosition();
             }
+            
         }
     }
     void UpdateSpawning()
     {
-        if(audioBubbles.Count < numAudioBubblesAtOneTime && Time.time - lastSpawnTime > timeBetweenSpawns
-        && audioNumbersLeft.Count > 0)
+        if(audioBubbles.Count + holdingAudioClips.Count < numAudioBubblesAtOneTime && 
+        Time.time - lastSpawnTime > timeBetweenSpawns && 
+            audioNumbersLeft.Count > 0)
         {
             CreateAudioBubbleRandomClip();
             lastSpawnTime = Time.time;
@@ -248,6 +348,17 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             CreateDistraction();
         
+        }
+    }
+    void UpdateAttachedAudioPosition()
+    {
+
+        for (int i = 0; i < holdingAudioClips.Count; i++)
+        {
+            Vector3 pos = Vector3.Lerp(players[0].transform.position, players[1].transform.position,
+            (float)(i + 1) / (holdingAudioClips.Count + 1));
+            holdingAudioClips[i].transform.position = pos;
+
         }
     }
 
@@ -275,17 +386,18 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    void CheckAudioPickups()
+    void CheckAudioAttachPickup()
     {
-        if(players.Length == 2) {
+        if (players.Length == 2)
+        {
             Vector3 center = (players[0].transform.position + players[1].transform.position) * 0.5f;
             Ray ray = new Ray(players[0].transform.position, players[1].transform.position - players[0].transform.position);
 
             for (int i = 0; i < audioBubbles.Count; i++)
             {
-                if(Vector3.Cross(ray.direction, audioBubbles[i].transform.position - ray.origin).magnitude < collectionRadius)
+                if (Vector3.Cross(ray.direction, audioBubbles[i].transform.position - ray.origin).magnitude < collectionRadius)
                 {
-                    AudioPickedUp(audioBubbles[i]);
+                    AudioAttached(audioBubbles[i]);
                 }
                 /*
                 if (Vector3.Distance(center, audioBubbles[i].transform.position) < collectionRadius)
@@ -295,11 +407,26 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 */
             }
         }
+    }
+    void CheckAudioPickups()
+    {
+        if(players.Length == 2) {
+           for (int i = 0; i < holdingAudioClips.Count; i++)
+            {
+                if(Vector3.Distance(players[0].transform.position, holdingAudioClips[i].transform.position) < 0.25f &&
+                Vector3.Distance(players[1].transform.position, holdingAudioClips[i].transform.position) < 0.25f &&
+                    !VoicemailPlaying())
+                {
+                    AudioPickedUp(holdingAudioClips[i]);
+                    return;
+                }
+            }
+        }
 
     }
     void CheckDistractionPickups()
     {
-        if (players.Length == 2)
+        if (players.Length == 2 && !invincible)
         {
             Vector3 center = (players[0].transform.position + players[1].transform.position) * 0.5f;
             Ray ray = new Ray(players[0].transform.position, players[1].transform.position - players[0].transform.position);
@@ -322,7 +449,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     void DistractionPickedUp(GameObject distraction)
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && !invincible)
         {
             distractionSoundsGO.GetComponent<AudioSource>().loop = false;
             distractionSoundsGO.GetComponent<AudioSource>().Stop();
@@ -330,7 +457,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 distractionSounds[Random.Range(0, distractionSounds.Count)];
             distractionSoundsGO.GetComponent<AudioSource>().time = 0;
             distractionSoundsGO.GetComponent<AudioSource>().Play();
-            //distractionSoundsGO.GetComponent<AudioSource>().SetScheduledEndTime(2f);
             distractionsPickedUp++;
             //Do some other stuff? Play scary noise?
             int spot = distractions.IndexOf(distraction);
@@ -338,6 +464,11 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             distractionMoveVectors.RemoveAt(spot);
             distractionTargetPositions.RemoveAt(spot);
             PhotonNetwork.Destroy(distraction);
+            if(holdingAudioClips.Count > 0)
+            {
+                PhotonNetwork.Destroy(holdingAudioClips[0]);
+                holdingAudioClips.RemoveAt(0);
+            }
         }
     }
 
@@ -347,13 +478,25 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             clipsCollected++;
             audioVisualizations[audioBubbleToAudioClipNumber[audioBubble]].GetComponent<SoundClipGameObjects>().StartPlaying();
+            StartCoroutine(NetworkedDestroyAfter(audioBubble,
+                audioVisualizations[audioBubbleToAudioClipNumber[audioBubble]].GetComponent<AudioSource>().clip.length));
 
             audioBubbleToAudioClipNumber.Remove(audioBubble);
+            holdingAudioClips.Remove(audioBubble);
+            audioBubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "singing");
+        }
+    }
+    void AudioAttached(GameObject audioBubble)
+    {
+        if (photonView.IsMine)
+        {
+            holdingAudioClips.Add(audioBubble);
+
             int spot = audioBubbles.IndexOf(audioBubble);
             audioBubbles.Remove(audioBubble);
             movementVectors.RemoveAt(spot);
             targetPositions.RemoveAt(spot);
-            PhotonNetwork.Destroy(audioBubble);
+            audioBubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "perched");
         }
     }
     void CreateAudioBubbleRandomClip()
@@ -368,7 +511,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             Random.Range(-0.01f, 0.01f),
             Random.Range(-0.01f, 0.01f)).normalized * moveSpeed);
         targetPositions.Add(CreateNewRandomPosition());
-        
+        bubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "flying");
     }
     void CreateDistraction()
     {
@@ -388,6 +531,20 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         float dist = Random.Range(0, gameAreaSize);
         float randomHeight = Random.Range(0.5f, 1.5f);
         return new Vector3(dist * Mathf.Cos(angle), randomHeight, dist * Mathf.Sin(angle));
+    }
+    bool VoicemailPlaying() 
+    {
+        bool toReturn = false;
+        for(int i = 0; i < audioVisualizations.Count; i++)
+        {
+            toReturn = toReturn || audioVisualizations[i].GetComponent<AudioSource>().isPlaying;
+        }
+        return toReturn;
+    }
+    IEnumerator NetworkedDestroyAfter(GameObject g, float t)
+    {
+        yield return new WaitForSeconds(t);
+        PhotonNetwork.Destroy(g);
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

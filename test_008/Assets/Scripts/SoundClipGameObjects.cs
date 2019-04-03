@@ -68,6 +68,15 @@ public class SoundClipGameObjects : MonoBehaviour
             }
         }
     }
+    public void Reset()
+    {
+        for (int i = 0; i < freqBands.Length; i++)
+        {
+            bars[i].transform.localScale = new Vector3(visObjectSize, visObjectSize / 2f, visObjectSize);
+            bars[i].transform.position = savedPositions[i] +
+                bars[i].transform.up * bars[i].transform.localScale.y / 2f;
+        }
+    }
     void SetBarsToSavedScales()
     {
         for (int i = 0; i < bars.Count; i++)

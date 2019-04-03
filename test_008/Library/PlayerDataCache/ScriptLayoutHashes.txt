@@ -1,6 +1,6 @@
-OSXStandalone
+iOS
 PlayerPath?
-/Users/Skylar/TheWoods_2/test_008/Builds/MacBuild.app
+/Users/Skylar/Desktop/TheWoods
 SceneListBegin?
 Assets/Scenes/SkylarNetworkingMainScene.unity
 Assets/Scenes/SkylarNetworkingStartScene.unity
@@ -542,7 +542,7 @@ db3b233e35a88802fed1717d19c3d9ec Assembly-CSharp-firstpass.dll:UnityStandardAsse
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Photon.Pun.Demo.Procedural.ProceduralController
 a8796ecdc9d5c260bbe32f30c4b10708 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
-dac705f8c660121b4df8d3c14b88927e Assembly-CSharp.dll:.ServerScript
+720332ee5f958863f0540fc921aabf7f Assembly-CSharp.dll:.ServerScript
 b7f557c19cce3b6f593e26edfe1ec859 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Vehicles.Ball.Ball
 ec0082b40adf3b0930cd87250ffdbf1d Assembly-CSharp.dll:Photon.Realtime.SupportLogger
 0ad469aca31264c6140b1e503c43ab6b Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.TimedObjectDestructor
@@ -668,3 +668,4 @@ ad4ede464ae743b4514f752be6cc0a4a Vuforia.UnityExtensions.dll:Vuforia.VuforiaConf
 05524b8f659e7bfe5756d1335fec24ba Vuforia.UnityExtensions.dll:Vuforia.WireframeTrackableEventHandler
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UnityARCameraNearFar
 0f3d4bb7128a287827d041c696039525 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.BirdControllerScript

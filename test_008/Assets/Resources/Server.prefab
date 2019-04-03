@@ -103,11 +103,12 @@ MonoBehaviour:
   collectionRadius: 0.1
   timeBetweenSpawns: 5
   numAudioBubblesAtOneTime: 2
-  numDistractionsAtOneTime: 10
-  audioBubblePrefab: GoodSphere
+  numDistractionsAtOneTime: 4
+  audioBubblePrefab: Bird
   distractionPrefabs:
-  - BadSphere
-  - BadSphere_purple
+  - DistractionPrefab
+  ShieldPrefab: {fileID: 1515904315747702, guid: a4863af48b99e4bad95159ee053ec1f2,
+    type: 2}
   distractionSounds:
   - {fileID: 8300000, guid: 6a539d23b34384da88f5ea9812cb8533, type: 3}
   - {fileID: 8300000, guid: 521d1d07798a14a32a585d1076ff5356, type: 3}

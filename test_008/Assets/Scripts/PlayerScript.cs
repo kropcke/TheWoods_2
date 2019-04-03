@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalPlayerInstance;
 
-
+    GameObject lightningEndpoint;
 
     GameObject ARCam, testPos;
 
@@ -40,6 +40,16 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     public void SetTag(string text)
     {
         this.tag = text;
+    }
+    [PunRPC]
+    public void TakeControl(string s)
+    {
+        if (photonView.IsMine)
+        {
+            GameObject g = GameObject.Find(s);
+            g.GetComponent<PhotonView>().RequestOwnership();
+            lightningEndpoint = g;
+        }
     }
     void Start()
     {
@@ -75,6 +85,10 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 //    + ARCam.transform.position;
                 transform.position = ARCam.transform.position;
                 transform.rotation = ARCam.transform.rotation;
+                if (lightningEndpoint)
+                {
+                    lightningEndpoint.transform.position = ARCam.transform.position;
+                }
 
                 // Correct for rotating around
                 /*
@@ -83,7 +97,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 float angle1, angle2;
                 GameObject.FindWithTag("ARImage").transform.rotation.ToAngleAxis(out angle1, out axis1);
                 GameObject.FindWithTag("ARImage").transform.GetChild(0).rotation.ToAngleAxis(out angle2, out axis2);
-                */               
+                */
                 //transform.RotateAround(Vector3.zero, axis1, -angle1);
                 //transform.RotateAround(Vector3.zero, axis2, -angle2);
                 /*
