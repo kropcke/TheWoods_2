@@ -32,7 +32,7 @@ public class SoundClipGameObjects : MonoBehaviour
         {
             GameObject c = GameObject.CreatePrimitive(PrimitiveType.Cube);
             c.transform.localScale = new Vector3(visObjectSize, visObjectSize, visObjectSize);
-            c.GetComponent<Renderer>().material.color = Color.white;
+            c.GetComponent<Renderer>().material.color = new Color(0.5f, 0.2f, 0f);
             bars.Add(c);
 
         }
@@ -90,7 +90,7 @@ public class SoundClipGameObjects : MonoBehaviour
     {
         for(int i = 0; i < bars.Count; i++)
         {
-            bars[i].GetComponent<Renderer>().material.color = Color.white;
+            bars[i].GetComponent<Renderer>().material.color = new Color(0.5f, 0.2f, 0f);
         }
     }
     public void StartPlaying() {
@@ -124,8 +124,8 @@ public class SoundClipGameObjects : MonoBehaviour
             bars[i - startIndex].transform.position += 
             bars[i - startIndex].transform.up * 
                 bars[i - startIndex].transform.localScale.y / 2f;
-            bars[i - startIndex].GetComponent<Renderer>().material.color =
-                Color.HSVToRGB(startIndex / (float)(numPartitions), 1, 1);
+            //bars[i - startIndex].GetComponent<Renderer>().material.color =
+             //   Color.HSVToRGB(startIndex / (float)(numPartitions), 1, 1);
         }
     }
 

@@ -103,10 +103,10 @@ MonoBehaviour:
   collectionRadius: 0.1
   timeBetweenSpawns: 5
   numAudioBubblesAtOneTime: 2
-  numDistractionsAtOneTime: 4
+  numDistractionsAtOneTime: 1
   audioBubblePrefab: Bird
   distractionPrefabs:
-  - DistractionPrefab
+  - Clouds
   ShieldPrefab: {fileID: 1515904315747702, guid: a4863af48b99e4bad95159ee053ec1f2,
     type: 2}
   distractionSounds:
