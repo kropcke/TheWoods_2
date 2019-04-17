@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BirdControllerScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="340" Column="50" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="497" Column="75" />
       <File FileName="Assets/Scripts/GameController.cs" Line="44" Column="101" />
       <File FileName="Assets/Scripts/PlayerScript.cs" Line="44" Column="13" />
       <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="35" Column="39" />
-      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="75" Column="106" />
-      <File FileName="Assets/Scripts/BirdControllerScript.cs" Line="17" Column="5" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="128" Column="16" />
+      <File FileName="Assets/Scripts/BirdControllerScript.cs" Line="32" Column="61" />
+      <File FileName="Assets/Scripts/ObiRopeLengthAdjuster.cs" Line="5" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

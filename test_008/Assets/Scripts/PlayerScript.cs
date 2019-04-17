@@ -87,7 +87,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 transform.rotation = ARCam.transform.rotation;
                 if (lightningEndpoint)
                 {
-                    lightningEndpoint.transform.position = ARCam.transform.position;
+                    lightningEndpoint.transform.position = transform.GetChild(1).position;
                 }
 
                 // Correct for rotating around

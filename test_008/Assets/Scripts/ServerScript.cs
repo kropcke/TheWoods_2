@@ -121,12 +121,14 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             if (players.Length == 2)
             {
+                players[0] = players[0].transform.GetChild(1).gameObject;
+                players[1] = players[1].transform.GetChild(1).gameObject;
                 if (lightening && !lighteningAssigned)
                 {
                     lightening.SetActive(true);
-                    players[0].GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All,
+                    players[0].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All,
                     lightening.transform.GetChild(0).GetChild(0).gameObject.name);
-                    players[1].GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All,
+                    players[1].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All,
                     lightening.transform.GetChild(0).GetChild(1).gameObject.name);
                     lighteningAssigned = true;
                     //lightening.transform.GetChild(0).GetChild(0).transform.position = players[0].transform.position;
@@ -270,19 +272,19 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(players.Length == 2)
         {
-            if(Vector3.Distance(players[0].transform.position, players[1].transform.position) < 1f)
+            if(Vector3.Distance(players[0].transform.parent.position, players[1].transform.parent.position) < 1f)
             {
                 if (!shield)
                 {
                     shield = PhotonNetwork.Instantiate(ShieldPrefab.name,
-                    (players[0].transform.position + players[1].transform.position) / 2f,
+                    (players[0].transform.parent.position + players[1].transform.parent.position) / 2f,
                         Quaternion.identity);
                     shield.transform.localScale = Vector3.one * 2f;
                 }
                 else
                 {
                     shield.transform.position = Vector3.Lerp(shield.transform.position,
-                    (players[0].transform.position + players[1].transform.position) / 2f,
+                    (players[0].transform.parent.position + players[1].transform.parent.position) / 2f,
                         Time.deltaTime);
                 }
                 invincible = true;
@@ -440,8 +442,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         if(players.Length == 2) {
            for (int i = 0; i < holdingAudioClips.Count; i++)
             {
-                if(Vector3.Distance(players[0].transform.position, holdingAudioClips[i].transform.position) < 0.25f &&
-                Vector3.Distance(players[1].transform.position, holdingAudioClips[i].transform.position) < 0.25f &&
+                if(Vector3.Distance(players[0].transform.parent.position, players[1].transform.parent.position) < 0.25f &&
                     !VoicemailPlaying())
                 {
                     AudioPickedUp(holdingAudioClips[i]);
