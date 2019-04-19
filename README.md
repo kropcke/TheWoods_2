@@ -29,6 +29,7 @@ When all 8 birds are collected, the entire voicemail will play and the game will
 ## Dependencies, software and packages
 Unity 2018.1.6f1
 Photon Unity Networking 2 version 2.6 lib 4.1.2.7
+Vuforia 7.2.23
 
 ## Code
 Since PUN is used, often PhotonView.isMine is used at the beginning of methods so that only the local player executes the code within.

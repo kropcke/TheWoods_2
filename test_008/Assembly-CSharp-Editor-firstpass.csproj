@@ -62,14 +62,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/Skylar/TheWoods_2/test_008/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/Skylar/TheWoods_2/test_008/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/Skylar/TheWoods_2/test_008/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.postprocessing.Editor">
       <HintPath>/Users/Skylar/TheWoods_2/test_008/Library/ScriptAssemblies/com.unity.postprocessing.Editor.dll</HintPath>
