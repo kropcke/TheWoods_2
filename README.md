@@ -52,6 +52,12 @@ This script is put on to the audio visualization game objects which use cubes an
 ### LobbyManager.cs
 This script is only used within SkylarNetworkingStartScene to load the networked room. If a room exists when the player enters this scene, they will automatically join the room. Otherwise, a room is created, and that player will be the "server" or master client.
 
+### BirdControllerScript.cs
+Only used to manage the bird animations. At the time of writing this, there is only a static flying frame, perched frame, and singing frame. Since these were made with different models at first, we are simply enabling and disabling gameobjects instead of using an animation controller.
+
+### ObiRopeLengthAdjuster.cs
+This was added toward the end of development, and might be useful if Obi Rope is used moving forward. This uses a rope cursor to add and remove length from the middle of the rope as the players move apart or come together. Seems to keep the "slack" of the rope somewhat constant, which is nice.
+
 ## Scenes
 ### SkylarNetworkingStartScene.unity
 This scene is used for the start of the networking. It creates a room automatically if one doesn't exist, and then will load SkylarNetworkingMainScene
