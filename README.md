@@ -31,6 +31,10 @@ Unity 2018.1.6f1
 Photon Unity Networking 2 version 2.6 lib 4.1.2.7
 Vuforia 7.2.23
 
+Note here that Vuforia will default to version 7.1 in Unity 2018.1.6f1. To upgrade, click on Window>Vuforia configuration in Unity. On the top of the inspector tab, there will be a link to update to 7.2.23. Click this and download the ZIP. On Mac, there is an issue with installation: /Applications/Unity is the default installation folder, but that is typically where the hub is now. https://forum.unity.com/threads/new-release-7-2-patch-sdk-7-2-23.541937/
+To remedy this, find your Unity version and move it to /Applications and rename it to Unity. Run the update package downloaded, and then you may rename the Unity program folder and put it back.
+Return to the Vuforia Configuration in Unity and verify that 7.2.23 is installed and the correct App License Key is pasted there, that Tracking mode is set to Positional, and Fusion Mode is set to Optimize for Image Targets and VuMarks, and that Track Device Pose is checked.
+
 ## Code
 Since PUN is used, often PhotonView.isMine is used at the beginning of methods so that only the local player executes the code within.
 
@@ -64,3 +68,4 @@ This scene is used for the start of the networking. It creates a room automatica
 
 ### SkylarNetworkingMainScene.unity
 This is the main game scene. If loaded into this scene before connected to a room, it will automatically load into SkylarNetworkingStartScene.
+
