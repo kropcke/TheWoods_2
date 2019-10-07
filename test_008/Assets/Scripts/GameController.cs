@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
@@ -13,7 +11,7 @@ public class GameController : MonoBehaviourPunCallbacks
 
     [Tooltip("The prefab to use for representing the player")]
     [SerializeField]
-    private GameObject playerPrefab;
+    public GameObject playerPrefab;
 
     [Tooltip("The prefab to use for representing the server")]
     [SerializeField]
@@ -29,7 +27,7 @@ public class GameController : MonoBehaviourPunCallbacks
         }
 
         if (playerPrefab == null)
-        { 
+        {
             print("playerPrefab reference null. Please set it up in GameObject Game Controller");
         }
         else if (serverPrefab == null)
@@ -56,12 +54,12 @@ public class GameController : MonoBehaviourPunCallbacks
                 Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                 GameObject p = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
                 p.GetPhotonView().RPC("SetTag", RpcTarget.All, "Player");
-                      
+
             }
             else
             {
                 Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
-            }            
+            }
         }
 
     }
@@ -72,26 +70,26 @@ public class GameController : MonoBehaviourPunCallbacks
             QuitApplication();
         }
     }
-    public override void OnPlayerEnteredRoom(Player other)
+    public override void OnPlayerEnteredRoom(Player player)
     {
-        Debug.Log("OnPlayerEnteredRoom() " + other.NickName); 
+        Debug.Log("OnPlayerEnteredRoom() " + player.ActorNumber);
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); 
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
         }
     }
-    
-    public override void OnPlayerLeftRoom(Player other)
+
+    public override void OnPlayerLeftRoom(Player player)
     {
-        Debug.Log("OnPlayerLeftRoom() " + other.NickName); 
+        Debug.Log("OnPlayerLeftRoom() " + player.ActorNumber);
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); 
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
         }
     }
-    
+
     public override void OnLeftRoom()
     {
     }
@@ -103,7 +101,8 @@ public class GameController : MonoBehaviourPunCallbacks
 
     public void QuitApplication()
     {
+        PhotonNetwork.LeaveRoom();
         Application.Quit();
     }
-    
+
 }

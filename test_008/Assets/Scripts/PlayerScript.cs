@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -86,7 +82,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 transform.position = ARCam.transform.position;
                 transform.rotation = ARCam.transform.rotation;
                 if (lightningEndpoint)
-                {
+                {                    
                     lightningEndpoint.transform.position = transform.GetChild(1).position;
                 }
 
@@ -118,7 +114,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    
+
     void ProcessInputs()
     {
 
