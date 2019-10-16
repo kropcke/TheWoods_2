@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/SkylarNetworkingMainScene.unity
-  isLoaded: 1
-  isActive: 1

@@ -297,7 +297,6 @@
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\ServerScript.cs" />
-    <Compile Include="Assets\Scripts\ServerScript_master.cs" />
     <Compile Include="Assets\Scripts\SkylarsNetworkManager.cs" />
     <Compile Include="Assets\Scripts\SoundClipGameObjects copy.cs" />
     <Compile Include="Assets\Scripts\SoundClipGameObjects.cs" />

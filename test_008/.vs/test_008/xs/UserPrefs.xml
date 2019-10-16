@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DistractionController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SoundClipGameObjects.cs">
     <Files>
-      <File FileName="Assets/Scripts/DistractionController.cs" Line="7" Column="34" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="141" Column="48" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="129" Column="42" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -9,11 +10,14 @@
           <Node name="test_008" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="DistractionController.cs" selected="True" />
+                <Node name="SoundClipGameObjects.cs" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
@@ -22,10 +26,10 @@
     <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="405ee223-9e7a-4fd8-a1dc-1c89dadd6f2b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="72d38285-fbdc-446a-a0db-7e5ee2e55fdf" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2/test_008/Assets/Scripts/ServerScript.cs" relfile="Assets/Scripts/ServerScript.cs" line="301" column="1" />
+      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2/test_008/Assets/Scripts/LobbyManager.cs" relfile="Assets/Scripts/LobbyManager.cs" line="10" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
