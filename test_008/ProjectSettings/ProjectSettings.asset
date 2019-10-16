@@ -151,7 +151,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.Skylar.TheWoodsTest
-    iOS: com.Skylar.TheWoodsTest
+    iOS: com.ACCAD.TheWoods
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

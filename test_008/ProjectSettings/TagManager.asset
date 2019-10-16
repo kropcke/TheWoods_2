@@ -14,6 +14,9 @@ TagManager:
   - ARCameraManager
   - tr_1a
   - DistractionSoundsGO
+  - GameConfiguration
+  - Clouds
+  - ConnectorLink
   layers:
   - Default
   - TransparentFX

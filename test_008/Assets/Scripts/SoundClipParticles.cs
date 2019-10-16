@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundClipParticles : MonoBehaviour {
+public class SoundClipParticles : MonoBehaviour
+{
     AudioClip c;
     ParticleSystem.Particle[] particles;
     public float distBetweenChannels;
@@ -13,7 +13,8 @@ public class SoundClipParticles : MonoBehaviour {
     bool playing = false;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         c = GetComponent<AudioSource>().clip;
         ParticleSystem.MainModule mainModule = GetComponent<ParticleSystem>().main;
         mainModule.maxParticles = c.channels;

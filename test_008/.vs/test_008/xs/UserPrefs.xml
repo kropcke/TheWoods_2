@@ -1,20 +1,36 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SoundClipGameObjects.cs">
     <Files>
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="497" Column="75" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="44" Column="101" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" Line="44" Column="13" />
-      <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="35" Column="39" />
-      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="128" Column="16" />
-      <File FileName="Assets/Scripts/BirdControllerScript.cs" Line="32" Column="61" />
-      <File FileName="Assets/Scripts/ObiRopeLengthAdjuster.cs" Line="5" Column="27" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="141" Column="48" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="129" Column="42" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="test_008" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="SoundClipGameObjects.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../Assets/Scripts/DistractionController.cs" line="11" offsetX="-1" offsetY="-1" expression="variables" liveUpdate="False" />
+    <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="72d38285-fbdc-446a-a0db-7e5ee2e55fdf" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2/test_008/Assets/Scripts/LobbyManager.cs" relfile="Assets/Scripts/LobbyManager.cs" line="10" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

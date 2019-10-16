@@ -76,7 +76,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -98,23 +98,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b805fca59404b8b9306b07cfa060f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magneticRadius: 0.25
   magneticSpeed: 0.1
   collectionRadius: 0.1
-  timeBetweenSpawns: 5
   numAudioBubblesAtOneTime: 2
-  numDistractionsAtOneTime: 1
   audioBubblePrefab: Bird
+  audioBubbles: []
+  holdingAudioClips: []
+  audioBubbleMoveSpeed: 0.02
+  audioNumbersLeft: 
+  audioVisualizations: []
+  timeBetweenSpawns: 5
+  clipsCollected: 0
   distractionPrefabs:
   - Clouds
-  ShieldPrefab: {fileID: 1515904315747702, guid: a4863af48b99e4bad95159ee053ec1f2,
-    type: 2}
-  distractionSounds:
-  - {fileID: 8300000, guid: 6a539d23b34384da88f5ea9812cb8533, type: 3}
-  - {fileID: 8300000, guid: 521d1d07798a14a32a585d1076ff5356, type: 3}
-  - {fileID: 8300000, guid: 3e2229ab9b9ab4c608f1cc4da56d0df6, type: 3}
-  - {fileID: 8300000, guid: 4bbb593dc85d64db5b7091f6a280b9af, type: 3}
-  - {fileID: 8300000, guid: d5baa7df197134136a4bc1b818c081c4, type: 3}
+  distractionAudioPlayer: {fileID: 0}
+  numDistractionsAtOneTime: 1
+  ShieldPrefab: {fileID: 0}
 --- !u!114 &114116483535423524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,7 +133,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114175896124062276
 MonoBehaviour:

@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public string sceneToLoad;
-    
+
     bool isConnecting = false;
     string gameVersion = "1";
 
@@ -20,7 +17,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Connect();
     }
     public void Connect()
-    {       
+    {
         isConnecting = true;
 
         if (PhotonNetwork.IsConnected)
