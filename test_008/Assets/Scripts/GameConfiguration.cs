@@ -9,11 +9,12 @@ public class GameConfiguration : MonoBehaviour {
     public List<AudioClip> messageAudios;
     public string connectorPrefab;
     public AudioSource audioSource;
-    
+    internal bool debugMode;
 
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         audioSource = GetComponent<AudioSource>();
     }
 	

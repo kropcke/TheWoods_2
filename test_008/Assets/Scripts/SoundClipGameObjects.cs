@@ -3,6 +3,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(AudioSource))]
 public class SoundClipGameObjects : MonoBehaviour
 {
+    private bool debugMode = false; // todo: move to GameConfiguration
     AudioSource s;
     AudioClip c;
     public float visObjectSize;
@@ -11,8 +12,8 @@ public class SoundClipGameObjects : MonoBehaviour
 
     bool activated = false;
     bool playing = false;
-    float[] freqBands = { 20, 60, 250, 500, 2000, 4000, 6000, 20000 };
-
+    //float[] freqBands = { 20, 60, 250, 500, 2000, 4000, 6000, 20000 };
+    float[] freqBands = { 20, 30, 60, 120, 240, 480, 960, 1920, 3840, 4800, 6000, 8000, 16000, 17000, 18500, 20000 };
     List<Vector3> savedScales;
     List<Vector3> savedPositions;
     List<Vector3> savedRotations;
@@ -99,7 +100,10 @@ public class SoundClipGameObjects : MonoBehaviour
 
     public void StartPlaying()
     {
-        print("Starting playing if not playing " + gameObject.name);
+        if (debugMode)
+        {
+            print("Starting playing if not playing " + gameObject.name);
+        }
         if (!playing)
         {
             
@@ -111,7 +115,10 @@ public class SoundClipGameObjects : MonoBehaviour
 
     public void StopPlaying()
     {
-        print("Stopping playing if playing " + gameObject.name);
+        if (debugMode)
+        {
+            print("Stopping playing if playing " + gameObject.name);
+        }
         if (playing)
         {
             playing = false;
