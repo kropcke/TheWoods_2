@@ -100,15 +100,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magneticSpeed: 0.1
   collectionRadius: 0.1
-  numAudioBubblesAtOneTime: 2
+  audioBubblesFlyingAtOneTime: 1
   audioBubblePrefab: Bird
-  audioBubbles: []
-  holdingAudioClips: []
+  audioBubblesFlying: []
+  audioBubblesPlayed: []
+  audioBubblesHolding: []
   audioBubbleMoveSpeed: 0.02
-  audioNumbersLeft: 
-  audioVisualizations: []
+  audioBubblesLeft: 
+  audioBubblestotalCount: 4
+  audioBubblesCollected: 0
+  audioBubbleVisualizations: []
   timeBetweenSpawns: 5
-  clipsCollected: 0
   distractionPrefabs:
   - Clouds
   distractionAudioPlayer: {fileID: 0}

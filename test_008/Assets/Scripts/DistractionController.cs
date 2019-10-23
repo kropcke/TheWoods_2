@@ -5,6 +5,7 @@ public class DistractionController : MonoBehaviourPunCallbacks
 {
 	GameConfiguration variables;
 	public static bool inDistraction;
+    public bool debugMode = false; // todo: Move to gamecontroller.
 
 	// Use this for initialization
 	void Start()
@@ -30,7 +31,10 @@ public class DistractionController : MonoBehaviourPunCallbacks
 		{
 			//Debug.LogFormat("Tag: {0}", other.gameObject.tag);
 			inDistraction = true;
-			print(" ========== Cloud trigger enter.");
+            if (debugMode)
+            {
+                print(" ========== Cloud trigger enter.");
+            }
 			PlayRandomDistractionAudio();
 			//Invoke("PlayRandomDistractionAudio", 0.1f);
 		}
@@ -50,7 +54,10 @@ public class DistractionController : MonoBehaviourPunCallbacks
 		if (photonView.IsMine && other.gameObject.tag == "ConnectorLink")
 		{
 			inDistraction = false;
-			print(" ========== Cloud trigger exit.");
+            if (debugMode)
+            {
+                print(" ========== Cloud trigger exit.");
+            }
 			StopDistractionAudioClip();
 		}
 
@@ -75,7 +82,10 @@ public class DistractionController : MonoBehaviourPunCallbacks
 		
 		if (photonView.IsMine && other.gameObject.tag == "ConnectorLink")
 		{
-			Debug.Log(" ========== Cloud trigger stay.");
+            if (debugMode)
+            {
+                Debug.Log(" ========== Cloud trigger stay.");
+            }
 			inDistraction = true;
 		}
 	}

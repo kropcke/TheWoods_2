@@ -67,7 +67,8 @@ public class CylinderConnectorScript : MonoBehaviour
             Vector3 unused = EndObject.transform.position - StartObject.transform.position;
             if (enableCylinder)
             {
-                LinkObject.transform.localScale = new Vector3(0.02F, unused.magnitude * 0.5f, 0.02F);
+                
+                LinkObject.transform.localScale = new Vector3(0.02F, Mathf.Min(unused.magnitude * 0.5f, 1f), 0.02F);
             }
             else
             {
