@@ -260,7 +260,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 Vector3 pos = Vector3.Lerp(
                     players[0].transform.position,
                     players[1].transform.position,
-                (float)(i + 1) / (audioBubblestotalCount + 1)
+                (float)(i + 1) / (audioBubblesHolding.Count + 1)
                 );
                 audioBubblesHolding[i].transform.position = pos;
             }
@@ -613,7 +613,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             audioBubbleToAudioClipNumber.Remove(audioBubble);
             audioBubblesHolding.Remove(audioBubble);
             audioBubblesCollected++;
-            lastSpawnTime = Time.time + 4f; // let the bird be created 5 - 4 = 1second after current audio clip 
+            lastSpawnTime = Time.time - 4f; // let the bird be created 5 - 4 = 1second after current audio clip 
         }
     }
 
