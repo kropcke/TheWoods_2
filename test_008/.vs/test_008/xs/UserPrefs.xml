@@ -1,8 +1,13 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SoundClipGameObjects.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ServerScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="141" Column="48" />
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="129" Column="42" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="263" Column="57" />
+      <File FileName="Assets/Scripts/SoundClipParticles.cs" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" />
+      <File FileName="Assets/Scripts/DistractionController.cs" />
+      <File FileName="Assets/Scripts/GameController.cs" />
+      <File FileName="Assets/Scripts/StaticVariables.cs" />
+      <File FileName="Assets/Scripts/CylinderConnectorScript.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,14 +15,11 @@
           <Node name="test_008" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="SoundClipGameObjects.cs" selected="True" />
+                <Node name="ServerScript.cs" selected="True" />
               </Node>
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
@@ -26,11 +28,9 @@
     <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="72d38285-fbdc-446a-a0db-7e5ee2e55fdf" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="03d754d8-679c-4e52-993d-27ba5dd82d57" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2/test_008/Assets/Scripts/LobbyManager.cs" relfile="Assets/Scripts/LobbyManager.cs" line="10" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
