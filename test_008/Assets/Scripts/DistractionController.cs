@@ -37,7 +37,7 @@ public class DistractionController : MonoBehaviourPunCallbacks
                 print(" ========== Cloud trigger enter.");
             }
 			PlayRandomDistractionAudio();
-			// UnityPD.SendBang("test_bang");
+			UnityPD.SendBang("test_bang");
 			//Invoke("PlayRandomDistractionAudio", 0.1f);
 		}
 	}
