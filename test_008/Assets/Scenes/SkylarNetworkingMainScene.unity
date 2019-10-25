@@ -1759,6 +1759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1244139501}
   - component: {fileID: 1244139500}
+  - component: {fileID: 1244139502}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1795,6 +1796,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1244139502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1244139499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dd27fa9845c4ada9b007bd4395dfbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patchName: test.pd
 --- !u!1 &1664378944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2226,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b9f4ca08373e4091a966cb64188b152, type: 3}
   connectorPrefab: LinkObject
   audioSource: {fileID: 0}
-  patchName: test.pd
 --- !u!4 &1984305281
 Transform:
   m_ObjectHideFlags: 0
