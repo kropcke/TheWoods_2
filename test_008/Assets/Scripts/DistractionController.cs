@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Photon.Pun;
+
 public class DistractionController : MonoBehaviourPunCallbacks
 {
 	GameConfiguration variables;
@@ -36,6 +37,7 @@ public class DistractionController : MonoBehaviourPunCallbacks
                 print(" ========== Cloud trigger enter.");
             }
 			PlayRandomDistractionAudio();
+			UnityPD.SendBang("test_bang");
 			//Invoke("PlayRandomDistractionAudio", 0.1f);
 		}
 	}
