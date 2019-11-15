@@ -112,7 +112,6 @@ MonoBehaviour:
   audioBubblesCollected: 0
   audioBubbleVisualizations: []
   players: []
-  players1: []
   timeBetweenSpawns: 5
   distractionPrefabs:
   - Clouds
