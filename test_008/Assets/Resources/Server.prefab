@@ -106,16 +106,18 @@ MonoBehaviour:
   audioBubblesPlayed: []
   audioBubblesHolding: []
   audioBubbleMoveSpeed: 0.02
+  smoothSpeed: 0.02
   audioBubblesLeft: 
   audioBubblestotalCount: 4
   audioBubblesCollected: 0
   audioBubbleVisualizations: []
+  players: []
+  players1: []
   timeBetweenSpawns: 5
   distractionPrefabs:
   - Clouds
   distractionAudioPlayer: {fileID: 0}
   numDistractionsAtOneTime: 1
-  ShieldPrefab: {fileID: 0}
 --- !u!114 &114116483535423524
 MonoBehaviour:
   m_ObjectHideFlags: 1

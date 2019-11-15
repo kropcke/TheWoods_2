@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 114665046565343960}
   - component: {fileID: 54695971046245608}
   - component: {fileID: 114244226389864910}
-  - component: {fileID: 114897770043934982}
   m_Layer: 0
   m_Name: Clouds
   m_TagString: Clouds
@@ -524,6 +523,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugMode: 0
+  origin: {fileID: 1124236413809056, guid: 10bd259da7a694422a014c127344287f, type: 2}
+  dx: 0
 --- !u!114 &114345952992479002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -559,24 +560,3 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &114897770043934982
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1557098932765082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 7
-  isRuntimeInstantiated: 0

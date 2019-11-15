@@ -8,8 +8,7 @@ public class CylinderConnectorScript : MonoBehaviour
     public GameObject EndObject;
     GameConfiguration variables;
 
-    private bool enableCylinder = true;
-
+    private bool enableCylinder = false;
     GameObject LinkObject;
     GameObject[] players;
 
@@ -31,26 +30,21 @@ public class CylinderConnectorScript : MonoBehaviour
     }
 
     void Start()
-    {     
-        if (enableCylinder)
-        {
-            CreatePrimitiveCylinderLink();
+    {
+            if (enableCylinder)
+            {
+                CreatePrimitiveCylinderLink();
+            }
+            else
+            {
+                variables = GameObject.FindGameObjectWithTag("GameConfiguration").GetComponent<GameConfiguration>();
+                LinkObject = GameObject.Find("NewMiddleBranch");
+                LinkObject.transform.position = new Vector3(0, 0, 0);
+
+            }
+            LinkObject.transform.rotation = defaultLinkRotation;
+            LinkObject.transform.localScale = defaultLinkSize;
         }
-        else
-        {
-            variables = GameObject.FindGameObjectWithTag("GameConfiguration").GetComponent<GameConfiguration>();
-            LinkObject = GameObject.Find("MiddleBranch");
-            //LinkObject.gameObject.SetActive(true);
-            //LinkObject.GetComponent<this>.enabled = true;
-            //LinkObject.SetActive(true);
-            
-            LinkObject.transform.position = new Vector3(0, 1, 0);
-            
-        }
-        LinkObject.transform.rotation = defaultLinkRotation;
-        LinkObject.transform.localScale = defaultLinkSize;
-        //Debug.Log("LinkObject is {0}", LinkObject);
-    }
 
     void Update()
     {
@@ -63,31 +57,25 @@ public class CylinderConnectorScript : MonoBehaviour
             Vector3 Direction = (EndObject.transform.position - StartObject.transform.position).normalized;
             LinkObject.transform.position = MidPosition;
 
-            LinkObject.transform.rotation = Quaternion.LookRotation(Direction, Vector3.right) * Quaternion.Euler(90, 0, 0);
+            LinkObject.transform.rotation = Quaternion.LookRotation(Direction, Vector3.right) * Quaternion.Euler(0, 0, 0);
             Vector3 unused = EndObject.transform.position - StartObject.transform.position;
             if (enableCylinder)
             {
-                
+
                 LinkObject.transform.localScale = new Vector3(0.02F, Mathf.Min(unused.magnitude * 0.5f, 1f), 0.02F);
             }
             else
             {
-                LinkObject.transform.localScale = new Vector3(unused.magnitude * 4f, 4F, 4F);
+                LinkObject.transform.localScale = new Vector3(3f, 2F, 3F);
 
             }
-            //  }
-            //change these measurements after the game object
-            //LinkObject.transform.localScale = new Vector3(1F, 1F, 2F);
-            //Debug.LogFormat("StartPosition: {0} , EndPosition: {1} , MidPosition: {2}, Direction: {3} , Scale: {4}"
-            //          , StartObject.transform.position
-            //          , EndObject.transform.positionÏ
-            //          , MidPosition
-            //          , Quaternion.LookRotation(Direction, Vector3.right) * Quaternion.Euler(90, 0, 0)
-            //	, new Vector3(0.02F, ((EndObject.transform.position - StartObject.transform.position) * 0.5F).magnitude, 0.02F));
-        } else
+        }
+        else
         {
             LinkObject.transform.localScale = defaultLinkSize;
         }
 
     }
+   
+
 }

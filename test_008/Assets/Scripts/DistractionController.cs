@@ -5,31 +5,34 @@ public class DistractionController : MonoBehaviourPunCallbacks
 {
 	GameConfiguration variables;
 	public static bool inDistraction;
-    public bool debugMode = false; // todo: Move to gamecontroller.
+    public bool debugMode = true; // todo: Move to gamecontroller.
 
+    public GameObject origin;
+    public float dx;
 	// Use this for initialization
 	void Start()
 	{
 		variables = GameObject.FindGameObjectWithTag("GameConfiguration").GetComponent<GameConfiguration>();
 		variables.audioSource.loop = true;
         inDistraction = false;
-        //Debug.LogFormat("variables.distractionAudios.Count:{0}", variables.distractionAudios.Count);
     }
 
 	// Update is called once per frame
 	void Update()
 	{
-		//Debug.LogFormat("isPlaying: {0} : isLoop: {1} : Volume: {2}",variables.audioSource.isPlaying, variables.audioSource.loop, variables.audioSource.volume);
+        dx = (origin.transform.position - gameObject.transform.position).sqrMagnitude;
+        //TODO :Implement in a Better way - volume fadein and fadeout
+        //GetComponent<AudioSource>().volume =  ( 1/dx);
 
-	}
+    }
 
 
 	private void OnTriggerEnter(Collider other)
 	{
 
-		if (photonView.IsMine && other.gameObject.tag == "ConnectorLink")
+        if (photonView.IsMine && other.gameObject.tag == "ConnectorLink")
 		{
-			//Debug.LogFormat("Tag: {0}", other.gameObject.tag);
+            //Debug.LogFormat("Tag: {0}", other.gameObject.tag);
 			inDistraction = true;
             if (debugMode)
             {
@@ -79,7 +82,7 @@ public class DistractionController : MonoBehaviourPunCallbacks
 	private void OnTriggerStay(Collider other)
 	{
 
-		
+        Handheld.Vibrate();
 		if (photonView.IsMine && other.gameObject.tag == "ConnectorLink")
 		{
             if (debugMode)
