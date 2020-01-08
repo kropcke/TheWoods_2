@@ -17,6 +17,7 @@ TagManager:
   - GameConfiguration
   - Clouds
   - ConnectorLink
+  - Bird
   layers:
   - Default
   - TransparentFX

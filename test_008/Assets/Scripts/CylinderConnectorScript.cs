@@ -31,7 +31,7 @@ public class CylinderConnectorScript : MonoBehaviour
 
     void Start()
     {
-            if (enableCylinder)
+        if (enableCylinder)
             {
                 CreatePrimitiveCylinderLink();
             }
@@ -69,6 +69,7 @@ public class CylinderConnectorScript : MonoBehaviour
                 LinkObject.transform.localScale = new Vector3(3f, 2F, 3F);
 
             }
+     
         }
         else
         {

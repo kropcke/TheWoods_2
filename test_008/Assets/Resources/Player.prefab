@@ -24,13 +24,14 @@ GameObject:
   - component: {fileID: 23625883682470600}
   - component: {fileID: 114435059123166686}
   - component: {fileID: 114282797785504236}
+  - component: {fileID: 81894265489151354}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1723035682899768
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1120980513646626}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4220685919145916}
   - {fileID: 4424155415517910}
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1884602244253374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.65, y: -0.98, z: 8.92}
+  m_LocalPosition: {x: 0.09, y: -2.37, z: 4.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4110202715317424}
@@ -110,7 +111,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723035682899768}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -188,6 +189,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723035682899768}
   m_Mesh: {fileID: 4300000, guid: c15ec68b6a1d444caaf7805d1ab551f4, type: 3}
+--- !u!81 &81894265489151354
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120980513646626}
+  m_Enabled: 0
 --- !u!114 &114127919527521946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,5 +241,5 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114282797785504236}
   viewIdField: 0
-  InstantiationId: 7
+  InstantiationId: 6
   isRuntimeInstantiated: 0

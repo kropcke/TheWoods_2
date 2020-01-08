@@ -10,10 +10,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
+        
         PhotonNetwork.AutomaticallySyncScene = true;
     }
     private void Start()
     {
+        
         Connect();
     }
     public void Connect()

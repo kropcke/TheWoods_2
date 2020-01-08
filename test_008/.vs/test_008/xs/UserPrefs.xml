@@ -1,19 +1,24 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ServerScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="15" Column="2" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" />
-      <File FileName="Assets/Scripts/CylinderConnectorScript.cs" Line="9" Column="32" />
-      <File FileName="Assets/Scripts/DistractionController.cs" Line="25" Column="11" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/BirdControllerScript.cs" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="358" Column="26" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" Line="96" Column="23" />
+      <File FileName="Assets/Photon/PhotonUnityNetworking/Code/PhotonView.cs" />
+      <File FileName="Assets/Scripts/DistractionController.cs" Line="38" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="test_008" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True" />
+              <Node name="Photon" expanded="True">
+                <Node name="PhotonUnityNetworking" expanded="True">
+                  <Node name="Code" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="ServerScript.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -25,11 +30,10 @@
     <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b32a85c2-b13d-4906-be93-d6824d5ffdf9" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8d0e097f-69d7-4938-a7c2-5fa227f96a0c" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/develop/test_008/Assets/Scripts/DistractionController.cs" relfile="Assets/Scripts/DistractionController.cs" line="31" column="1" />
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/develop/test_008/Assets/Scripts/ServerScript.cs" relfile="Assets/Scripts/ServerScript.cs" line="20" column="22" />
+      <Breakpoint enabled="false" file="/Users/ammannagari/Documents/OSU/ACCAD/github/develop/test_008/Assets/Scripts/ServerScript.cs" relfile="Assets/Scripts/ServerScript.cs" line="730" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

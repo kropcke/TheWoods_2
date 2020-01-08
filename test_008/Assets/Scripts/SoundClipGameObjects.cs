@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Audio;
+
 [RequireComponent(typeof(AudioSource))]
 public class SoundClipGameObjects : MonoBehaviour
 {
-    private bool debugMode = false; // todo: move to GameConfiguration
+    private bool debugMode = true; // todo: move to GameConfiguration
     AudioSource s;
     AudioClip c;
     public float visObjectSize;
@@ -17,8 +19,8 @@ public class SoundClipGameObjects : MonoBehaviour
     List<Vector3> savedScales;
     List<Vector3> savedPositions;
     List<Vector3> savedRotations;
-    List<GameObject> bars;
 
+    List<GameObject> bars;
     // Use this for initialization
     public void Init()
     {
@@ -37,16 +39,20 @@ public class SoundClipGameObjects : MonoBehaviour
             bars.Add(c);
 
         }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (playing)
         {
             UpdateVisualization();
-            if (!s.isPlaying) StopPlaying();
+            
+            if (!s.isPlaying)
+            {
+                StopPlaying();
+            }
         }
     }
 
@@ -80,6 +86,13 @@ public class SoundClipGameObjects : MonoBehaviour
         }
     }
 
+//    ArgumentOutOfRangeException: Argument is out of range.
+//Parameter name: index
+//System.Collections.Generic.List`1[UnityEngine.Vector3].get_Item (Int32 index) (at /Users/builduser/buildslave/mono/build/mcs/class/corlib/System.Collections.Generic/Dictionary.cs:666)
+//SoundClipGameObjects.SetBarsToSavedScales() (at Assets/Scripts/SoundClipGameObjects.cs:87)
+//SoundClipGameObjects.StopPlaying() (at Assets/Scripts/SoundClipGameObjects.cs:127)
+//SoundClipGameObjects.Update() (at Assets/Scripts/SoundClipGameObjects.cs:49)
+
     void SetBarsToSavedScales()
     {
         for (int i = 0; i < bars.Count; i++)
@@ -98,11 +111,17 @@ public class SoundClipGameObjects : MonoBehaviour
         }
     }
 
-    public void StartPlaying()
+    public void StartPlaying(bool endGameSequence)
     {
+        if (endGameSequence)
+        {
+            AudioMixerGroup mixerGroup = s.outputAudioMixerGroup;
+            mixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
+        }
+        
         if (debugMode)
         {
-            print("Starting playing if not playing " + gameObject.name);
+            Debug.Log("Starting playing if not playing " + gameObject.name);
         }
         if (!playing)
         {
@@ -110,6 +129,8 @@ public class SoundClipGameObjects : MonoBehaviour
             playing = true;
             s.time = 0;
             s.Play();
+           
+
         }
     }
 

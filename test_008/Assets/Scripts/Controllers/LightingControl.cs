@@ -25,8 +25,8 @@ public class LightingControl : MonoBehaviour {
 		if(Application.isMobilePlatform){
 			mainSceneLight.GetComponent<Light>().shadowBias = .125f;
 			//EnableShadows = false;
-			if(Screen.height > 800)
-				Screen.SetResolution (Screen.width/2,Screen.height/2,true);
+			//if(Screen.height > 800)
+				//Screen.SetResolution (Screen.width/2,Screen.height/2,true);
 			QualitySettings.shadowCascades = 1;
 			QualitySettings.shadowDistance = 100;
 		}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
+using System.Collections;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -14,7 +15,8 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     GameObject ARCam, testPos;
 
     bool oriented = false;
-
+    GameObject middleBranch;
+    string deviceName=null;
     public void Awake()
     {
         if (photonView.IsMine)
@@ -26,7 +28,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         }
     }
-
+   
     public override void OnDisable()
     {
         base.OnDisable();
@@ -47,10 +49,71 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             lightningEndpoint = g;
         }
     }
+
+    [PunRPC]
+    public void PlayVoiceMail(string soundClip)
+    {
+        if (photonView.IsMine)
+        {
+            GameObject g1 = GameObject.Find(soundClip);
+
+            g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
+            //TODO : Test in android phones.
+            Microphone.Start(deviceName, true, 10, 44100);
+            //g1.GetComponent<AudioSource>().volume = 1f;
+            g1.GetComponent<AudioSource>().Play();
+        }
+    }
+    [PunRPC]
+    public void StopVoiceMail(string soundClip)
+    {
+        if (photonView.IsMine)
+        {
+
+            GameObject g1 = GameObject.Find(soundClip);
+            Microphone.End(deviceName);
+            if (g1.GetComponent<AudioSource>().isPlaying)
+            {
+                g1.GetComponent<AudioSource>().Stop();
+            }
+
+        }
+    }
+    [PunRPC]
+    public void EnableBird(int index)
+    {
+        if (photonView.IsMine)
+        {
+            GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+            for(int i = 0; i < birds.Length; i++)
+            {
+                birds[i].SetActive(false);
+            }
+            middleBranch.transform.GetChild(index).gameObject.SetActive(true);
+        }
+    }
+    [PunRPC]
+    public void DisableBirds(string name)
+    {
+        if (photonView.IsMine)
+        {
+            for (int index = 0; index < middleBranch.transform.childCount; index++)
+            {
+                middleBranch.transform.GetChild(index).gameObject.SetActive(false);
+            }
+        }
+        
+    }
     void Start()
     {
         if (photonView.IsMine)
         {
+            //TOOD: Pass from serverscript
+            middleBranch = GameObject.Find("NewMiddleBranch");
+            foreach (var device in Microphone.devices)
+            {
+                deviceName = device;
+            }
             ARCam = GameObject.Find("ARCamera");
             ARCam.GetComponent<Vuforia.VuforiaBehaviour>().enabled = true;
             //GameObject.FindWithTag("ARImage").GetPhotonView().RequestOwnership();
@@ -58,9 +121,31 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             //GameObject.FindWithTag("ARImage").transform.GetChild(0).gameObject.
             //GetPhotonView().RequestOwnership();
             transform.localScale = Vector3.one * cubeSize;
-        }
 
+            
+        }
+        
+       
     }
+    //IEnumerator speaker()
+    //{
+    //    if (photonView.IsMine)
+    //    {
+    //        yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
+    //        if (Application.HasUserAuthorization(UserAuthorization.Microphone))
+    //        {
+    //            Debug.Log("Microphone found");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Microphone not found");
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("none");
+    //    }
+    //}
 
     public void Update()
     {
@@ -82,7 +167,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 transform.position = ARCam.transform.position;
                 transform.rotation = ARCam.transform.rotation;
                 if (lightningEndpoint)
-                {                    
+                {
                     lightningEndpoint.transform.position = transform.GetChild(1).position;
                 }
 
