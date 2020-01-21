@@ -14,7 +14,7 @@ public class AnimatorTestScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        current = 0;
+        current = 1;
     }
 
     // Update is called once per frame
@@ -24,16 +24,16 @@ public class AnimatorTestScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N))
         {
-            Debug.Log(current);
+            // Debug.Log(current);
             anim.SetInteger(paramter, current);
             current++;
         }
 
 
         // Loop the current state
-        if(current > 2)
+        if (current > 2)
         {
-            current = 0;
+            current = 1;
         }
 
     }
@@ -41,9 +41,10 @@ public class AnimatorTestScript : MonoBehaviour
     [PunRPC]
     public void SetState(string s)
     {
+        anim = GetComponent<Animator>();
         if (s == "flying")
         {
-            anim.SetInteger(paramter, 0);
+            anim.SetInteger(paramter, 2);
 
         }
         else if (s == "perched")
@@ -52,7 +53,8 @@ public class AnimatorTestScript : MonoBehaviour
         }
         else if (s == "singing")
         {
-            anim.SetInteger(paramter, 1);
+            Debug.LogError("Singing Animation not yet implemented. Contact Matt.");
+            // anim.SetInteger(paramter, 1);
         }
     }
 }
