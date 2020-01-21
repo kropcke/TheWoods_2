@@ -31,7 +31,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public Dictionary<GameObject, int> audioBubbleToAudioClipNumber;
     public int audioBubblestotalCount = 4;
     public int audioBubblesCollected = 0;
-    float distToChangeTarget = 0.25f; // for both cloud and bird
+    float distToChangeTarget = 0.55f; // for both cloud and bird
 
 
     public List<GameObject> audioBubbleVisualizations; // indirectly belong to bird
@@ -205,6 +205,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 lighteningAssigned = false;
 
             }
+
             if (audioBubblesCollected == audioBubblestotalCount)
             {
                 if (!startedGameOver)
@@ -226,6 +227,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 DistractionPickedUp();
                 MagneticAudioMovement();
             }
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Reset();
@@ -266,26 +268,72 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+
     void UpdateAudioClipMovement()
     {
 
         for (int i = 0; i < audioBubblesFlying.Count; i++)
         {
+            /**
+             * Modified bird motion.
+             * Bird now points in the direction of its motion (usually).
+            */
 
+            Vector3 start = audioBubblesFlying[i].transform.position;
+            Vector3 end = audioBubbleTargetPositions[i];
+            Debug.DrawLine(start, end, Color.white);
+
+
+            // Record the last position.
+            Vector3 last = audioBubblesFlying[i].transform.position;
+
+            // This line actually moves the bird.
+            // audioBubblesFlying[i].transform.position = Vector3.MoveTowards(start, end,  0.4f * Time.deltaTime);
             audioBubblesFlying[i].transform.position += audioBubbleMovementVectors[i];
+
+            // Record the current position.
+            Vector3 current = audioBubblesFlying[i].transform.position;
+
+            // Point the bird in the direction it is going.
+            float angle = Vector3.Angle(last, current);
+            // Debug.LogFormat("last: ({0},{1},{2}), current: ({3},{4},{5})", last.x, last.y, last.z, current.x, current.y, current.z);
+
+
+            // The velocity is the difference between the new position and the last position.
+            Vector3 velocity = last - current;
+            // Debug.LogFormat("velocity: ({0},{1},{2})", velocity.x, velocity.y, velocity.z);
+            velocity.y = 0;
+
+            // The vector direction is the normalized velocity.
+            Vector3 direction = velocity.normalized;
+
+            // Offset the forward direction by a normalized unit vector.
+            float worldDegrees = Vector3.Angle(new Vector3(0, 0, 1), direction);
+            float localDegrees = Vector3.Angle(audioBubblesFlying[i].transform.forward, direction); // angle relative to last heading of GameObject
+            // Debug.LogFormat("worldDegrees: {0}", worldDegrees);
+            // Debug.LogFormat("localDegrees: {0}", localDegrees);
+
+            audioBubblesFlying[i].transform.rotation = Quaternion.Euler(
+                audioBubblesFlying[i].transform.rotation.eulerAngles.x,
+                worldDegrees + 180,
+                audioBubblesFlying[i].transform.rotation.eulerAngles.z
+            );
+
+
+            // "Magnetic" effect.
             audioBubbleMovementVectors[i] = Vector3.Lerp(
                 audioBubbleMovementVectors[i],
                 (audioBubbleTargetPositions[i] - audioBubblesFlying[i].transform.position).normalized * audioBubbleMoveSpeed,
                 0.1f * Time.deltaTime
-               );
+            );
 
 
+            // When the bird gets close to the goal position, generate a new position to move towards.
             if (Vector3.Distance(audioBubblesFlying[i].transform.position, audioBubbleTargetPositions[i]) < distToChangeTarget)
             {
                 audioBubbleTargetPositions[i] = CreateNewRandomPosition();
+                // print("new position: " + audioBubbleTargetPositions[i].ToString());
             }
-           
-            
         }
     }
 
