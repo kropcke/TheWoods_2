@@ -57,13 +57,28 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             GameObject g1 = GameObject.Find(soundClip);
 
-            g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
+          g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
             //TODO : Test in android phones.
             Microphone.Start(deviceName, true, 10, 44100);
             //g1.GetComponent<AudioSource>().volume = 1f;
             g1.GetComponent<AudioSource>().Play();
         }
     }
+    //[PunRPC]
+    //public void PlayVoiceMail2(string soundClip)
+    //{
+    //    if (photonView.IsMine)
+    //    {
+    //        GameObject g1 = GameObject.Find(soundClip);
+
+    //        //
+    //        g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 1f);
+    //        //TODO : Test in android phones.
+    //        g1.GetComponent<AudioSource>().volume = 1f;
+    //        g1.GetComponent<AudioSource>().Play();
+    //    }
+    //}
+
     [PunRPC]
     public void StopVoiceMail(string soundClip)
     {
@@ -76,6 +91,19 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             {
                 g1.GetComponent<AudioSource>().Stop();
             }
+
+        }
+    }
+    [PunRPC]
+    public void ShowMenu(string name)
+    {
+        Debug.Log("Inside ShowMenu");
+        if (photonView.IsMine)
+        {
+
+            Debug.Log("Inside ShowMenu" + name);
+            GameObject g1 = GameObject.Find(name);
+            g1.SetActive(true);
 
         }
     }

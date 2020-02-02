@@ -328,11 +328,13 @@
     <Compile Include="Assets\Scripts\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\RestartScript.cs" />
     <Compile Include="Assets\Scripts\ServerScript.cs" />
     <Compile Include="Assets\Scripts\SkylarsNetworkManager.cs" />
     <Compile Include="Assets\Scripts\SoundClipGameObjects.cs" />
     <Compile Include="Assets\Scripts\SoundClipParticles.cs" />
     <Compile Include="Assets\Scripts\StaticVariables.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitFaceTrackingRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\ARKitRemoteConnection.cs" />
     <Compile Include="Assets\UnityARKitPlugin\ARKitRemote\CompressionHelper.cs" />
@@ -464,6 +466,7 @@
     <None Include="Assets\Shaders\Matcap-EdgedParticleWithFog.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
+    <None Include="Assets\ColorfulButtons\Credits.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Blit.shader" />
     <None Include="Assets\UnityARKitPlugin\Examples\Common\Shaders\MobileOcclusion.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
