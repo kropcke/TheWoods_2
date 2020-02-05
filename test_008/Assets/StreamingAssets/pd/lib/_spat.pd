@@ -4,7 +4,7 @@
 #X obj 136 23 inlet;
 #X obj 136 44 pack f 10;
 #X obj 136 65 line~;
-#X obj 40 113 throw~ dacout-\$1;
+#X obj 40 113 throw~ \$2-\$1;
 #X connect 0 0 1 0;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;

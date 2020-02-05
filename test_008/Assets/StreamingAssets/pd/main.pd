@@ -18,7 +18,7 @@
 #X msg 283 167 1 \$1 \, 2 \$1 \, 3 \$1 \, 4 \$1;
 #X msg 283 191 \; v-\$1-set \$2;
 #X obj 140 119 vsl 30 119 0 127 0 0 master master-set [91] 0 -9 0 10
--262144 -1 -1 17082 1;
+-262144 -1 -1 17000 1;
 #X obj 176 119 vu 30 120 vu-master empty -1 -8 0 9 -66577 -1 1 0;
 #X obj 284 106 r all-v;
 #X obj 108 119 vsl 30 119 0 127 0 0 all-v all-v-set [100] 0 -9 0 10
@@ -50,7 +50,7 @@
 #X obj 75 336 lop~ 120;
 #X obj 75 360 dac~ 4;
 #X obj 331 151 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 9100 1;
 #X obj 331 287 dbtorms;
 #X obj 331 311 pack f 10;
 #X obj 331 335 line~;
@@ -72,76 +72,109 @@
 #X connect 12 0 13 1;
 #X connect 13 0 6 0;
 #X restore 17 45 pd dac;
-#N canvas 92 133 899 925 controls 0;
-#X msg 235 281 \; _pv_lvl_adjust 3 \; _pv_speed_max 100 \; _pv_ptch_tgt
+#N canvas 768 68 789 858 controls 0;
+#X msg 239 282 \; _pv_lvl_adjust 3 \; _pv_speed_max 100 \; _pv_ptch_tgt
 -1200 10000 \;;
-#X text 35 158 distor 1;
-#X text 236 157 distor 2;
-#X msg 459 281 \; _rm_lock bang \; _rm_fund_max 50 \; _rm_amp_max 0.5
+#X text 39 159 distor 1;
+#X text 240 158 distor 2;
+#X msg 463 282 \; _rm_lock bang \; _rm_fund_max 50 \; _rm_amp_max 0.5
 \; _rm_cut_max 12 \; _rm_amp 0 0.851852 0.629631 0.425926 0.833332
 0.499999 0.722222 0.5 \; _rm_amp_update bang \; clean_adjust_delay
 0 \; _rm_lvl_adjust 1.5 \;, f 28;
-#X text 455 157 distor 3;
-#X obj 34 436 loadbang;
-#X msg 234 177 \; distor_1 0 \; distor_2 1 \; distor_3 0 \;;
-#X msg 459 178 \; distor_1 0 \; distor_2 0 \; distor_3 1 \;;
-#X msg 30 179 \; distor_1 1 \; distor_2 0 \; distor_3 0 \;;
-#X obj 289 393 vu 15 120 d_wet-vu wet -1 -8 0 10 -66577 -1 1 0;
-#X obj 378 393 vu 15 120 d_dry-vu dry -1 -8 0 10 -66577 -1 1 0;
-#X obj 282 532 hsl 128 15 0 127 0 1 d_wetdry d_wetdry-set d_wetdry
+#X text 459 158 distor 3;
+#X obj 38 437 loadbang;
+#X msg 238 178 \; distor_1 0 \; distor_2 1 \; distor_3 0 \;;
+#X msg 463 179 \; distor_1 0 \; distor_2 0 \; distor_3 1 \;;
+#X msg 34 180 \; distor_1 1 \; distor_2 0 \; distor_3 0 \;;
+#X obj 293 394 vu 15 120 d_wet-vu wet -1 -8 0 10 -66577 -1 1 0;
+#X obj 382 394 vu 15 120 d_dry-vu dry -1 -8 0 10 -66577 -1 1 0;
+#X obj 286 533 hsl 128 15 0 127 0 1 d_wetdry d_wetdry-set d_wetdry
 -2 -8 0 10 -262144 -1 -1 0 1;
-#X msg 460 41 1 \, 2 \, 3;
-#X text 26 245 presets___________________________________________________________________________
+#X msg 464 42 1 \, 2 \, 3;
+#X text 30 246 presets___________________________________________________________________________
 , f 83;
-#X msg 586 58 \; player stop;
-#X msg 30 281 \; _fft_lvl_adjust 0.4 \; _fft_q_max 30 \; _fft_freq
+#X msg 590 59 \; player stop;
+#X msg 34 282 \; _fft_lvl_adjust 0.4 \; _fft_q_max 30 \; _fft_freq
 5000 \; _fft_factor 50 \; _fft_osc_min 44 \; _fft_fadetime 2000;
-#X msg 273 40 \; which_sample 1;
-#X msg 272 75 \; which_sample 0;
-#X msg 390 38 \; loop 1;
-#X msg 389 73 \; loop 0;
-#X msg 197 39 \; clean 1;
-#X msg 196 75 \; clean 0;
-#X msg 34 521 \; \$1-insamprate 44100 \; window-size 2048 \; transpo
+#X msg 277 41 \; which_sample 1;
+#X msg 276 76 \; which_sample 0;
+#X msg 394 39 \; loop 1;
+#X msg 393 74 \; loop 0;
+#X msg 201 40 \; clean 1;
+#X msg 200 76 \; clean 0;
+#X msg 38 522 \; \$1-insamprate 44100 \; window-size 2048 \; transpo
 0 \; rewind bang \; lock 1 \; load_samples bang \;;
-#X obj 38 478 f \$0;
-#X obj 609 262 loadbang;
-#X obj 110 438 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 42 479 f \$0;
+#X obj 613 263 loadbang;
+#X obj 114 439 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 460 61 pack f 0;
-#X obj 524 60 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 464 62 pack f 0;
+#X obj 528 61 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 460 81 \; distor_\$1 \$2;
-#X text 26 135 distortion___________________________________________________________________________
+#X msg 464 82 \; distor_\$1 \$2;
+#X text 30 136 distortion___________________________________________________________________________
 , f 86;
-#X msg 481 590 \; clean 1 \; d 1 \; play 0 \$1;
-#X msg 546 702 \; d_wetdry-line stop;
-#X msg 578 588 \; clean 1 \; d 2 \; play 0 \$1;
-#X msg 673 588 \; clean 1 \; d 3 \; play 0 \$1;
-#X msg 195 689 \; d_wetdry-random 1;
-#X msg 341 687 \; d_wetdry-line-onoff 1;
-#X msg 341 724 \; d_wetdry-line-onoff 0;
-#X msg 198 724 \; d_wetdry-random 0;
-#X msg 481 469 0;
-#X msg 490 490 1;
-#X msg 498 511 2;
-#X msg 507 534 3;
-#X msg 578 467 0;
-#X msg 587 487 1;
-#X msg 595 509 2;
-#X msg 605 533 3;
-#X msg 673 467 0;
-#X msg 682 488 1;
-#X msg 690 509 2;
-#X msg 699 532 3;
-#X msg 286 770 \; d_wetdry-random 0 \; d_wetdry-line 123 \, 0 5000
+#X msg 485 591 \; clean 1 \; d 1 \; play 0 \$1;
+#X msg 550 703 \; d_wetdry-line stop;
+#X msg 582 589 \; clean 1 \; d 2 \; play 0 \$1;
+#X msg 677 589 \; clean 1 \; d 3 \; play 0 \$1;
+#X msg 199 690 \; d_wetdry-random 1;
+#X msg 345 688 \; d_wetdry-line-onoff 1;
+#X msg 345 725 \; d_wetdry-line-onoff 0;
+#X msg 202 725 \; d_wetdry-random 0;
+#X msg 485 470 0;
+#X msg 494 491 1;
+#X msg 502 512 2;
+#X msg 511 535 3;
+#X msg 582 468 0;
+#X msg 591 488 1;
+#X msg 599 510 2;
+#X msg 609 534 3;
+#X msg 677 468 0;
+#X msg 686 489 1;
+#X msg 694 510 2;
+#X msg 703 533 3;
+#X msg 290 771 \; d_wetdry-random 0 \; d_wetdry-line 123 \, 0 5000
 ;
-#X obj 219 418 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 8200 1;
-#X obj 219 554 dbtorms;
-#X obj 219 578 s voicemail-vol;
-#X msg 37 37 \; which_sample 0 \; start_playing bang \; loop 1 \; clean
+#X obj 223 419 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 223 555 dbtorms;
+#X obj 223 579 s voicemail-vol;
+#X msg 41 38 \; which_sample 0 \; start_playing bang \; loop 1 \; clean
 1 \; d 1 \;;
+#N canvas 180 112 985 300 rec_distortions 0;
+#X msg 175 69 \; d_wetdry-random 1;
+#X obj 31 31 r playing;
+#X obj 36 131 t a b;
+#X msg 444 190 \; voicemail-rec stop;
+#X obj 424 81 r done_playing;
+#X obj 30 177 list append 2;
+#X msg 31 229 \; voicemail-rec stop \, open ./distort-\$3-\$1-\$2.wav
+\, start;
+#X msg 61 102 1;
+#X msg 93 102 2;
+#X msg 125 103 3;
+#X msg 147 158 symbol all;
+#X msg 767 80 \; start_playing bang;
+#X msg 694 38 \; restart bang;
+#X obj 434 135 spigot;
+#X obj 33 81 spigot;
+#X obj 626 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 1 0 14 0;
+#X connect 2 0 5 0;
+#X connect 2 1 0 0;
+#X connect 4 0 13 0;
+#X connect 5 0 6 0;
+#X connect 7 0 5 1;
+#X connect 8 0 5 1;
+#X connect 9 0 5 1;
+#X connect 10 0 5 1;
+#X connect 13 0 3 0;
+#X connect 14 0 2 0;
+#X connect 15 0 14 1;
+#X connect 15 0 13 1;
+#X restore 571 784 pd rec_distortions;
 #X connect 5 0 23 0;
 #X connect 12 0 26 0;
 #X connect 23 0 22 0;
@@ -1111,8 +1144,10 @@ shifts the signal to the left or right depending on its argument.)
 #X msg 181 219 symbol \$1-\$2;
 #X obj 42 245 s player;
 #X obj 111 181 t a a a;
-#X obj 287 152 print playing;
-#X obj 286 127 list trim;
+#X obj 268 90 print playing;
+#X obj 186 178 s playing;
+#X obj 270 36 r playing;
+#X obj 270 60 list trim;
 #X connect 0 0 1 0;
 #X connect 1 0 6 0;
 #X connect 2 0 1 0;
@@ -1127,7 +1162,8 @@ shifts the signal to the left or right depending on its argument.)
 #X connect 11 0 7 0;
 #X connect 11 1 9 0;
 #X connect 11 2 13 0;
-#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 15 0 12 0;
 #X restore 18 66 pd play;
 #N canvas 367 130 540 300 samples 0;
 #X obj 25 99 t b a;
@@ -1183,10 +1219,10 @@ shifts the signal to the left or right depending on its argument.)
 #X obj 228 218 - 100;
 #X obj 228 242 s d_wet-vu;
 #X obj 302 84 *~;
-#X obj 302 108 throw~ mono;
 #X obj 328 28 r voicemail-vol;
 #X obj 328 52 pack f 10;
 #X obj 328 76 line~;
+#X obj 302 108 throw~ voicemail;
 #X connect 0 0 1 0;
 #X connect 1 0 10 0;
 #X connect 1 0 16 0;
@@ -1204,37 +1240,87 @@ shifts the signal to the left or right depending on its argument.)
 #X connect 11 0 12 0;
 #X connect 13 0 14 0;
 #X connect 14 0 15 0;
-#X connect 16 0 17 0;
+#X connect 16 0 20 0;
+#X connect 17 0 18 0;
 #X connect 18 0 19 0;
-#X connect 19 0 20 0;
-#X connect 20 0 16 1;
+#X connect 19 0 16 1;
 #X restore 18 115 pd mix_wet-dry;
-#N canvas 0 22 450 300 loop 0;
-#X obj 171 248 s play;
+#N canvas 0 22 627 361 loop 0;
+#X obj 111 321 s play;
 #X obj 34 4 r stopped;
 #X obj 34 28 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 34 55 spigot 1;
-#X obj 28 96 del 2000;
-#X obj 172 217 list prepend 0;
+#X obj 112 290 list prepend 0;
 #X obj 86 30 r loop;
-#X obj 201 182 r which_sample;
-#X obj 189 53 r start_playing;
-#X obj 246 96 f;
-#X obj 246 120 + 1;
-#X obj 246 144 mod 4;
+#X obj 207 258 r which_sample;
+#X obj 193 63 r start_playing;
+#X obj 192 119 f;
+#X obj 229 117 + 1;
+#X obj 192 143 moses 4;
+#X msg 339 176 1;
+#X msg 253 89 0;
+#X obj 316 122 t b b b;
+#X obj 339 200 spigot 1;
+#X obj 339 224 t f b;
+#X msg 380 224 0;
+#X obj 339 248 s which_sample;
+#X floatatom 231 286 5 0 0 0 - - -;
+#X obj 178 93 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 460 94 1;
+#X obj 398 26 r restart;
+#X obj 398 50 t b b;
+#X msg 451 213 0;
+#X obj 365 22 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 389 114 spigot;
+#X msg 333 70 0;
+#X obj 192 187 spigot 1;
+#X msg 264 189 0;
+#X obj 389 141 t b b;
+#X msg 270 158 1;
+#X obj 469 279 s done_playing;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
-#X connect 3 0 4 0;
-#X connect 4 0 9 0;
-#X connect 5 0 0 0;
-#X connect 6 0 3 1;
-#X connect 7 0 5 1;
+#X connect 3 0 8 0;
+#X connect 4 0 0 0;
+#X connect 5 0 3 1;
+#X connect 6 0 4 1;
+#X connect 6 0 18 0;
+#X connect 7 0 8 0;
 #X connect 8 0 9 0;
-#X connect 9 0 10 0;
-#X connect 9 0 5 0;
-#X connect 10 0 11 0;
-#X connect 11 0 9 1;
+#X connect 8 0 10 0;
+#X connect 9 0 8 1;
+#X connect 10 0 27 0;
+#X connect 10 1 13 0;
+#X connect 11 0 14 0;
+#X connect 11 0 25 1;
+#X connect 12 0 8 0;
+#X connect 13 0 12 0;
+#X connect 13 1 11 0;
+#X connect 13 2 25 0;
+#X connect 14 0 15 0;
+#X connect 15 0 17 0;
+#X connect 15 1 16 0;
+#X connect 16 0 14 1;
+#X connect 19 0 8 0;
+#X connect 20 0 14 1;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 22 1 20 0;
+#X connect 22 1 26 0;
+#X connect 22 1 30 0;
+#X connect 23 0 17 0;
+#X connect 24 0 22 0;
+#X connect 25 0 29 0;
+#X connect 26 0 8 1;
+#X connect 26 0 25 1;
+#X connect 27 0 4 0;
+#X connect 28 0 27 1;
+#X connect 29 0 31 0;
+#X connect 29 1 28 0;
+#X connect 30 0 27 1;
 #X restore 18 89 pd loop;
 #N canvas 0 22 450 300 player 0;
 #X obj 127 93 tabplay~;
@@ -1351,36 +1437,36 @@ shifts the signal to the left or right depending on its argument.)
 #X connect 4 0 3 2;
 #X connect 5 0 3 3;
 #X restore 117 46 pd rec;
-#N canvas 523 422 1017 386 gcontrols 1;
+#N canvas 645 401 1128 521 gcontrols 0;
 #X obj 300 102 vsl 15 128 1e-05 1 1 0 gaviotamp gaviotamp-set gaviotamp
-0 -9 0 10 -262144 -1 -1 9500 1;
+0 -9 0 10 -262144 -1 -1 0 1;
 #X obj 359 102 vsl 15 128 20 20000 1 0 gaviolp gaviolp-set gaviolp
-0 -9 0 10 -262144 -1 -1 8877 1;
+0 -9 0 10 -262144 -1 -1 11700 1;
 #X obj 416 102 vsl 15 128 20 20000 1 0 gaviohp gaviohp-set gaviohp
-0 -9 0 10 -262144 -1 -1 12506 1;
+0 -9 0 10 -262144 -1 -1 799 1;
 #X obj 484 102 vsl 15 128 0 100 0 0 gaviofreq gaviofreq-set gaviofreq
-0 -9 0 10 -262144 -1 -1 12319 1;
+0 -9 0 10 -262144 -1 -1 1300 1;
 #X obj 544 102 vsl 15 128 0 127 0 0 gaviobase gaviobase-set gaviobase
-0 -9 0 10 -262144 -1 -1 10000 1;
+0 -9 0 10 -262144 -1 -1 1700 1;
 #X obj 605 102 vsl 15 128 0 5 0 0 gaviospread gaviospread-set gaviospread
-0 -9 0 10 -262144 -1 -1 2540 1;
+0 -9 0 10 -262144 -1 -1 4400 1;
 #X msg 298 271 \; gaviotamp-set 0 \; gaviofreq-set 0 \;;
 #X obj 299 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviotamp gaviotamp
-0 -8 0 10 -262144 -1 -1 0.054974 256;
+0 -8 0 10 -262144 -1 -1 1e-05 256;
 #X obj 359 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviolp gaviolp 0 -8
-0 10 -262144 -1 -1 2500 256;
+0 10 -262144 -1 -1 11609.4 256;
 #X obj 419 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviohp gaviohp 0 -8
-0 10 -262144 -1 -1 18000 256;
+0 10 -262144 -1 -1 29.2674 256;
 #X obj 479 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviofreq gaviofreq
-0 -8 0 10 -262144 -1 -1 97 256;
+0 -8 0 10 -262144 -1 -1 10.2362 256;
 #X obj 544 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviobase gaviobase
-0 -8 0 10 -262144 -1 -1 100 256;
+0 -8 0 10 -262144 -1 -1 17 256;
 #X obj 606 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviospread gaviospread
-0 -8 0 10 -262144 -1 -1 1 256;
+0 -8 0 10 -262144 -1 -1 1.73228 256;
 #X obj 675 102 vsl 15 128 0.01 20000 1 0 gaviolpmax gaviolpmax-set
-gaviolpmax 0 -9 0 10 -262144 -1 -1 4833 1;
+gaviolpmax 0 -9 0 10 -262144 -1 -1 4800 1;
 #X obj 675 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviolpmax gaviolpmax
-0 -8 0 10 -262144 -1 -1 2.5 256;
+0 -8 0 10 -262144 -1 -1 2.40709 256;
 #N canvas 0 23 718 260 gaviopreset 0;
 #X msg 494 92 \; gaviolp-set 7115 \; gaviohp-set 96 \; gaviofreq-set
 15 \; gaviobase-set 31 \; gaviospread-set 3 \; gaviolpmax-set 4040
@@ -1405,24 +1491,24 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X text 296 63 GAVIOTAS_________________________________________________________________________________
 , f 90;
 #X obj 419 284 hradio 15 1 0 3 gaviopreset gaviopreset-set gaviopreset
-0 -8 0 10 -262144 -1 -1 0;
+0 -8 0 10 -262144 -1 -1 2;
 #X obj 26 102 vsl 15 128 0 1 0 0 ambsound ambsound-set ambsound 0 -9
-0 10 -262144 -1 -1 9600 1;
+0 10 -262144 -1 -1 0 1;
 #X obj 86 102 vsl 15 128 20 20000 1 0 ambhp ambhp-set ambhp 0 -9 0
-10 -262144 -1 -1 2453 1;
+10 -262144 -1 -1 976 1;
 #X obj 144 102 vsl 15 128 20 20000 1 0 amblp amblp-set amblp 0 -9 0
-10 -262144 -1 -1 4473 1;
+10 -262144 -1 -1 6900 1;
 #X msg 24 271 \; ambsound-set 0 \;;
 #X obj 211 166 tgl 15 0 clouds clouds-set clouds 17 7 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 23 250 nbx 5 14 -1e+37 1e+37 0 0 empty ambsound ambsound 0 -8
-0 10 -262144 -1 -1 0.755906 256;
+0 10 -262144 -1 -1 0 256;
 #X obj 83 250 nbx 5 14 -1e+37 1e+37 0 0 empty ambhp ambhp 0 -8 0 10
--262144 -1 -1 73.7835 256;
+-262144 -1 -1 34 256;
 #X obj 143 250 nbx 5 14 -1e+37 1e+37 0 0 empty amblp amblp 0 -8 0 10
--262144 -1 -1 218.978 256;
+-262144 -1 -1 853 256;
 #X obj 212 216 hsl 70 15 0.01 100 1 0 cloudsp cloudsp-set cloudsp -2
--8 0 10 -262144 -1 -1 0 1;
+-8 0 10 -262144 -1 -1 6800 1;
 #X obj 211 185 tgl 15 0 lorclouds lorclouds-set lorclouds 17 7 0 10
 -262144 -1 -1 0 1;
 #N canvas 0 22 450 300 ampreset 0;
@@ -1434,14 +1520,60 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 2 0 0 0;
 #X restore 137 274 pd ampreset;
 #X obj 208 250 nbx 5 14 -1e+37 1e+37 0 0 empty cloudsp cloudsp 0 -8
-0 10 -262144 -1 -1 0 256;
+0 10 -262144 -1 -1 87.5042 256;
 #X text 22 63 AMBSOUND________________;
 #X obj 740 100 _tabtab gaviotab;
 #X obj 743 80 tgl 15 0 gavioboid gavioboid-set gavioboid 17 7 0 10
--262144 -1 -1 1 1;
+-262144 -1 -1 89.7638 1;
+#X obj 167 478 s gavio-rec;
+#X obj 426 26 /Users/camarahalac.1/Documents/Pd/externals/fd_lib/fd_stopwatch
+;
+#X msg 155 386 stop \; fd_stopwatch still;
+#X obj 72 360 makefilename gavio-%d.wav;
+#X msg 122 430 open \$1 \, start \; fd_stopwatch start;
+#X obj 32 315 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 32 335 f;
+#X obj 63 334 r gaviopreset;
+#X floatatom 172 310 5 0 0 0 - - -;
+#X msg 723 382 stop \; fd_stopwatch still;
+#X msg 690 426 open \$1 \, start \; fd_stopwatch start;
+#X obj 600 311 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 600 331 f;
+#X floatatom 663 297 5 0 0 0 - - -;
+#X obj 640 356 makefilename ambsound-%d.wav;
+#X obj 735 474 s ambsound-rec;
+#X msg 961 372 stop \; fd_stopwatch still;
+#X msg 928 416 open \$1 \, start \; fd_stopwatch start;
+#X obj 838 301 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 838 321 f;
+#X floatatom 901 287 5 0 0 0 - - -;
+#X obj 878 346 makefilename cloud-%d.wav;
+#X obj 973 464 s cloud-rec;
+#X connect 35 0 33 0;
+#X connect 36 0 37 0;
+#X connect 37 0 33 0;
+#X connect 38 0 39 0;
+#X connect 39 0 36 0;
+#X connect 40 0 39 1;
+#X connect 41 0 39 1;
+#X connect 42 0 48 0;
+#X connect 43 0 48 0;
+#X connect 44 0 45 0;
+#X connect 45 0 47 0;
+#X connect 46 0 45 1;
+#X connect 47 0 43 0;
+#X connect 49 0 55 0;
+#X connect 50 0 55 0;
+#X connect 51 0 52 0;
+#X connect 52 0 54 0;
+#X connect 53 0 52 1;
+#X connect 54 0 50 0;
 #X restore 293 71 pd gcontrols;
 #N canvas 0 22 450 300 ambience 0;
-#N canvas 558 366 814 475 clouds 0;
+#N canvas 207 424 814 475 clouds 0;
 #X obj 133 83 switch~;
 #X obj 12 35 noise~;
 #X obj 26 260 bp~ 65 2;
@@ -1475,35 +1607,37 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X obj 463 129 metro 20;
 #X obj 604 115 fd_lorenz;
 #X obj 604 136 fd_siginfo;
-#X obj 31 305 _tabamp 0;
-#X obj 41 335 _tabamp 1;
-#X obj 51 365 _tabamp 2;
-#X obj 61 395 _tabamp 3;
-#X obj 181 308 _tabamp 0;
-#X obj 191 338 _tabamp 1;
-#X obj 201 368 _tabamp 2;
-#X obj 211 398 _tabamp 3;
+#X floatatom 221 72 5 0 0 0 - - -;
+#X floatatom 284 97 5 0 0 0 - - -;
+#X obj 32 304 _tabamp 1 cloud;
+#X obj 181 308 _tabamp 1 cloud;
+#X obj 41 335 _tabamp 2 cloud;
+#X obj 51 365 _tabamp 3 cloud;
+#X obj 61 395 _tabamp 4 cloud;
+#X obj 191 338 _tabamp 2 cloud;
+#X obj 201 368 _tabamp 3 cloud;
+#X obj 211 398 _tabamp 4 cloud;
 #X connect 1 0 25 0;
-#X connect 2 0 33 0;
-#X connect 2 0 36 0;
 #X connect 2 0 35 0;
-#X connect 2 0 34 0;
+#X connect 2 0 37 0;
+#X connect 2 0 38 0;
+#X connect 2 0 39 0;
 #X connect 3 0 4 0;
 #X connect 4 0 5 0;
-#X connect 5 0 33 1;
-#X connect 5 0 36 1;
 #X connect 5 0 35 1;
-#X connect 5 0 34 1;
+#X connect 5 0 37 1;
+#X connect 5 0 38 1;
+#X connect 5 0 39 1;
 #X connect 6 0 7 0;
 #X connect 7 0 8 0;
-#X connect 8 0 37 1;
+#X connect 8 0 36 1;
 #X connect 8 0 40 1;
-#X connect 8 0 39 1;
-#X connect 8 0 38 1;
-#X connect 9 0 37 0;
+#X connect 8 0 41 1;
+#X connect 8 0 42 1;
+#X connect 9 0 36 0;
 #X connect 9 0 40 0;
-#X connect 9 0 39 0;
-#X connect 9 0 38 0;
+#X connect 9 0 41 0;
+#X connect 9 0 42 0;
 #X connect 10 0 6 0;
 #X connect 11 0 29 0;
 #X connect 12 0 13 1;
@@ -1532,6 +1666,7 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 30 0 31 0;
 #X connect 31 0 32 0;
 #X connect 32 0 21 0;
+#X connect 33 0 3 0;
 #X restore 35 110 pd clouds _______;
 #N canvas 0 23 470 428 ambsound 0;
 #X obj 53 15 noise~;
@@ -1540,11 +1675,11 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X obj 45 148 lop~ 1800;
 #X obj 46 167 lop~ 1800;
 #X obj 45 293 delwrite~ lrdel 100;
-#X obj 189 235 *~ 0.5;
-#X obj 189 256 +~ 0.5;
-#X obj 187 299 delread4~ lrdel;
+#X obj 248 282 *~ 0.5;
+#X obj 248 303 +~ 0.5;
+#X obj 246 346 delread4~ lrdel;
 #X obj 42 236 *~ 0.02;
-#X obj 189 214 osc~ 0.01;
+#X obj 248 261 osc~ 0.01;
 #X obj 176 18 r ambsound;
 #X obj 226 97 pack f 10;
 #X obj 226 118 line~;
@@ -1553,17 +1688,15 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X obj 111 144 r amblp;
 #X floatatom 119 163 0 0 0 0 - - -;
 #X floatatom 109 209 0 0 0 0 - - -;
-#X obj 191 277 *~ 100;
+#X obj 250 324 *~ 100;
 #X obj 105 72 fd_switch;
 #X obj 154 94 switch~;
 #X obj 60 88 *~;
 #X obj 176 39 t f f;
 #X obj 114 37 > 0;
-#X obj 49 327 throw~ dacout-1;
-#X obj 181 324 throw~ dacout-2;
-#X obj 66 347 throw~ dacout-3;
-#X obj 194 345 throw~ dacout-4;
 #X obj 29 267 *~ 0.5;
+#X obj 26 375 throw~ ambsound-1;
+#X obj 245 381 throw~ ambsound-2;
 #X connect 0 0 22 0;
 #X connect 1 0 2 0;
 #X connect 2 0 9 0;
@@ -1571,9 +1704,8 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 4 0 1 0;
 #X connect 6 0 7 0;
 #X connect 7 0 19 0;
-#X connect 8 0 26 0;
-#X connect 8 0 28 0;
-#X connect 9 0 29 0;
+#X connect 8 0 27 0;
+#X connect 9 0 25 0;
 #X connect 10 0 6 0;
 #X connect 11 0 23 0;
 #X connect 12 0 13 0;
@@ -1592,9 +1724,8 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 23 0 24 0;
 #X connect 23 1 12 0;
 #X connect 24 0 20 0;
-#X connect 29 0 5 0;
-#X connect 29 0 25 0;
-#X connect 29 0 27 0;
+#X connect 25 0 5 0;
+#X connect 25 0 26 0;
 #X restore 35 76 pd ambsound _____;
 #N canvas 416 160 1313 797 gavio 0;
 #X obj 69 133 metro 10;
@@ -1749,4 +1880,58 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X msg 114 159 \; pd dsp 1 \; all-v-set 100 \; master-set 100 \;;
 #X msg 252 138 \; which_sample 0 \; start_playing bang \; loop 1 \;
 clean 1 \; d 1 \;;
+#N canvas 73 447 772 491 mixer 0;
+#X obj 45 29 catch~ voicemail;
+#X obj 184 38 catch~ gavio-1;
+#X obj 205 64 catch~ gavio-2;
+#X obj 224 90 catch~ gavio-3;
+#X obj 245 116 catch~ gavio-4;
+#X obj 394 38 catch~ ambsound-1;
+#X obj 415 64 catch~ ambsound-2;
+#X obj 574 38 catch~ cloud-1;
+#X obj 595 64 catch~ cloud-2;
+#X obj 614 90 catch~ cloud-3;
+#X obj 635 116 catch~ cloud-4;
+#X obj 228 275 throw~ dacout-1;
+#X obj 348 275 throw~ dacout-2;
+#X obj 469 275 throw~ dacout-3;
+#X obj 598 275 throw~ dacout-4;
+#X obj 49 272 throw~ mono;
+#X obj 111 417 writesf~ 1;
+#X obj 251 417 writesf~ 2;
+#X obj 381 417 writesf~ 2;
+#X obj 541 417 writesf~ 2;
+#X obj 121 339 r voicemail-rec;
+#X obj 262 341 r gavio-rec;
+#X obj 409 340 r ambsound-rec;
+#X obj 573 346 r cloud-rec;
+#X connect 0 0 15 0;
+#X connect 0 0 16 0;
+#X connect 1 0 11 0;
+#X connect 1 0 17 0;
+#X connect 2 0 12 0;
+#X connect 2 0 17 1;
+#X connect 3 0 13 0;
+#X connect 3 0 17 0;
+#X connect 4 0 14 0;
+#X connect 4 0 17 1;
+#X connect 5 0 11 0;
+#X connect 5 0 13 0;
+#X connect 5 0 18 0;
+#X connect 6 0 12 0;
+#X connect 6 0 14 0;
+#X connect 6 0 18 1;
+#X connect 7 0 11 0;
+#X connect 7 0 19 0;
+#X connect 8 0 12 0;
+#X connect 8 0 19 1;
+#X connect 9 0 13 0;
+#X connect 9 0 19 0;
+#X connect 10 0 14 0;
+#X connect 10 0 19 1;
+#X connect 20 0 16 0;
+#X connect 21 0 17 0;
+#X connect 22 0 18 0;
+#X connect 23 0 19 0;
+#X restore 16 121 pd mixer;
 #X connect 9 0 10 0;
