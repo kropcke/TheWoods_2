@@ -1,0 +1,39 @@
+#N canvas 0 22 450 300 10;
+#X obj 104 122 vradio 8 1 0 14 empty empty empty 0 -8 0 10 -262144
+-1 -1 4;
+#X obj 103 292 fd_seltab 0;
+#X symbolatom 126 191 10 0 0 2 tab1 - -;
+#X obj 114 122 vradio 8 1 0 14 empty empty empty 0 -8 0 10 -262144
+-1 -1 5;
+#X obj 123 292 fd_seltab 0;
+#X symbolatom 126 220 10 0 0 2 tab2 - -;
+#X obj 123 313 t b a;
+#X obj 113 333 pack s s;
+#X obj -17 181 loadbang;
+#X obj 37 119 unpack;
+#X obj 37 98 r \$1-set;
+#X obj 113 354 s \$1;
+#X symbolatom 127 122 10 0 0 0 - - -;
+#X obj 246 107 symbol \$1;
+#X obj 131 159 nbx 2 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 4 256;
+#X obj 161 159 nbx 2 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 5 256;
+#X connect 0 0 1 0;
+#X connect 0 0 14 0;
+#X connect 1 0 2 0;
+#X connect 1 0 7 0;
+#X connect 3 0 4 0;
+#X connect 3 0 15 0;
+#X connect 4 0 5 0;
+#X connect 4 0 6 0;
+#X connect 6 0 0 0;
+#X connect 6 1 7 1;
+#X connect 7 0 11 0;
+#X connect 8 0 3 0;
+#X connect 8 0 13 0;
+#X connect 9 0 0 0;
+#X connect 9 1 3 0;
+#X connect 10 0 9 0;
+#X connect 13 0 12 0;
+#X coords 0 -1 1 1 92 142 1 100 100;
