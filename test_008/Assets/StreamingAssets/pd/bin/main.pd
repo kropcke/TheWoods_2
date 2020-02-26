@@ -72,7 +72,7 @@
 #X connect 12 0 3 0;
 #X connect 13 0 3 0;
 #X restore 17 45 pd dac;
-#N canvas 768 68 789 858 controls 0;
+#N canvas 141 207 789 858 controls 0;
 #X msg 239 282 \; _pv_lvl_adjust 3 \; _pv_speed_max 100 \; _pv_ptch_tgt
 -1200 10000 \;;
 #X text 39 159 distor 1;
@@ -1165,7 +1165,7 @@ shifts the signal to the left or right depending on its argument.)
 #X connect 14 0 15 0;
 #X connect 15 0 12 0;
 #X restore 18 66 pd play;
-#N canvas 367 130 540 300 samples 0;
+#N canvas 228 217 540 300 samples 0;
 #X obj 25 99 t b a;
 #X obj 23 210 pack f s;
 #X obj 25 76 symbol;
@@ -1431,42 +1431,46 @@ shifts the signal to the left or right depending on its argument.)
 #X obj 114 172 writesf~ 4;
 #X obj 158 92 catch~ rec-3;
 #X obj 181 116 catch~ rec-4;
+#X obj 233 151 env~;
+#X floatatom 233 175 5 0 0 0 - - -;
 #X connect 0 0 3 0;
 #X connect 1 0 3 1;
 #X connect 2 0 3 0;
 #X connect 4 0 3 2;
 #X connect 5 0 3 3;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
 #X restore 117 46 pd rec;
-#N canvas 645 401 1128 521 gcontrols 0;
+#N canvas 464 415 1128 521 gcontrols 1;
 #X obj 300 102 vsl 15 128 1e-05 1 1 0 gaviotamp gaviotamp-set gaviotamp
-0 -9 0 10 -262144 -1 -1 0 1;
+0 -9 0 10 -262144 -1 -1 12700 1;
 #X obj 359 102 vsl 15 128 20 20000 1 0 gaviolp gaviolp-set gaviolp
-0 -9 0 10 -262144 -1 -1 0 1;
+0 -9 0 10 -262144 -1 -1 8877 1;
 #X obj 416 102 vsl 15 128 20 20000 1 0 gaviohp gaviohp-set gaviohp
-0 -9 0 10 -262144 -1 -1 0 1;
+0 -9 0 10 -262144 -1 -1 12506 1;
 #X obj 484 102 vsl 15 128 0 100 0 0 gaviofreq gaviofreq-set gaviofreq
-0 -9 0 10 -262144 -1 -1 0 1;
+0 -9 0 10 -262144 -1 -1 12319 1;
 #X obj 544 102 vsl 15 128 0 127 0 0 gaviobase gaviobase-set gaviobase
-0 -9 0 10 -262144 -1 -1 0 1;
+0 -9 0 10 -262144 -1 -1 10000 1;
 #X obj 605 102 vsl 15 128 0 5 0 0 gaviospread gaviospread-set gaviospread
-0 -9 0 10 -262144 -1 -1 0 1;
+0 -9 0 10 -262144 -1 -1 2540 1;
 #X msg 298 271 \; gaviotamp-set 0 \; gaviofreq-set 0 \;;
 #X obj 299 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviotamp gaviotamp
-0 -8 0 10 -262144 -1 -1 0 256;
+0 -8 0 10 -262144 -1 -1 1 256;
 #X obj 359 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviolp gaviolp 0 -8
-0 10 -262144 -1 -1 0 256;
+0 10 -262144 -1 -1 2500 256;
 #X obj 419 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviohp gaviohp 0 -8
-0 10 -262144 -1 -1 0 256;
+0 10 -262144 -1 -1 18000 256;
 #X obj 479 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviofreq gaviofreq
-0 -8 0 10 -262144 -1 -1 0 256;
+0 -8 0 10 -262144 -1 -1 97 256;
 #X obj 544 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviobase gaviobase
-0 -8 0 10 -262144 -1 -1 0 256;
+0 -8 0 10 -262144 -1 -1 100 256;
 #X obj 606 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviospread gaviospread
-0 -8 0 10 -262144 -1 -1 0 256;
+0 -8 0 10 -262144 -1 -1 1 256;
 #X obj 675 102 vsl 15 128 0.01 20000 1 0 gaviolpmax gaviolpmax-set
-gaviolpmax 0 -9 0 10 -262144 -1 -1 0 1;
+gaviolpmax 0 -9 0 10 -262144 -1 -1 4833 1;
 #X obj 675 250 nbx 5 14 -1e+37 1e+37 0 0 empty gaviolpmax gaviolpmax
-0 -8 0 10 -262144 -1 -1 0 256;
+0 -8 0 10 -262144 -1 -1 2.5 256;
 #N canvas 0 23 718 260 gaviopreset 0;
 #X msg 494 92 \; gaviolp-set 7115 \; gaviohp-set 96 \; gaviofreq-set
 15 \; gaviobase-set 31 \; gaviospread-set 3 \; gaviolpmax-set 4040
@@ -1491,24 +1495,24 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X text 296 63 GAVIOTAS_________________________________________________________________________________
 , f 90;
 #X obj 419 284 hradio 15 1 0 3 gaviopreset gaviopreset-set gaviopreset
-0 -8 0 10 -262144 -1 -1 2;
+0 -8 0 10 -262144 -1 -1 0;
 #X obj 26 102 vsl 15 128 0 1 0 0 ambsound ambsound-set ambsound 0 -9
-0 10 -262144 -1 -1 0 1;
+0 10 -262144 -1 -1 12700 1;
 #X obj 86 102 vsl 15 128 20 20000 1 0 ambhp ambhp-set ambhp 0 -9 0
 10 -262144 -1 -1 6253 1;
 #X obj 144 102 vsl 15 128 20 20000 1 0 amblp amblp-set amblp 0 -9 0
 10 -262144 -1 -1 8273 1;
 #X msg 24 271 \; ambsound-set 0 \;;
 #X obj 211 166 tgl 15 0 clouds clouds-set clouds 17 7 0 10 -262144
--1 -1 0 1;
+-1 -1 1 1;
 #X obj 23 250 nbx 5 14 -1e+37 1e+37 0 0 empty ambsound ambsound 0 -8
-0 10 -262144 -1 -1 0 256;
+0 10 -262144 -1 -1 1 256;
 #X obj 83 250 nbx 5 14 -1e+37 1e+37 0 0 empty ambhp ambhp 0 -8 0 10
 -262144 -1 -1 600 256;
 #X obj 143 250 nbx 5 14 -1e+37 1e+37 0 0 empty amblp amblp 0 -8 0 10
 -262144 -1 -1 1800 256;
 #X obj 212 216 hsl 70 15 0.01 100 1 0 cloudsp cloudsp-set cloudsp -2
--8 0 10 -262144 -1 -1 0 1;
+-8 0 10 -262144 -1 -1 4588 1;
 #X obj 211 185 tgl 15 0 lorclouds lorclouds-set lorclouds 17 7 0 10
 -262144 -1 -1 0 1;
 #N canvas 0 22 450 300 ampreset 0;
@@ -1520,14 +1524,12 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 2 0 0 0;
 #X restore 137 274 pd ampreset;
 #X obj 208 250 nbx 5 14 -1e+37 1e+37 0 0 empty cloudsp cloudsp 0 -8
-0 10 -262144 -1 -1 0 256;
+0 10 -262144 -1 -1 4.57 256;
 #X text 22 63 AMBSOUND________________;
 #X obj 740 100 _tabtab gaviotab;
 #X obj 743 80 tgl 15 0 gavioboid gavioboid-set gavioboid 17 7 0 10
--262144 -1 -1 0 1;
+-262144 -1 -1 1 1;
 #X obj 167 478 s gavio-rec;
-#X obj 426 26 /Users/camarahalac.1/Documents/Pd/externals/fd_lib/fd_stopwatch
-;
 #X msg 155 386 stop \; fd_stopwatch still;
 #X obj 72 360 makefilename gavio-%d.wav;
 #X msg 122 430 open \$1 \, start \; fd_stopwatch start;
@@ -1552,27 +1554,35 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X floatatom 901 287 5 0 0 0 - - -;
 #X obj 878 346 makefilename cloud-%d.wav;
 #X obj 973 464 s cloud-rec;
-#X connect 35 0 33 0;
-#X connect 36 0 37 0;
-#X connect 37 0 33 0;
-#X connect 38 0 39 0;
-#X connect 39 0 36 0;
-#X connect 40 0 39 1;
-#X connect 41 0 39 1;
-#X connect 42 0 48 0;
-#X connect 43 0 48 0;
-#X connect 44 0 45 0;
-#X connect 45 0 47 0;
-#X connect 46 0 45 1;
-#X connect 47 0 43 0;
-#X connect 49 0 55 0;
-#X connect 50 0 55 0;
-#X connect 51 0 52 0;
-#X connect 52 0 54 0;
-#X connect 53 0 52 1;
-#X connect 54 0 50 0;
+#X msg 898 116 \; rec open cloud4ch.wav \, start;
+#X msg 900 175 \; rec stop;
+#X msg 496 387 \; clouds-set 1;
+#X msg 330 357 \; ambsound-set 1 \; gaviopreset-set 0 \; gaviotamp-set
+1 \;;
+#X floatatom 504 440 5 0 0 0 - - -;
+#X msg 504 463 \; cloudsp-set \$1;
+#X connect 34 0 33 0;
+#X connect 35 0 36 0;
+#X connect 36 0 33 0;
+#X connect 37 0 38 0;
+#X connect 38 0 35 0;
+#X connect 39 0 38 1;
+#X connect 40 0 38 1;
+#X connect 41 0 47 0;
+#X connect 42 0 47 0;
+#X connect 43 0 44 0;
+#X connect 44 0 46 0;
+#X connect 45 0 44 1;
+#X connect 46 0 42 0;
+#X connect 48 0 54 0;
+#X connect 49 0 54 0;
+#X connect 50 0 51 0;
+#X connect 51 0 53 0;
+#X connect 52 0 51 1;
+#X connect 53 0 49 0;
+#X connect 59 0 60 0;
 #X restore 293 71 pd gcontrols;
-#N canvas 0 22 450 300 ambience 0;
+#N canvas 0 22 450 300 ambience 1;
 #N canvas 207 424 814 475 clouds 0;
 #X obj 133 83 switch~;
 #X obj 12 35 noise~;
