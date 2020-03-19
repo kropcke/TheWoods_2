@@ -18,6 +18,7 @@ TagManager:
   - Clouds
   - ConnectorLink
   - Bird
+  - ShowOnFinish
   layers:
   - Default
   - TransparentFX
