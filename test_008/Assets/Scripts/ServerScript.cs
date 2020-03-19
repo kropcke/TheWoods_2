@@ -46,9 +46,9 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public float timeBetweenSpawns = 5f;
     float lastSpawnTime = 0;
 
-    bool startedGameOver = false;
+    bool startedGameOver = false;    
     public static bool gameOver = false;
-    bool debugMode = false; // // todo: Move to gamecontroller.
+    bool debugMode = true; // // todo: Move to gamecontroller.
     bool simulatePlayers = false;
 
     // distraction (clouds) variables
@@ -132,7 +132,16 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-  
+    [PunRPC]
+    //TODO: REfactor this to accomodate multiple transfers from client to server
+    public void UpdateVariableInServer(bool gameOverVar)
+    {
+        if (photonView.IsMine)
+        {
+            Debug.LogFormat("Inside UpdateVariableInServer");
+            GameConfiguration.restartGame = true;
+        }
+    }
     private void debugDictionaryContent()
     {
         if (debugMode)
@@ -160,7 +169,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            debugDictionaryContent();
+            //debugDictionaryContent();
 
             if (simulatePlayers)
             {
@@ -227,8 +236,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 MagneticAudioMovement();
                 
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || GameConfiguration.restartGame)
             {
+                Debug.LogFormat("Restarting game: Restart variable value is {0} ", GameConfiguration.restartGame);
+                GameConfiguration.restartGame = false;
                 Reset();
             }
             if (Input.GetKeyDown(KeyCode.A) && audioBubblesFlying.Count > 0)
@@ -248,9 +259,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-
+ 
     void ShowMenuOptions()
     {
+        //TODO:Change this
         players[0].transform.parent.GetComponent<PhotonView>().RPC("ShowMenu",
                               RpcTarget.All, "Canvas");
         players[1].transform.parent.GetComponent<PhotonView>().RPC("ShowMenu",
@@ -503,12 +515,12 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Distractions code below
     void DistractionPickedUp()
     {
-        if (debugMode)
-        {
-            Debug.LogFormat("In Distraction {0}", DistractionController.inDistraction);
-            Debug.LogFormat("Method: DistractionPickedUp with value: {0}", DistractionController.inDistraction);
-            Debug.LogFormat("Variable: DistractionPickedUp with value: {0}", DistractionController.inDistraction);
-        }
+        //if (debugMode)
+        //{
+        //    Debug.LogFormat("In Distraction {0}", DistractionController.inDistraction);
+        //    Debug.LogFormat("Method: DistractionPickedUp with value: {0}", DistractionController.inDistraction);
+        //    Debug.LogFormat("Variable: DistractionPickedUp with value: {0}", DistractionController.inDistraction);
+        //}
         if (
             photonView.IsMine
             && DistractionController.inDistraction
@@ -600,10 +612,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     void FlyawayAndDestroyBird()
     {
-        if (debugMode)
-        {
-            Debug.Log("Flyaway audio bubbles.");
-        }
+        //if (debugMode)
+        //{
+        //    Debug.Log("Flyaway audio bubbles.");
+        //}
 
         for (int i = 0; i < audioBubblesPlayed.Count; i++)
         {
@@ -651,10 +663,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                        RpcTarget.All, audioBubbleVisualizations[i].name);
             }
         }
-        if (debugMode)
-        {
-            Debug.Log("Reset audio bubble state.");
-        }
+        //if (debugMode)
+        //{
+        //    Debug.Log("Reset audio bubble state.");
+        //}
 
         audioBubblesLeft = new List<int>();
 

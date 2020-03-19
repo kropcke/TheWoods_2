@@ -11,10 +11,13 @@ public class GameConfiguration : MonoBehaviour {
     public AudioSource audioSource;
     internal bool debugMode;
 
+    public static bool restartGame;
+
 
 
     // Use this for initialization
     void Start () {
+        restartGame = false;
         audioSource = GetComponent<AudioSource>();
     }
 	

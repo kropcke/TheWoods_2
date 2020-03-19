@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
-
+    
     public float cubeSize = 0.1f;
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
@@ -17,6 +17,11 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     bool oriented = false;
     GameObject middleBranch;
     string deviceName=null;
+    bool gameOver = false;
+
+    public Texture buttonTexture;
+    GameObject server;
+
     public void Awake()
     {
         if (photonView.IsMine)
@@ -28,7 +33,41 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         }
     }
-   
+
+
+    private void OnGUI()
+    {
+        /*
+         * https://stackoverflow.com/questions/26937186/display-a-message-to-a-specific-player-in-a-networked-game-using-photon-unity-ne
+         * https://answers.unity.com/questions/204530/how-to-position-a-gui-at-the-top-right-of-the-scre.html
+         */
+       
+            Rect position;
+            //Debug.LogFormat("ServerScript GameOver value: {0}", ServerScript.gameOver);
+            if (gameOver)
+            {
+                position = new Rect((Screen.width / 2), (Screen.height / 2), 150, 150);
+            }
+            else
+            {
+                position = new Rect((Screen.width / 2) + 200, 70, 120, 120);
+
+            }
+            // bool restartGame = GUI.Button(position, "Restart");
+            bool restartGame = GUI.Button(position, buttonTexture);
+
+            if (restartGame)
+            {
+                Debug.LogFormat("Inside restartGame");
+                server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
+                           restartGame);
+
+            }
+        
+
+
+    }
+
     public override void OnDisable()
     {
         base.OnDisable();
@@ -47,6 +86,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             GameObject g = GameObject.Find(s);
             g.GetComponent<PhotonView>().RequestOwnership();
             lightningEndpoint = g;
+            //OnGUI();
         }
     }
 
@@ -56,29 +96,41 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             GameObject g1 = GameObject.Find(soundClip);
-
-          g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
-            //TODO : Test in android phones.
-            Microphone.Start(deviceName, true, 10, 44100);
-            //g1.GetComponent<AudioSource>().volume = 1f;
+            g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0.5f);
+            //g1.GetComponent<AudioSource>().volume = 0.5f;
             g1.GetComponent<AudioSource>().Play();
         }
     }
+
     //[PunRPC]
-    //public void PlayVoiceMail2(string soundClip)
+    //public void PlayVoiceMailThroughEarRecevier(string soundClip)
     //{
     //    if (photonView.IsMine)
     //    {
     //        GameObject g1 = GameObject.Find(soundClip);
 
-    //        //
-    //        g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 1f);
+    //        g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
     //        //TODO : Test in android phones.
-    //        g1.GetComponent<AudioSource>().volume = 1f;
+    //        Microphone.Start(deviceName, true, 10, 44100);
+    //        //g1.GetComponent<AudioSource>().volume = 1f;
     //        g1.GetComponent<AudioSource>().Play();
     //    }
     //}
+    //[PunRPC]
+    //public void StopVoiceMailThroughEarRecevier(string soundClip)
+    //{
+    //    if (photonView.IsMine)
+    //    {
 
+    //        GameObject g1 = GameObject.Find(soundClip);
+    //        Microphone.End(deviceName);
+    //        if (g1.GetComponent<AudioSource>().isPlaying)
+    //        {
+    //            g1.GetComponent<AudioSource>().Stop();
+    //        }
+
+    //    }
+    //}
     [PunRPC]
     public void StopVoiceMail(string soundClip)
     {
@@ -86,7 +138,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
 
             GameObject g1 = GameObject.Find(soundClip);
-            Microphone.End(deviceName);
             if (g1.GetComponent<AudioSource>().isPlaying)
             {
                 g1.GetComponent<AudioSource>().Stop();
@@ -97,16 +148,12 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void ShowMenu(string name)
     {
-        Debug.Log("Inside ShowMenu");
         if (photonView.IsMine)
         {
-
-            Debug.Log("Inside ShowMenu" + name);
-            GameObject g1 = GameObject.Find(name);
-            g1.SetActive(true);
-
+            gameOver = true;
         }
     }
+  
     [PunRPC]
     public void EnableBird(int index)
     {
@@ -138,6 +185,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             //TOOD: Pass from serverscript
             middleBranch = GameObject.Find("NewMiddleBranch");
+            server  = GameObject.FindGameObjectWithTag("Server");
             foreach (var device in Microphone.devices)
             {
                 deviceName = device;
@@ -155,25 +203,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         
        
     }
-    //IEnumerator speaker()
-    //{
-    //    if (photonView.IsMine)
-    //    {
-    //        yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
-    //        if (Application.HasUserAuthorization(UserAuthorization.Microphone))
-    //        {
-    //            Debug.Log("Microphone found");
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("Microphone not found");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("none");
-    //    }
-    //}
 
     public void Update()
     {
@@ -186,6 +215,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
             */
             oriented = true;
+            
             if (oriented)
             {
 
