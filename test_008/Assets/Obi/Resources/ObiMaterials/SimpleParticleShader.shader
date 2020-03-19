@@ -1,7 +1,7 @@
 ﻿Shader "Obi/Simple Particles" {
 
 Properties {
-	_Color ("Particle color", Color) = (1,1,1,1)
+	_Color 		("Particle color", Color) = (1,1,1,1)
 }
 
 	SubShader { 
@@ -9,7 +9,7 @@ Properties {
 		Pass { 
 
 			Name "ParticleFwdBase"
-			Tags {"Queue"="Geometry" "IgnoreProjector"="True" "RenderType"="Opaque" "LightMode" = "ForwardBase"}
+			Tags {"Queue"="Geometry" "IgnoreProjector"="True" "RenderType"="Opaque"}
 			Blend SrcAlpha OneMinusSrcAlpha  
 			
 			CGPROGRAM
@@ -17,15 +17,18 @@ Properties {
 			#pragma fragment frag
 			#pragma fragmentoption ARB_precision_hint_fastest
 
-			#pragma multi_compile_fwdbase
+			#pragma multi_compile_fwdbase nolightmap
 
 			#include "ObiParticles.cginc"
+
+			fixed4 _Color;
+			fixed4 _LightColor0; 
 
 			struct vin{
 				float4 vertex   : POSITION;
 				float3 corner   : NORMAL;
 				fixed4 color    : COLOR;
-				float3 texcoord  : TEXCOORD0;
+				float4 t0 : TEXCOORD0; // ellipsoid t1 vector
 			};
 
 			struct v2f
@@ -34,7 +37,6 @@ Properties {
 				fixed4 color    : COLOR;
 				float2 texcoord  : TEXCOORD0;
 				float3 lightDir : TEXCOORD1;
-				float4 viewpos : TEXCOORD2;
 				LIGHTING_COORDS(3,4)
 			};
 
@@ -43,10 +45,11 @@ Properties {
 				v2f o;
 		
 				// particle positions are passed in world space, no need to use modelview matrix, just view.
-				o.viewpos = mul(UNITY_MATRIX_V, v.vertex) + float4(v.corner.x, v.corner.y, 0, 0) * v.corner.z; // multiply by size.
-				o.pos = mul(UNITY_MATRIX_P, o.viewpos);
-				o.texcoord = float3(v.corner.x*0.5+0.5, v.corner.y*0.5+0.5, v.corner.z);
-				o.color = v.color;
+				float radius = v.t0.w * _RadiusScale;
+				float4 viewpos = mul(UNITY_MATRIX_V, v.vertex) + float4(v.corner.x, v.corner.y, 0, 0) * radius; // multiply by size.
+				o.pos = mul(UNITY_MATRIX_P, viewpos);
+				o.texcoord = float3(v.corner.x*0.5+0.5, v.corner.y*0.5+0.5, radius);
+				o.color = v.color * _Color;
 
 				o.lightDir = mul ((float3x3)UNITY_MATRIX_MV, ObjSpaceLightDir(v.vertex));
 
@@ -55,9 +58,6 @@ Properties {
 				return o;
 			} 
 
-			fixed4 _Color;
-			fixed4 _LightColor0; 
-
 			fixed4 frag(v2f i) : SV_Target
 			{
 				// generate sphere normals:
@@ -65,10 +65,9 @@ Properties {
 
 				// simple lighting: diffuse
 		   	 	float ndotl = saturate( dot( n, normalize(i.lightDir) ) );
-				UNITY_LIGHT_ATTENUATION(atten,i,0);
 
 				// final lit color:
-				return _Color * i.color* (_LightColor0 * ndotl + UNITY_LIGHTMODEL_AMBIENT);
+				return fixed4(i.color.rgb * (_LightColor0 * ndotl + UNITY_LIGHTMODEL_AMBIENT),i.color.a);
 			}
 			 
 			ENDCG
@@ -88,29 +87,29 @@ Properties {
 				#pragma fragment frag
 				#pragma fragmentoption ARB_precision_hint_fastest
 
-				#pragma multi_compile_shadowcaster
+				#pragma multi_compile_shadowcaster nolightmap
 
 				#include "ObiParticles.cginc"
 				 
 				struct vin{
 					float4 vertex   : POSITION;
 					float3 corner   : NORMAL;
-					float2 texcoord  : TEXCOORD0;
+					float4 t0 : TEXCOORD0; // ellipsoid t1 vector
 				};
 
 				struct v2f {
 					float4 pos   : POSITION;
 				    float3 texcoord : TEXCOORD0;
-					float4 viewpos : TEXCOORD1;
 				};
 				 
 				v2f vert( vin v )
 				{
 				    v2f o;
 
-					o.viewpos = mul(UNITY_MATRIX_V, v.vertex) + float4(v.corner.x, v.corner.y, 0, 0) * v.corner.z;
-					o.pos = mul(UNITY_MATRIX_P, o.viewpos);
-					o.texcoord = float3(v.corner.x*0.5+0.5, v.corner.y*0.5+0.5, v.corner.z);
+					float radius = v.t0.w * _RadiusScale;
+					float4 viewpos = mul(UNITY_MATRIX_V, v.vertex) + float4(v.corner.x, v.corner.y, 0, 0) * radius;
+					o.pos = mul(UNITY_MATRIX_P, viewpos);
+					o.texcoord = float3(v.corner.x*0.5+0.5, v.corner.y*0.5+0.5, radius);
 				    return o;
 				}
 				 

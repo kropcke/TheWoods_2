@@ -13,7 +13,7 @@
 #include "Dense"
 #include "HalfEdgeMesh.h"
 
-#if defined(__APPLE__) || defined(ANDROID)
+#if defined(__APPLE__) || defined(ANDROID) || defined(__linux__)
     #define EXPORT __attribute__((visibility("default")))
 #else
     #define EXPORT __declspec(dllexport)
@@ -60,11 +60,11 @@ namespace Oni
         EXPORT void SetInverseOrientations(HalfEdgeMesh* mesh,QuaternionfUnaligned* orientations);
         EXPORT void SetVisualMap(HalfEdgeMesh* mesh,int* map);
         
-        
-        
 		EXPORT int GetHalfEdgeCount(HalfEdgeMesh* mesh);
 		EXPORT int GetVertexCount(HalfEdgeMesh* mesh);
 		EXPORT int GetFaceCount(HalfEdgeMesh* mesh);
+        
+        EXPORT void GetPointCloudAnisotropy(Eigen::Vector3f* points,int count,float max_anisotropy,float radius, const Eigen::Vector3f& hint_normal, Eigen::Vector3f& centroid, QuaternionfUnaligned& orientation,Eigen::Vector3f& principal_values);
     }
     
 }

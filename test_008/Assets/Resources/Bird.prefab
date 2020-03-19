@@ -116,11 +116,11 @@ GameObject:
   - component: {fileID: 114960961052610016}
   m_Layer: 0
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1523063995690254
 GameObject:
   m_ObjectHideFlags: 1
@@ -346,7 +346,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1481909935735070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4667377574538322}
@@ -484,7 +484,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114960961052610016}
   viewIdField: 0
-  InstantiationId: 5
+  InstantiationId: 7
   isRuntimeInstantiated: 0
 --- !u!114 &114960961052610016
 MonoBehaviour:

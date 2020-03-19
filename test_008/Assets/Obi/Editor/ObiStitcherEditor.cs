@@ -16,10 +16,10 @@ namespace Obi{
 	{
 		
 		ObiStitcher stitcher;
-		bool editing = false;
+		static public bool editing = false;
 
-		Vector3 sewingToolHandle1 = Vector3.zero;
-		Vector3 sewingToolHandle2 = Vector3.one;
+		static public Vector3 sewingToolHandle1 = Vector3.zero;
+		static public Vector3 sewingToolHandle2 = Vector3.one;
 
 		static public bool[] selectionStatus = new bool[0];
 		
@@ -51,7 +51,7 @@ namespace Obi{
 				stitcher.Actor2 = actor2;
 			}
 
-			if (stitcher.Actor1 != null && stitcher.Actor2 != null && stitcher.Actor1.Solver != stitcher.Actor2.Solver){
+			if (stitcher.Actor1 != null && stitcher.Actor2 != null && stitcher.Actor1.solver != stitcher.Actor2.solver){
 				EditorGUILayout.HelpBox("Both actors must be managed by the same solver.",MessageType.Error);
 			}
 
@@ -114,7 +114,7 @@ namespace Obi{
 				
 				serializedObject.ApplyModifiedProperties();
 				
-				stitcher.PushDataToSolver(ParticleData.NONE);
+				//stitcher.PushDataToSolver(ParticleData.NONE);
 				
 			}
 			
@@ -126,7 +126,7 @@ namespace Obi{
 
 			if (stitcher.Actor1 == stitcher.Actor2){
 				float minDistance2 = float.MaxValue;
-				for (int i = 0; i < stitcher.Actor1.positions.Length;++i){
+                for (int i = 0; i < stitcher.Actor1.particleCount;++i){
 					Vector3 pos = stitcher.Actor1.GetParticlePosition(i);
 					float distance1 = (pos - sewingToolHandle1).sqrMagnitude;
 					float distance2 = (pos - sewingToolHandle2).sqrMagnitude;
@@ -142,7 +142,7 @@ namespace Obi{
 			}else{
 
 				// find closest particle to each end of the sewing tool:
-				for (int i = 0; i < stitcher.Actor1.positions.Length;++i){
+                for (int i = 0; i < stitcher.Actor1.particleCount;++i){
 					Vector3 pos = stitcher.Actor1.GetParticlePosition(i);
 					float distance1 = (pos - sewingToolHandle1).sqrMagnitude;
 					float distance2 = (pos - sewingToolHandle2).sqrMagnitude;
@@ -154,7 +154,7 @@ namespace Obi{
 				}
 		
 				minDistance = float.MaxValue;
-				for (int i = 0; i < stitcher.Actor2.positions.Length;++i){
+                for (int i = 0; i < stitcher.Actor2.particleCount;++i){
 					Vector3 pos = stitcher.Actor2.GetParticlePosition(i);
 					float distance1 = (pos - sewingToolHandle1).sqrMagnitude;
 					float distance2 = (pos - sewingToolHandle2).sqrMagnitude;

@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!241 &24100000
+AudioMixerController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: VoiceMailMixer
+  m_OutputGroup: {fileID: 0}
+  m_MasterGroup: {fileID: 24300002}
+  m_Snapshots:
+  - {fileID: 24500006}
+  m_StartSnapshot: {fileID: 24500006}
+  m_SuspendThreshold: 0
+  m_EnableSuspend: 1
+  m_UpdateMode: 0
+  m_ExposedParameters:
+  - guid: 04416e0ab852147e5ae6851615924509
+    name: VoiceMailVolume
+  m_AudioMixerGroupViews:
+  - guids:
+    - f8b2d468585e448eab97cc9f463534b7
+    - 567fd134cea3447b0a540ad692fcde32
+    name: View
+  m_CurrentViewIndex: 0
+  m_TargetSnapshot: {fileID: 24500006}
+--- !u!243 &24300002
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Master
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: f8b2d468585e448eab97cc9f463534b7
+  m_Children:
+  - {fileID: 243639385255076968}
+  m_Volume: 1960a17e64d2645c39afc34692c550d5
+  m_Pitch: 8a24e336974d74c318d2f76914ca0341
+  m_Effects:
+  - {fileID: 24400004}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &24400004
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: c6208289ac0e94bc2b8f9608ecd901ce
+  m_EffectName: Attenuation
+  m_MixLevel: 1fae2febe1755496084b0929aac4d8e6
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!245 &24500006
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Snapshot
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 1a3534e7673dc4a7db932573b5e53bf2
+  m_FloatValues:
+    04416e0ab852147e5ae6851615924509: -72.92903
+    927e36eb4d7c94d83b24d3969a3e8f72: 1
+  m_TransitionOverrides: {}
+--- !u!243 &243639385255076968
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Voicemail
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 567fd134cea3447b0a540ad692fcde32
+  m_Children: []
+  m_Volume: 04416e0ab852147e5ae6851615924509
+  m_Pitch: 927e36eb4d7c94d83b24d3969a3e8f72
+  m_Effects:
+  - {fileID: 244774597622293782}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &244774597622293782
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: e1f1a65ab0f1f478d8eec25e6fdc8223
+  m_EffectName: Attenuation
+  m_MixLevel: b52de6c356b9340f4b6b887ada702ab8
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

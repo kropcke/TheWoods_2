@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour {
-
-
-
-
-
-
-
-
+public class PlayerInput : MonoBehaviour
+{
     //Player starting position
     public Vector3 playerOnePosition = new Vector3(0, 0, 0);
     public Vector3 playerTwoPosition = new Vector3(0, 0, 0);
@@ -66,21 +59,4 @@ public class PlayerInput : MonoBehaviour {
         playerOne.Move(playerOnePosition * Time.deltaTime);
         playerTwo.Move(playerTwoPosition * Time.deltaTime);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

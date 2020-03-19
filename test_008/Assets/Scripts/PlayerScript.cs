@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -18,6 +15,12 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     GameObject ARCam, testPos;
 
     bool oriented = false;
+    GameObject middleBranch;
+    string deviceName = null;
+    bool gameOver = false;
+
+    public Texture buttonTexture;
+    GameObject server;
 
     public void Awake()
     {
@@ -29,6 +32,43 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
 
         }
+    }
+
+
+    private void OnGUI()
+    {
+        if (photonView.IsMine)
+        {
+            Rect position;
+   
+                if (Screen.orientation == ScreenOrientation.Landscape)
+                {
+                    position = new Rect((Screen.width / 2) + 750, 10, 100, 100);
+                }
+                else if (Screen.orientation == ScreenOrientation.Portrait)
+                {
+                    position = new Rect((Screen.width / 2) + 300, 10, 100, 100);
+                }
+                else
+                {
+                    position = new Rect((Screen.width / 2) + 300, 70, 100, 100);
+                }
+                
+                
+            bool restartGame = GUI.Button(position, buttonTexture);
+
+            if (restartGame)
+            {
+               
+                gameOver = false;
+                server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
+                           restartGame);
+            
+
+            }
+        }
+
+
     }
 
     public override void OnDisable()
@@ -49,12 +89,91 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             GameObject g = GameObject.Find(s);
             g.GetComponent<PhotonView>().RequestOwnership();
             lightningEndpoint = g;
+            //OnGUI();
         }
+    }
+
+    [PunRPC]
+    public void PlayVoiceMail(string soundClip)
+    {
+        if (photonView.IsMine)
+        {
+            GameObject g1 = GameObject.Find(soundClip);
+            
+            g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0.5f);
+            //g1.GetComponent<AudioSource>().volume = 0.5f;
+            g1.GetComponent<AudioSource>().panStereo = -1.0f;
+            g1.GetComponent<AudioSource>().Play();
+        }
+    }
+
+    [PunRPC]
+    public void StopVoiceMail(string soundClip)
+    {
+        if (photonView.IsMine)
+        {
+
+            GameObject g1 = GameObject.Find(soundClip);
+            if (g1.GetComponent<AudioSource>().isPlaying)
+            {
+                g1.GetComponent<AudioSource>().Stop();
+            }
+
+        }
+    }
+    [PunRPC]
+    public void ShowMenu(string option)
+    {
+        if (photonView.IsMine)
+        {
+            //if (option == "gameOver") {
+            //    gameOver = true;
+            //}
+            //else
+            //{
+            //    gameOver = false;
+            //}
+            gameOver = true;
+
+        }
+    }
+
+    [PunRPC]
+    public void EnableBird(int index)
+    {
+        if (photonView.IsMine)
+        {
+            GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
+            for (int i = 0; i < birds.Length; i++)
+            {
+                birds[i].SetActive(false);
+            }
+            middleBranch.transform.GetChild(index).gameObject.SetActive(true);
+        }
+    }
+    [PunRPC]
+    public void DisableBirds(string name)
+    {
+        if (photonView.IsMine)
+        {
+            for (int index = 0; index < middleBranch.transform.childCount; index++)
+            {
+                middleBranch.transform.GetChild(index).gameObject.SetActive(false);
+            }
+        }
+
     }
     void Start()
     {
         if (photonView.IsMine)
         {
+            //TOOD: Pass from serverscript
+            middleBranch = GameObject.Find("NewMiddleBranch");
+            server = GameObject.FindGameObjectWithTag("Server");
+            //foreach (var device in Microphone.devices)
+            //{
+            //    deviceName = device;
+            //}
             ARCam = GameObject.Find("ARCamera");
             ARCam.GetComponent<Vuforia.VuforiaBehaviour>().enabled = true;
             //GameObject.FindWithTag("ARImage").GetPhotonView().RequestOwnership();
@@ -62,7 +181,10 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             //GameObject.FindWithTag("ARImage").transform.GetChild(0).gameObject.
             //GetPhotonView().RequestOwnership();
             transform.localScale = Vector3.one * cubeSize;
+
+
         }
+
 
     }
 
@@ -77,6 +199,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
             */
             oriented = true;
+
             if (oriented)
             {
 
@@ -118,7 +241,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
-    
+
     void ProcessInputs()
     {
 

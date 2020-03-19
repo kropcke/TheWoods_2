@@ -1,8 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundClipParticles : MonoBehaviour {
+public class SoundClipParticles : MonoBehaviour
+{
+    private bool debugMode = false; // todo: move to game configuration
     AudioClip c;
     ParticleSystem.Particle[] particles;
     public float distBetweenChannels;
@@ -13,14 +14,18 @@ public class SoundClipParticles : MonoBehaviour {
     bool playing = false;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         c = GetComponent<AudioSource>().clip;
         ParticleSystem.MainModule mainModule = GetComponent<ParticleSystem>().main;
         mainModule.maxParticles = c.channels;
-        print("Channels: " + c.channels);
-        print("Frequency: " + c.frequency);
-        print("Length: " + c.length);
-        print("Samples: " + c.samples);
+        if (debugMode)
+        {
+            print("Channels: " + c.channels);
+            print("Frequency: " + c.frequency);
+            print("Length: " + c.length);
+            print("Samples: " + c.samples);
+        }
         InstantiateParticles();
         StartCoroutine(AnimateParticles());
     }
@@ -29,7 +34,10 @@ public class SoundClipParticles : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            print("Space pressed");
+            if (debugMode)
+            {
+                print("Space pressed");
+            }
             playing = !playing;
             if (GetComponent<AudioSource>().isPlaying)
             {
