@@ -37,7 +37,7 @@ public static class OpenSourceInitializer
     static void ReplaceTrackablePlaceHolder(DefaultTrackableBehaviourPlaceholder placeHolder)
     {
         var go = placeHolder.gameObject;
-        go.AddComponent<DefaultTrackableEventHandler>();
+        go.AddComponent<DefaultTrackableEventHandler1>();
 
         Object.DestroyImmediate(placeHolder);
     }
@@ -45,7 +45,7 @@ public static class OpenSourceInitializer
     static void ReplaceInitErrorPlaceHolder(DefaultInitializationErrorHandlerPlaceHolder placeHolder)
     {
         var go = placeHolder.gameObject;
-        go.AddComponent<DefaultInitializationErrorHandler>();
+        go.AddComponent<DefaultInitializationErrorHandler1>();
 
         Object.DestroyImmediate(placeHolder);
     }
@@ -54,12 +54,12 @@ public static class OpenSourceInitializer
     {
         public void AddDefaultTrackableBehaviour(GameObject go)
         {
-            go.AddComponent<DefaultTrackableEventHandler>();
+            go.AddComponent<DefaultTrackableEventHandler1>();
         }
 
         public void AddDefaultInitializationErrorHandler(GameObject go)
         {
-            go.AddComponent<DefaultInitializationErrorHandler>();
+            go.AddComponent<DefaultInitializationErrorHandler1>();
         }
     }
 }

@@ -1,17 +1,33 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs">
     <Files>
       <File FileName="Assets/Scripts/ServerScript.cs" Line="495" Column="107" />
-      <File FileName="Assets/Scripts/BirdControllerScript.cs" Line="21" Column="7" />
+      <File FileName="Assets/Scripts/BirdControllerScript.cs" />
       <File FileName="Assets/Scripts/DebuggingUI.cs" />
       <File FileName="Assets/Scripts/CylinderConnectorScript.cs" />
-      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" />
+      <File FileName="Assets/Vuforia/Editor/Scripts/OpenSourceInitializer.cs" Line="40" Column="54" />
+      <File FileName="Assets/Vuforia/Scripts/DefaultTrackableEventHandler.cs" Line="18" Column="43" />
+      <File FileName="Assets/Vuforia/Scripts/DefaultInitializationErrorHandler.cs" Line="18" Column="48" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="test_008" expanded="True" />
+          <Node name="test_008" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True" />
+              <Node name="Vuforia" expanded="True">
+                <Node name="Editor" expanded="True">
+                  <Node name="Scripts" expanded="True" />
+                </Node>
+                <Node name="Scripts" expanded="True">
+                  <Node name="DefaultInitializationErrorHandler.cs" selected="True" />
+                </Node>
+                <Node name="Shaders" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
@@ -21,11 +37,11 @@
     <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="792884bf-99cc-4be2-bd88-b5a5e3846882" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="81dd9ff6-0238-4371-bc6f-af5cd93f8dbb" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2 copy 2/test_008/Assets/Scripts/PlayerScript.cs" relfile="Assets/Scripts/PlayerScript.cs" line="101" column="1" />
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2 copy 2/test_008/Assets/Scripts/ServerScript.cs" relfile="Assets/Scripts/ServerScript.cs" line="493" column="1" />
+      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/develop_new/test_008/Assets/Scripts/PlayerScript.cs" relfile="Assets/Scripts/PlayerScript.cs" line="101" column="1" />
+      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/develop_new/test_008/Assets/Scripts/ServerScript.cs" relfile="Assets/Scripts/ServerScript.cs" line="493" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

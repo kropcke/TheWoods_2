@@ -15,7 +15,7 @@ using Vuforia;
 /// Changes made to this file could be overwritten when upgrading the Vuforia version. 
 /// When implementing custom error handler behavior, consider inheriting from this class instead.
 /// </summary>
-public class DefaultInitializationErrorHandler : VuforiaMonoBehaviour
+public class DefaultInitializationErrorHandler1 : VuforiaMonoBehaviour
 {
     #region Vuforia_lifecycle_events
 

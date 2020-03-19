@@ -15,7 +15,7 @@ using Vuforia;
 /// Changes made to this file could be overwritten when upgrading the Vuforia version. 
 /// When implementing custom event handler behavior, consider inheriting from this class instead.
 /// </summary>
-public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
+public class DefaultTrackableEventHandler1 : MonoBehaviour, ITrackableEventHandler
 {
     #region PROTECTED_MEMBER_VARIABLES
 
