@@ -1,28 +1,31 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ServerScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="249" Column="10" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" />
-      <File FileName="Assets/Scripts/UIManager.cs" />
-      <File FileName="Assets/Scripts/SkylarsNetworkManager.cs" />
-      <File FileName="Assets/Scripts/GameController.cs" />
-      <File FileName="Assets/Scripts/DistractionController.cs" />
-      <File FileName="Assets/Scripts/GameConfiguration.cs" />
-      <File FileName="Assets/Scripts/LobbyManager.cs" />
-      <File FileName="Assets/Scripts/CylinderConnectorScript.cs" Line="20" Column="19" />
-      <File FileName="Assets/Scripts/RestartScript.cs" />
-      <File FileName="Assets/Scripts/DebuggingUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="495" Column="107" />
+      <File FileName="Assets/Scripts/BirdControllerScript.cs" Line="21" Column="7" />
+      <File FileName="Assets/Scripts/DebuggingUI.cs" />
+      <File FileName="Assets/Scripts/CylinderConnectorScript.cs" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="test_008" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../Assets/Scripts/DistractionController.cs" line="11" offsetX="-1" offsetY="-1" expression="variables" liveUpdate="False" />
     <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="6dbdc8aa-d259-4294-add5-d4644340ff6e" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="792884bf-99cc-4be2-bd88-b5a5e3846882" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/develop/test_008/Assets/Scripts/PlayerScript.cs" relfile="Assets/Scripts/PlayerScript.cs" line="101" column="1" />
+      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2 copy 2/test_008/Assets/Scripts/PlayerScript.cs" relfile="Assets/Scripts/PlayerScript.cs" line="101" column="1" />
+      <Breakpoint file="/Users/ammannagari/Documents/OSU/ACCAD/github/TheWoods_2 copy 2/test_008/Assets/Scripts/ServerScript.cs" relfile="Assets/Scripts/ServerScript.cs" line="493" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

@@ -16,7 +16,12 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     bool oriented = false;
     GameObject middleBranch;
-    string deviceName=null;
+    string deviceName = null;
+    bool gameOver = false;
+
+    public Texture buttonTexture;
+    GameObject server;
+
     public void Awake()
     {
         if (photonView.IsMine)
@@ -28,7 +33,44 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         }
     }
+
+
+    private void OnGUI()
+    {
+        if (photonView.IsMine)
+        {
+            Rect position;
    
+                if (Screen.orientation == ScreenOrientation.Landscape)
+                {
+                    position = new Rect((Screen.width / 2) + 750, 10, 100, 100);
+                }
+                else if (Screen.orientation == ScreenOrientation.Portrait)
+                {
+                    position = new Rect((Screen.width / 2) + 300, 10, 100, 100);
+                }
+                else
+                {
+                    position = new Rect((Screen.width / 2) + 300, 70, 100, 100);
+                }
+                
+                
+            bool restartGame = GUI.Button(position, buttonTexture);
+
+            if (restartGame)
+            {
+               
+                gameOver = false;
+                server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
+                           restartGame);
+            
+
+            }
+        }
+
+
+    }
+
     public override void OnDisable()
     {
         base.OnDisable();
@@ -47,6 +89,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             GameObject g = GameObject.Find(s);
             g.GetComponent<PhotonView>().RequestOwnership();
             lightningEndpoint = g;
+            //OnGUI();
         }
     }
 
@@ -56,28 +99,13 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             GameObject g1 = GameObject.Find(soundClip);
-
-          g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0f);
-            //TODO : Test in android phones.
-            Microphone.Start(deviceName, true, 10, 44100);
-            //g1.GetComponent<AudioSource>().volume = 1f;
+            
+            g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0.5f);
+            //g1.GetComponent<AudioSource>().volume = 0.5f;
+            g1.GetComponent<AudioSource>().panStereo = -1.0f;
             g1.GetComponent<AudioSource>().Play();
         }
     }
-    //[PunRPC]
-    //public void PlayVoiceMail2(string soundClip)
-    //{
-    //    if (photonView.IsMine)
-    //    {
-    //        GameObject g1 = GameObject.Find(soundClip);
-
-    //        //
-    //        g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 1f);
-    //        //TODO : Test in android phones.
-    //        g1.GetComponent<AudioSource>().volume = 1f;
-    //        g1.GetComponent<AudioSource>().Play();
-    //    }
-    //}
 
     [PunRPC]
     public void StopVoiceMail(string soundClip)
@@ -86,7 +114,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
 
             GameObject g1 = GameObject.Find(soundClip);
-            Microphone.End(deviceName);
             if (g1.GetComponent<AudioSource>().isPlaying)
             {
                 g1.GetComponent<AudioSource>().Stop();
@@ -95,25 +122,29 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
     [PunRPC]
-    public void ShowMenu(string name)
+    public void ShowMenu(string option)
     {
-        Debug.Log("Inside ShowMenu");
         if (photonView.IsMine)
         {
-
-            Debug.Log("Inside ShowMenu" + name);
-            GameObject g1 = GameObject.Find(name);
-            g1.SetActive(true);
+            //if (option == "gameOver") {
+            //    gameOver = true;
+            //}
+            //else
+            //{
+            //    gameOver = false;
+            //}
+            gameOver = true;
 
         }
     }
+
     [PunRPC]
     public void EnableBird(int index)
     {
         if (photonView.IsMine)
         {
             GameObject[] birds = GameObject.FindGameObjectsWithTag("Bird");
-            for(int i = 0; i < birds.Length; i++)
+            for (int i = 0; i < birds.Length; i++)
             {
                 birds[i].SetActive(false);
             }
@@ -130,7 +161,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                 middleBranch.transform.GetChild(index).gameObject.SetActive(false);
             }
         }
-        
+
     }
     void Start()
     {
@@ -138,10 +169,11 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             //TOOD: Pass from serverscript
             middleBranch = GameObject.Find("NewMiddleBranch");
-            foreach (var device in Microphone.devices)
-            {
-                deviceName = device;
-            }
+            server = GameObject.FindGameObjectWithTag("Server");
+            //foreach (var device in Microphone.devices)
+            //{
+            //    deviceName = device;
+            //}
             ARCam = GameObject.Find("ARCamera");
             ARCam.GetComponent<Vuforia.VuforiaBehaviour>().enabled = true;
             //GameObject.FindWithTag("ARImage").GetPhotonView().RequestOwnership();
@@ -150,30 +182,11 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             //GetPhotonView().RequestOwnership();
             transform.localScale = Vector3.one * cubeSize;
 
-            
+
         }
-        
-       
+
+
     }
-    //IEnumerator speaker()
-    //{
-    //    if (photonView.IsMine)
-    //    {
-    //        yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
-    //        if (Application.HasUserAuthorization(UserAuthorization.Microphone))
-    //        {
-    //            Debug.Log("Microphone found");
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("Microphone not found");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("none");
-    //    }
-    //}
 
     public void Update()
     {
@@ -186,6 +199,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
             */
             oriented = true;
+
             if (oriented)
             {
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-using UnityEngine.Animations;
 
 public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -24,7 +23,8 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     List<Vector3> audioBubbleMovementVectors;
     List<Vector3> audioBubbleTargetPositions;
     public List<GameObject> audioBubblesHolding;
-    public float audioBubbleMoveSpeed = 0.02f;
+    public float audioBubbleMoveSpeed = 0.01f;
+   
     public float smoothSpeed = 0.02f;
     public List<int> audioBubblesLeft; // what is this?
 
@@ -34,8 +34,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     float distToChangeTarget = 0.25f; // for both cloud and bird
 
 
-    public List<GameObject> audioBubbleVisualizations; // indirectly belong to bird
-
+    public List<GameObject> audioBubbleVisualizations;
 
     // player variables
     GameObject lightening;
@@ -46,10 +45,11 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public float timeBetweenSpawns = 5f;
     float lastSpawnTime = 0;
 
+
     bool startedGameOver = false;
     public static bool gameOver = false;
-    bool debugMode = false; // // todo: Move to gamecontroller.
-    bool simulatePlayers = false;
+    bool debugMode = true; // // todo: Move to gamecontroller.
+    bool simulatePlayers = true;
 
     // distraction (clouds) variables
     public string[] distractionPrefabs;
@@ -58,17 +58,75 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public int numDistractionsAtOneTime = 1;
     int distractionsPickedUp = 0;
     List<GameObject> distractions;
-    List<Vector3> distractionMoveVectors;
-    List<Vector3> distractionTargetPositions;
+    public float distractionMoveSpeed = 0.2f;
+    public List<Vector3> distractionMoveVectors;
+    public List<Vector3> distractionTargetPositions;
+    public Vector3 distractionIntialPosition;
     List<float> distractionSpawnTimes;
     List<float> distractionDestroyTimes;
-    float distractionMoveSpeed = 0.3f;
     private GameObject middleBranch;
+
+    private string voicemailPattern = "Voicemail-";
+    public int numOfVoiceMails = 2;
+
+    public string patchName;
+    private int _pdPatch = -1;
+    // Use this for initialization
+
+    IEnumerator initialiseUnityPd()
+    {
+    yield return new WaitForSeconds(1f);
+
+    Debug.Log("Initializing UnityPD");
+
+    UnityPD.Init();
+
+    yield return new WaitForSeconds(2f);
+
+    _pdPatch = UnityPD.OpenPatch("main.pd");
+    }
+    
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalServerInstance;
+    
+    public void chooseNewVoicemail(GameObject[] audioVisualization)
+    {
+        int voicemailNum = (int)Random.Range(1, numOfVoiceMails+1);
+        Debug.LogFormat("voicemailNum:" + voicemailNum);
+        audioBubbleVisualizations = new List<GameObject>(audioBubblestotalCount);
+        //Voice mail 0 will be for cut scene-not adding for now
+        GameObject all = null;
+        for (int i = 0; i < audioVisualization.Length; i++)
+        {
+            if (audioVisualization[i].name.StartsWith(voicemailPattern + voicemailNum))
+            {
 
-    public void Awake()
+                string[] tmp = audioVisualization[i].name.Split('-');
+                //Debug.Log(tmp[2]);
+                if (tmp[2] == "all")
+                {
+                    all = audioVisualization[i];
+                }
+                else
+                {
+                    audioBubbleVisualizations.Add(audioVisualization[i]);
+                }
+            }
+
+        }
+        audioBubbleVisualizations.Add(all);
+    //for (int i = 0; i < audioBubbleVisualizations.Count; i++)
+    //{
+    //    audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().Init();
+    //    audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().PositionInCircle(4 * i * audioBubblestotalCount, 64, gameAreaSize);
+    //}
+}
+void OnApplicationQuit()
+{
+UnityPD.Deinit();
+}
+public void Awake()
     {
         if (photonView.IsMine)
         {
@@ -76,11 +134,9 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             LocalServerInstance = gameObject;
             lightening = GameObject.Find("Lightening");
-            audioBubbleVisualizations = new List<GameObject>();
-            for (int i = 0; i < GameObject.FindGameObjectsWithTag("AudioVisualization").Length; i++)
-            {
-                audioBubbleVisualizations.Add(GameObject.FindGameObjectsWithTag("AudioVisualization")[i]);
-            }
+            
+
+            chooseNewVoicemail(GameObject.FindGameObjectsWithTag("AudioVisualization"));
 
             audioBubblesFlying = new List<GameObject>();
             audioBubblesNowPlaying = new HashSet<GameObject>();
@@ -92,8 +148,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             audioBubblesLeft = new List<int>();
             for (int i = 0; i < audioBubbleVisualizations.Count; i++)
             {
-                audioBubblesLeft.Add(i);
-            }
+                audioBubblesLeft.Add(i);    
+    
+                }
+           
 
             distractions = new List<GameObject>();
             distractionMoveVectors = new List<Vector3>();
@@ -101,8 +159,9 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             distractionDestroyTimes = new List<float>();
             distractionTargetPositions = new List<Vector3>();
 
+                   
 
-        }
+}
         //DontDestroyOnLoad(gameObject);
     }
 
@@ -113,10 +172,11 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     void Start()
     {
-
-
+            
+                
         if (photonView.IsMine)
         {
+            StartCoroutine(initialiseUnityPd());
             middleBranch = GameObject.Find("NewMiddleBranch");
             variables = GameObject.FindGameObjectWithTag("GameConfiguration").GetComponent<GameConfiguration>();
             distractionAudioPlayer = variables.audioSource;
@@ -125,14 +185,20 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             lightening.transform.GetChild(0).GetChild(0).GetComponent<PhotonView>().RequestOwnership();
             lightening.transform.GetChild(0).GetChild(1).GetComponent<PhotonView>().RequestOwnership();
 
-            for (int i = 0; i < audioBubbleVisualizations.Count; i++)
-            {
-                audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().Init();
-                audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().PositionInCircle(4 * i * audioBubblestotalCount, 64, gameAreaSize);
-            }
+
+
         }
     }
-  
+    [PunRPC]
+    //TODO: REfactor this to accomodate multiple transfers from client to server
+    public void UpdateVariableInServer(bool gameOverVar)
+    {
+        if (photonView.IsMine)
+        {
+            Debug.LogFormat("Inside UpdateVariableInServer");
+            GameConfiguration.restartGame = true;
+        }
+    }
     private void debugDictionaryContent()
     {
         if (debugMode)
@@ -160,9 +226,13 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            debugDictionaryContent();
-
-            if (simulatePlayers)
+    //debugDictionaryContent();
+        UnityPD.SendFloat("ambsound-set", 1.3f);
+            UnityPD.SendFloat("gaviopreset-set", 0);
+    //Birds
+        UnityPD.SendFloat("gaviotamp-set", 2.5f);
+            
+    if (simulatePlayers)
             {
                 simulateTwoPlayers();
 
@@ -171,8 +241,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             if (players.Length == 2)
             {
+                    
                 players[0] = players[0].transform.GetChild(1).gameObject;
                 players[1] = players[1].transform.GetChild(1).gameObject;
+                
                 if (simulatePlayers)
                 {
                     GameObject.Find("LightningStart").transform.position = players[0].transform.position;
@@ -191,6 +263,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
 
                     }
+                        
 
                 }
 
@@ -210,6 +283,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 if (!startedGameOver)
                 {
                     startedGameOver = true;
+
                     StartCoroutine(endGameSequence());
                 }
             }
@@ -225,10 +299,12 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
                 DistractionPickedUp();
                 MagneticAudioMovement();
-                
+
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || GameConfiguration.restartGame)
             {
+                Debug.LogFormat("Restarting game: Restart variable value is {0} ", GameConfiguration.restartGame);
+                GameConfiguration.restartGame = false;
                 Reset();
             }
             if (Input.GetKeyDown(KeyCode.A) && audioBubblesFlying.Count > 0)
@@ -249,12 +325,13 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    void ShowMenuOptions()
+    void ShowMenuOptions(string option)
     {
+        //TODO:Change this
         players[0].transform.parent.GetComponent<PhotonView>().RPC("ShowMenu",
-                              RpcTarget.All, "Canvas");
+                                RpcTarget.All, option);
         players[1].transform.parent.GetComponent<PhotonView>().RPC("ShowMenu",
-                  RpcTarget.All, "Canvas");
+                    RpcTarget.All, option);
     }
     void UpdateSpawning()
     {
@@ -285,15 +362,15 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 audioBubbleMovementVectors[i],
                 (audioBubbleTargetPositions[i] - audioBubblesFlying[i].transform.position).normalized * audioBubbleMoveSpeed,
                 0.1f * Time.deltaTime
-               );
+                );
 
 
             if (Vector3.Distance(audioBubblesFlying[i].transform.position, audioBubbleTargetPositions[i]) < distToChangeTarget)
             {
                 audioBubbleTargetPositions[i] = CreateNewRandomPosition();
             }
-           
-            
+
+
         }
     }
 
@@ -307,36 +384,23 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             {
 
                 audioBubblesHolding[i].SetActive(false);
-                if(audioBubblesPlayed.Count == 0)
+                if (audioBubblesPlayed.Count == 0)
                 {
                     players[0].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
-                              RpcTarget.All, 0);
+                                RpcTarget.All, 0);
                     players[1].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
-                              RpcTarget.All, 0);
+                                RpcTarget.All, 0);
                     middleBranch.transform.GetChild(0).gameObject.SetActive(true);
                 }
                 else
                 {
                     middleBranch.transform.GetChild(audioBubblesPlayed.Count).gameObject.SetActive(true);
                     players[0].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
-                              RpcTarget.All, audioBubblesPlayed.Count);
+                                RpcTarget.All, audioBubblesPlayed.Count);
                     players[1].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
-                              RpcTarget.All, audioBubblesPlayed.Count);
+                                RpcTarget.All, audioBubblesPlayed.Count);
                 }
-                //Vector3 pos = Vector3.Lerp(
-                //        players[0].transform.position,
-                //        players[1].transform.position,
-                //        (float)(i + 1) / (audioBubblesHolding.Count + 1)
-                //        );
-                //audioBubblesHolding[i].transform.position = pos;
             }
-        
-            //if(audioBubblesPlayed.Count == 0 && audioBubblesHolding.Count == 1)
-            //{
-            //    middleBranch.transform.GetChild(0).gameObject.SetActive(true);
-            //}
-            
-
             for (int i = 0; i < audioBubblesPlayed.Count; i++)
             {
                 audioBubblesPlayed[i].SetActive(false);
@@ -372,23 +436,13 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     audioBubblesNowPlaying.Add(audioBubblesHolding[i]);
 
-                    // Vector3 pos = Vector3.Lerp(
-                    //players[0].transform.position,
-                    //players[1].transform.position,
-                    //(float)(i + 1) / (audioBubblesHolding.Count + 1)
-                    //);
-                    // audioBubblesHolding[i].transform.position = pos;
                     AudioPickedUp(audioBubblesHolding[i]);
 
                     return;
 
                 }
             }
-            //foreach(GameObject playingbird in audioBubblesNowPlaying)
-            //{
-            //    playingbird.SetActive(false);
-
-            //}
+           
         }
 
     }
@@ -408,7 +462,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                     audioBubblesFlying[i].transform.position +=
                         (center - audioBubblesFlying[i].transform.position).normalized * magneticSpeed * Time.deltaTime;
 
-                    
+
                     AudioAttached(audioBubblesFlying[i]);
 
                 }
@@ -422,6 +476,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         for (int i = 0; i < audioBubbleVisualizations.Count; i++)
         {
             toReturn = toReturn || audioBubbleVisualizations[i].GetComponent<AudioSource>().isPlaying;
+           
         }
         return toReturn;
     }
@@ -430,31 +485,48 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            if (audioBubblesCollected <= audioBubblestotalCount)
+                
+            if (audioBubblesCollected < (audioBubblestotalCount-1))
             {
                 if (audioBubbleToAudioClipNumber.ContainsKey(audioBubble))
-                {
-                    audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].GetComponent<SoundClipGameObjects>().StartPlaying(false);
-                    players[0].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail",
-                       RpcTarget.All, audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].name);
-                    players[1].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail",
-                       RpcTarget.All, audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].name);
-                    //players[0].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail2",
-                    //  RpcTarget.All, audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].name);
-                    //players[1].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail2",
-                    //   RpcTarget.All, audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].name);
+                    {
+                        //audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].GetComponent<SoundClipGameObjects>().StartPlaying(false);
+                        players[0].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail",
+                            RpcTarget.All, audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].name);
+                        players[1].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail",
+                            RpcTarget.All, audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].name);
+                    
+                        StartCoroutine(
+                        NetworkedAudioBubblePlayedAfter(audioBubble,
+                            audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].GetComponent<AudioSource>().clip.length
+                            )
+                        );
 
-
-                    StartCoroutine(
-                    NetworkedAudioBubblePlayedAfter(audioBubble,
-                        audioBubbleVisualizations[audioBubbleToAudioClipNumber[audioBubble]].GetComponent<AudioSource>().clip.length
-                        )
-                    );
-
-                    audioBubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "singing");
-                }
+                        audioBubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "singing");
+                    }
             }
+            if (audioBubblesCollected == (audioBubblestotalCount - 1))
+            {
+            while (distractions.Count > 0)
+            {
+                PhotonNetwork.Destroy(distractions[0]);
+                distractions.RemoveAt(0);
+            }
+            players[0].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail",
+                    RpcTarget.All, audioBubbleVisualizations[audioBubblestotalCount - 1].name);
+            players[1].transform.parent.GetComponent<PhotonView>().RPC("PlayVoiceMail",
+                RpcTarget.All, audioBubbleVisualizations[audioBubblestotalCount - 1].name);
+
+            StartCoroutine(
+            NetworkedAudioBubblePlayedAfter(audioBubble,
+                audioBubbleVisualizations[audioBubblestotalCount - 1].GetComponent<AudioSource>().clip.length
+                )
+            );
+
+            audioBubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "singing");
+
         }
+    }
     }
 
     void AudioAttached(GameObject audioBubble)
@@ -468,7 +540,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             audioBubbleTargetPositions.RemoveAt(spot);
             audioBubble.GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "perched");
 
-            
+
         }
     }
 
@@ -476,8 +548,9 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            int clipNumber = audioBubblesLeft[(int)Random.Range(0, audioBubblesLeft.Count)];
-            GameObject bubble = PhotonNetwork.Instantiate(audioBubblePrefab, CreateNewRandomPosition(), Quaternion.identity);
+        int clipNumber = audioBubblesLeft[(int)Random.Range(0, audioBubblesLeft.Count-1)];
+        Debug.Log("clipNumber"+ clipNumber);
+        GameObject bubble = PhotonNetwork.Instantiate(audioBubblePrefab, CreateNewRandomPosition(), Quaternion.identity);
             audioBubblesLeft.Remove(clipNumber);
             audioBubblesFlying.Add(bubble);
             audioBubbleToAudioClipNumber.Add(bubble, clipNumber);
@@ -503,12 +576,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Distractions code below
     void DistractionPickedUp()
     {
-        if (debugMode)
-        {
-            Debug.LogFormat("In Distraction {0}", DistractionController.inDistraction);
-            Debug.LogFormat("Method: DistractionPickedUp with value: {0}", DistractionController.inDistraction);
-            Debug.LogFormat("Variable: DistractionPickedUp with value: {0}", DistractionController.inDistraction);
-        }
+      
         if (
             photonView.IsMine
             && DistractionController.inDistraction
@@ -516,17 +584,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             )
         {
 
-            //players[0].transform.parent.GetComponent<PhotonView>().RPC("DisableBirds",
-            //              RpcTarget.All, null);
-            //players[1].transform.parent.GetComponent<PhotonView>().RPC("DisableBirds",
-            //          RpcTarget.All, null);
-            //for (int i = 0; i < audioBubbleVisualizations.Count; i++)
-            //{
-            //            players[0].transform.parent.GetComponent<PhotonView>().RPC("StopVoiceMail",
-            //                   RpcTarget.All, audioBubbleVisualizations[i].name);
-            //            players[1].transform.parent.GetComponent<PhotonView>().RPC("StopVoiceMail",
-            //                   RpcTarget.All, audioBubbleVisualizations[i].name);
-            //}
+           
             FlyawayAndDestroyBird();
             ResetAudioBubbleState();
         }
@@ -536,7 +594,8 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     void CreateDistraction()
     {
         if (players.Length == 2)
-        {
+        { 
+            distractionIntialPosition = CreateNewRandomPosition();
             GameObject d = PhotonNetwork.Instantiate(distractionPrefabs[Random.Range(0, distractionPrefabs.Length)]
         , CreateNewRandomPosition(), Quaternion.identity);
             distractions.Add(d);
@@ -550,8 +609,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             - d.transform.position).normalized * distractionMoveSpeed * Time.deltaTime);
 
             d.GetComponent<AudioSource>().enabled = true;
+            UnityPD.SendFloat("clouds-set", 1);
 
-        }
+
+}
     }
 
 
@@ -593,22 +654,16 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     // ignore below functions for now.
     public void Reset()
     {
-        ResetAudioBubbleState();
+    chooseNewVoicemail(GameObject.FindGameObjectsWithTag("AudioVisualization"));
+    ResetAudioBubbleState();
         ResetDistractionState();
     }
 
 
     void FlyawayAndDestroyBird()
     {
-        if (debugMode)
-        {
-            Debug.Log("Flyaway audio bubbles.");
-        }
-
         for (int i = 0; i < audioBubblesPlayed.Count; i++)
         {
-
-            //audioBubblesPlayed[i].SetActive(true);
             audioBubblesPlayed[i].GetComponent<PhotonView>().RPC("SetState", RpcTarget.All, "flying");
             Vector3 currentPos = audioBubblesPlayed[i].transform.position;
             Vector3 newPos = new Vector3(currentPos.x + 1, currentPos.y + 2, currentPos.z + 2);
@@ -626,35 +681,30 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         //ResetAudioBubbleState();
     }
-    //public void onbuttonClick()
-    //{
-    //    Debug.Log("Buttonclicked");
-    //}
+
+
     void ResetAudioBubbleState()
 
     {
-        for (int i = 0; i < audioBubblesPlayed.Count; i++)
+        for (int i = 0; i < audioBubblestotalCount; i++)
         {
             middleBranch.transform.GetChild(i).gameObject.SetActive(false);
         }
         if (players.Length == 2)
         {
             players[0].transform.parent.GetComponent<PhotonView>().RPC("DisableBirds",
-                                  RpcTarget.All, "DisableBirds");
+                                    RpcTarget.All, "DisableBirds");
             players[1].transform.parent.GetComponent<PhotonView>().RPC("DisableBirds",
-                      RpcTarget.All, "DisableBirds");
+                        RpcTarget.All, "DisableBirds");
             for (int i = 0; i < audioBubbleVisualizations.Count; i++)
             {
                 players[0].transform.parent.GetComponent<PhotonView>().RPC("StopVoiceMail",
-                       RpcTarget.All, audioBubbleVisualizations[i].name);
+                        RpcTarget.All, audioBubbleVisualizations[i].name);
                 players[1].transform.parent.GetComponent<PhotonView>().RPC("StopVoiceMail",
-                       RpcTarget.All, audioBubbleVisualizations[i].name);
+                        RpcTarget.All, audioBubbleVisualizations[i].name);
             }
         }
-        if (debugMode)
-        {
-            Debug.Log("Reset audio bubble state.");
-        }
+      
 
         audioBubblesLeft = new List<int>();
 
@@ -673,21 +723,25 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             PhotonNetwork.Destroy(audioBubblesHolding[0]);
             audioBubblesHolding.RemoveAt(0);
         }
-        for (int i = 0; i < audioBubbleVisualizations.Count; i++)
-        {
-            audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().Reset();
-        }
-        audioBubblesFlying = new List<GameObject>();
+    //for (int i = 0; i < audioBubbleVisualizations.Count; i++)
+    //{
+    //    Debug.Log(audioBubbleVisualizations[i].name);
+    //    audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().Reset();
+    //}
+    audioBubblesFlying = new List<GameObject>();
         audioBubblesNowPlaying = new HashSet<GameObject>();
         audioBubbleMovementVectors = new List<Vector3>();
         audioBubbleTargetPositions = new List<Vector3>();
         audioBubblesHolding = new List<GameObject>();
         audioBubbleToAudioClipNumber = new Dictionary<GameObject, int>();
         audioBubblesCollected = 0;
+            
         for (int i = 0; i < audioBubbleVisualizations.Count; i++)
         {
             audioBubblesLeft.Add(i);
         }
+
+            
         startedGameOver = false;
         gameOver = false;
 
@@ -713,7 +767,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     }
     IEnumerator endGameSequence()
     {
-       
+
         distractionAudioPlayer.Stop();
         for (int j = 0; j < audioBubbleVisualizations.Count; j++)
         {
@@ -729,28 +783,12 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             PhotonNetwork.Destroy(audioBubblesFlying[0]);
             audioBubblesFlying.RemoveAt(0);
         }
-        int i = 0;
-        bool playing = false;
-        while (i < audioBubbleVisualizations.Count)
-        {
-            if (playing)
-            {
-                if (!audioBubbleVisualizations[i].GetComponent<AudioSource>().isPlaying)
-                {
-                    playing = false;
-                    i++;
-                }
-            }
-            else
-            {
-                audioBubbleVisualizations[i].GetComponent<SoundClipGameObjects>().StartPlaying(true);
-                playing = true;
-            }
-            yield return null;
-        }
-        gameOver = true;
-        ShowMenuOptions();
+
         
+    yield return null;
+        gameOver = true;
+        ShowMenuOptions("gameOver");
+
     }
 
     IEnumerator NetworkedAudioBubblePlayedAfter(GameObject audioBubble, float t)
@@ -759,24 +797,19 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (audioBubble != null)
         {
             audioBubblesPlayed.Add(audioBubble);
-            //for(int i = 0; i < audioBubblesHolding.Count; i++)
-            //{
-            //    audioBubblesHolding[i].SetActive(false);
-            //}
-            for (int i = 0; i < audioBubblesPlayed.Count; i++)
+          
+            for (int i = 0; i < audioBubblesPlayed.Count-1; i++)
             {
-                //audioBubblesPlayed[i].SetActive(false);
-
                 middleBranch.transform.GetChild(i).gameObject.SetActive(true);
                 players[0].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
-                              RpcTarget.All, i);
+                                RpcTarget.All, i);
                 players[1].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
-                          RpcTarget.All, i);
+                            RpcTarget.All, i);
             }
             audioBubbleToAudioClipNumber.Remove(audioBubble);
             audioBubblesHolding.Remove(audioBubble);
-            audioBubblesCollected++;
-            lastSpawnTime = Time.time - 4f; // let the bird be created 5 - 4 = 1second after current audio clip
+        audioBubblesCollected++;
+        lastSpawnTime = Time.time - 4f; // let the bird be created 5 - 4 = 1second after current audio clip
         }
     }
 

@@ -102,6 +102,7 @@ public class GameController : MonoBehaviourPunCallbacks
     public void QuitApplication()
     {
         PhotonNetwork.LeaveRoom();
+        UnityPD.Deinit();
         Application.Quit();
     }
 

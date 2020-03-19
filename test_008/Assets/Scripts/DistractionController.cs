@@ -30,9 +30,10 @@ public class DistractionController : MonoBehaviourPunCallbacks
 			inDistraction = true;
             if (debugMode)
             {
-                print(" ========== Cloud trigger enter.");
+                Debug.Log(" ========== Cloud trigger enter.");
             }
 			PlayRandomDistractionAudio();
+            
 		}
 
 
@@ -81,7 +82,6 @@ public class DistractionController : MonoBehaviourPunCallbacks
             Handheld.Vibrate();
             if (photonView.IsMine)
             {
-
                 inDistraction = true;
             }
         }
