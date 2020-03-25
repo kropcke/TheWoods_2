@@ -1,0 +1,8 @@
+../../../Sounds/Distractions/Modem-KP-551027942_2.wav;
+../../../Sounds/Distractions/Telephone1.wav;
+../../../Sounds/Distractions/Telephone2.wav;
+../../../Sounds/Distractions/Cab_Skid.aiff;
+../../../Sounds/Distractions/Cab_With_Horn.aiff;
+../../../Sounds/Distractions/Doppler_Horn.aiff;
+../../../Sounds/Distractions/SUBWAY_NY.aiff;
+../../../Sounds/Distractions/Swimming_Pool.aiff;

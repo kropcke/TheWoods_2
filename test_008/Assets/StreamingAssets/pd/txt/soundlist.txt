@@ -1,0 +1,10 @@
+../../../Sounds/NewSounds/Kevin1.wav
+../../../Sounds/NewSounds/Kevin2.wav
+../../../Sounds/NewSounds/Kevin3.wav
+../../../Sounds/NewSounds/Kevin4.wav
+../../../Sounds/NewSounds/Kevin5.wav
+../../../Sounds/NewSounds/Mandy1.wav
+../../../Sounds/NewSounds/Mandy2.wav
+../../../Sounds/NewSounds/Mandy3.wav
+../../../Sounds/NewSounds/Mandy4.wav
+../../../Sounds/NewSounds/Mandy5.wav
