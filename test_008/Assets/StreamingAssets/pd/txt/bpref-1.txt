@@ -1,0 +1,16 @@
+number 20;
+neighbors 4;
+maxspeed 47;
+minspeed 8;
+center 5;
+attract 32;
+match 27;
+avoid 21;
+repel 25;
+edgedist 37;
+speed 29;
+inertia 5;
+accel 10;
+prefdist 10;
+flyrect 0 0 0 0 0 0;
+attractpt 59.8671 132.062 0;
