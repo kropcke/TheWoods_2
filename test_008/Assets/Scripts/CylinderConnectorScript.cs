@@ -7,7 +7,7 @@ public class CylinderConnectorScript : MonoBehaviour
     public GameObject StartObject;
     public GameObject EndObject;
     GameConfiguration variables;
-
+    
     private bool enableCylinder = false;
     GameObject LinkObject;
     GameObject[] players;
@@ -39,6 +39,7 @@ public class CylinderConnectorScript : MonoBehaviour
             {
                 variables = GameObject.FindGameObjectWithTag("GameConfiguration").GetComponent<GameConfiguration>();
                 LinkObject = GameObject.Find("NewMiddleBranch");
+                LinkObject.GetComponent<MeshRenderer>().enabled = true;
                 LinkObject.transform.position = new Vector3(0, 0, 0);
 
             }

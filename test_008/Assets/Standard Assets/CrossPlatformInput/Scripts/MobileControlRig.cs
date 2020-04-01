@@ -1,3 +1,4 @@
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -8,9 +9,6 @@ namespace UnityStandardAssets.CrossPlatformInput
 {
     [ExecuteInEditMode]
     public class MobileControlRig : MonoBehaviour
-#if UNITY_EDITOR && UNITY_2017_1_OR_NEWER
-        , UnityEditor.Build.IActiveBuildTargetChanged
-#endif
     {
         // this script enables or disables the child objects of a control rig
         // depending on whether the USE_MOBILE_INPUT define is declared.
@@ -18,20 +16,11 @@ namespace UnityStandardAssets.CrossPlatformInput
         // This define is set or unset by a menu item that is included with
         // the Cross Platform Input package.
 
-
 #if !UNITY_EDITOR
 	void OnEnable()
 	{
 		CheckEnableControlRig();
 	}
-#else
-        public int callbackOrder
-        {
-            get
-            {
-                return 1;
-            }
-        }
 #endif
 
         private void Start()
@@ -48,6 +37,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 
                     o.AddComponent<UnityEngine.EventSystems.EventSystem>();
                     o.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+                    o.AddComponent<UnityEngine.EventSystems.TouchInputModule>();
                 }
             }
         }
@@ -56,18 +46,14 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         private void OnEnable()
         {
-            #if !UNITY_2017_1_OR_NEWER
             EditorUserBuildSettings.activeBuildTargetChanged += Update;
-            #endif
             EditorApplication.update += Update;
         }
 
 
         private void OnDisable()
         {
-            #if !UNITY_2017_1_OR_NEWER
             EditorUserBuildSettings.activeBuildTargetChanged -= Update;
-            #endif
             EditorApplication.update -= Update;
         }
 
@@ -96,12 +82,5 @@ namespace UnityStandardAssets.CrossPlatformInput
                 t.gameObject.SetActive(enabled);
             }
         }
-
-#if UNITY_EDITOR && UNITY_2017_1_OR_NEWER
-        public void OnActiveBuildTargetChanged(BuildTarget previousTarget, BuildTarget newTarget)
-        {
-            CheckEnableControlRig();
-        }
-#endif
     }
 }

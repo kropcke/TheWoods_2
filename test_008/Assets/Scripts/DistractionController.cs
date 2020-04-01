@@ -32,7 +32,7 @@ public class DistractionController : MonoBehaviourPunCallbacks
             {
                 Debug.Log(" ========== Cloud trigger enter.");
             }
-			PlayRandomDistractionAudio();
+			//PlayRandomDistractionAudio();
             
 		}
 
@@ -57,7 +57,7 @@ public class DistractionController : MonoBehaviourPunCallbacks
             {
                 print(" ========== Cloud trigger exit.");
             }
-			StopDistractionAudioClip();
+			//StopDistractionAudioClip();
 		}
 
 	}

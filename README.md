@@ -69,3 +69,9 @@ This scene is used for the start of the networking. It creates a room automatica
 ### SkylarNetworkingMainScene.unity
 This is the main game scene. If loaded into this scene before connected to a room, it will automatically load into SkylarNetworkingStartScene.
 
+## Build
+To build with pd integrated , follow the below steps
+1. Install cocoa pods https://cocoapods.org/
+2. Follow the steps in https://guides.cocoapods.org/using/using-cocoapods.html
+3. Use the following in your CocoaPods podfile:
+        pod 'libpd', :git => 'https://github.com/libpd/libpd', :submodules => true

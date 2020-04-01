@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1132180518109702
+--- !u!1 &884803577550987787
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4948009197381392}
-  - component: {fileID: 114030795776726796}
-  - component: {fileID: 114116483535423524}
-  - component: {fileID: 20180794159356490}
-  - component: {fileID: 81532608061524748}
-  - component: {fileID: 114175896124062276}
+  - component: {fileID: 5028802041985052966}
+  - component: {fileID: 654980041452921971}
+  - component: {fileID: 3143578507052446124}
+  - component: {fileID: 1361970781177538854}
+  - component: {fileID: 3808293538712429933}
+  - component: {fileID: 8076864713938324439}
   m_Layer: 0
   m_Name: Server
   m_TagString: Server
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4948009197381392
+--- !u!4 &5028802041985052966
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132180518109702}
+  m_GameObject: {fileID: 884803577550987787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,13 +35,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114030795776726796
+--- !u!114 &654980041452921971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132180518109702}
+  m_GameObject: {fileID: 884803577550987787}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9b805fca59404b8b9306b07cfa060f7, type: 3}
@@ -71,14 +71,16 @@ MonoBehaviour:
   distractionTargetPositions: []
   distractionIntialPosition: {x: 0, y: 0, z: 0}
   numOfVoiceMails: 2
+  oscObj: {fileID: 0}
   patchName: 
---- !u!114 &114116483535423524
+  obiSolver1: {fileID: 0}
+--- !u!114 &3143578507052446124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132180518109702}
+  m_GameObject: {fileID: 884803577550987787}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
@@ -92,15 +94,15 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   viewIdField: 0
-  InstantiationId: 11
+  InstantiationId: 13
   isRuntimeInstantiated: 0
---- !u!20 &20180794159356490
+--- !u!20 &1361970781177538854
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132180518109702}
+  m_GameObject: {fileID: 884803577550987787}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
@@ -137,27 +139,27 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &81532608061524748
+--- !u!81 &3808293538712429933
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132180518109702}
+  m_GameObject: {fileID: 884803577550987787}
   m_Enabled: 1
---- !u!114 &114175896124062276
+--- !u!114 &8076864713938324439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1132180518109702}
+  m_GameObject: {fileID: 884803577550987787}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 4948009197381392}
+  volumeTrigger: {fileID: 5028802041985052966}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 256
