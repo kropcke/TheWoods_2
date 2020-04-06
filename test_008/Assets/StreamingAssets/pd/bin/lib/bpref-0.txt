@@ -1,0 +1,16 @@
+number 20;
+neighbors 4;
+maxspeed 1.5;
+minspeed 1.2;
+center 1.2;
+attract 1.25;
+match 0.3;
+avoid 3.5;
+repel 3.5;
+edgedist 0;
+speed 3;
+inertia 4.5;
+accel 2.5;
+prefdist 1.5;
+flyrect 0 0 0 0 0 0;
+attractpt 0 0 0;
