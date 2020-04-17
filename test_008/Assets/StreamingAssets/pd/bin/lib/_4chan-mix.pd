@@ -1,0 +1,28 @@
+#N canvas 1 0 450 300 12;
+#X obj 251 31 r \$1-vol;
+#X obj 251 57 dbtorms;
+#X obj 251 83 / 22;
+#X obj 251 109 t f f;
+#X obj 283 135 !=;
+#X obj 283 161 fd_switch;
+#X obj 343 188 switch~;
+#X obj 251 163 *~;
+#X obj 251 223 clone -s 1 _srout~ 4 \$1 \$2;
+#X obj 71 31 cnv 15 128 158 empty empty \$1-->\$2 5 10 0 12 -261682
+-1 0;
+#X obj 74 56 vsl 20 128 0 127 0 0 \$1-vol \$1-vol-set empty 0 -9 0
+10 -204786 -1 -1 0 1;
+#X obj 99 65 vu 15 120 \$1-vu-1 1 -1 -8 0 10 -66577 -1 0 0;
+#X obj 118 65 vu 15 120 \$1-vu-2 2 -1 -8 0 10 -66577 -1 0 0;
+#X obj 137 65 vu 15 120 \$1-vu-3 3 -1 -8 0 10 -66577 -1 0 0;
+#X obj 156 65 vu 15 120 \$1-vu-4 4 -1 -8 0 10 -66577 -1 1 0;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 3 1 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 7 1;
+#X connect 5 1 6 0;
+#X connect 7 0 8 0;
+#X coords 0 -1 1 1 130 160 2 70 30;

@@ -49,3 +49,8 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Pure Data backup utility and files
+bak/
+bakup.sh
+bakup

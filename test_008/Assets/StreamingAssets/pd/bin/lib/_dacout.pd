@@ -3,7 +3,7 @@
 #X obj 79 418 dac~ \$1;
 #X obj 39 109 hip~ 3;
 #X obj 39 19 inlet~;
-#X obj 242 302 loadbang;
+#X obj 242 269 loadbang;
 #X msg 242 399 set \$1;
 #X obj 366 180 dbtorms;
 #X obj 366 202 pack f 20;
@@ -18,10 +18,13 @@
 #X obj 256 77 r v-\$1;
 #X obj 77 367 throw~ \$4-\$1;
 #X obj 39 195 _env-vu \$3-\$1;
-#X obj 242 326 f \$5;
-#X obj 242 347 sel;
+#X obj 242 293 f \$5;
+#X obj 242 316 sel;
 #X obj 242 373 f \$1;
 #X obj 39 461 outlet~;
+#X obj 298 340 swap \$1;
+#X obj 298 366 mod;
+#X obj 298 392 + 1;
 #X connect 0 0 2 0;
 #X connect 2 0 15 0;
 #X connect 3 0 2 0;
@@ -43,5 +46,9 @@
 #X connect 18 0 10 0;
 #X connect 19 0 20 0;
 #X connect 20 0 21 0;
-#X connect 20 1 5 0;
+#X connect 20 1 23 0;
 #X connect 21 0 5 0;
+#X connect 23 0 24 0;
+#X connect 23 1 24 1;
+#X connect 24 0 25 0;
+#X connect 25 0 5 0;
