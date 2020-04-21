@@ -44,9 +44,9 @@
 #X obj 303 88 t b f b;
 #X obj 360 110 s flapping-vol-set;
 #X obj 317 131 del 1000;
-#X obj 360 84 crand 125 127;
 #X obj 31 191 crand 500 2000;
-#X connect 0 0 32 0;
+#X obj 360 84 crand 120 125;
+#X connect 0 0 31 0;
 #X connect 1 0 2 1;
 #X connect 2 0 3 0;
 #X connect 3 0 14 0;
@@ -82,7 +82,7 @@
 #X connect 27 0 15 0;
 #X connect 28 0 30 0;
 #X connect 28 1 25 1;
-#X connect 28 2 31 0;
+#X connect 28 2 32 0;
 #X connect 30 0 24 0;
-#X connect 31 0 29 0;
-#X connect 32 0 11 0;
+#X connect 31 0 11 0;
+#X connect 32 0 29 0;
