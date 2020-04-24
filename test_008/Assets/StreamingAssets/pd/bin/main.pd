@@ -1758,24 +1758,24 @@ clean 1 \; d 1 \;;
 #X obj 48 188 clone _flapping 2;
 #X connect 1 0 4 0;
 #X restore 22 123 pd bird;
-#N canvas 246 82 716 691 gavio-flocking 0;
+#N canvas 246 82 611 460 gavio-flocking 0;
 #X obj 41 185 metro 10;
 #X obj 37 249 random 20;
 #X obj 244 140 r boidParam;
 #X obj 216 53 metro 100;
 #X obj 212 203 boids/boids3d 20 0;
 #X obj 373 100 lorenz;
-#X obj 373 121 unpack f f f;
-#X obj 409 202 * 100;
-#X obj 409 228 + 100;
-#X obj 459 203 * 100;
-#X obj 459 229 + 100;
+#X obj 374 128 unpack f f f;
+#X obj 410 209 * 100;
+#X obj 410 235 + 100;
+#X obj 460 210 * 100;
+#X obj 460 236 + 100;
 #X msg 373 47 100;
 #X obj 373 68 until;
-#X floatatom 509 142 5 0 0 0 - - -;
-#X floatatom 518 170 5 0 0 0 - - -;
-#X obj 355 152 fd_norm;
-#X obj 423 147 fd_norm;
+#X floatatom 510 149 5 0 0 0 - - -;
+#X floatatom 519 177 5 0 0 0 - - -;
+#X obj 356 159 fd_norm;
+#X obj 424 154 fd_norm;
 #N canvas 612 230 668 437 set 0;
 #X obj 32 24 inlet;
 #X obj 32 45 t a a;
@@ -1848,7 +1848,7 @@ clean 1 \; d 1 \;;
 #X restore 243 174 pd set preset;
 #X msg 248 110 dump;
 #X obj 300 235 s boidParam;
-#X obj 417 328 s boidParam;
+#X obj 418 335 s boidParam;
 #X obj 124 268 t a a;
 #X obj 375 22 loadbang;
 #X obj 40 29 r gaviofreq;
@@ -1895,7 +1895,7 @@ clean 1 \; d 1 \;;
 ;
 #X connect 4 0 3 0;
 #X restore 299 10 pd structur;
-#N canvas 58 54 388 309 plot 0;
+#N canvas 58 54 743 561 plot 0;
 #X restore 299 30 pd plot;
 #X obj 192 134 t b b;
 #X obj 198 46 t f f b;
@@ -1938,152 +1938,8 @@ clean 1 \; d 1 \;;
 #X obj 239 300 list prepend all;
 #X obj 241 329 list trim;
 #X obj 56 305 clone _gaviota 20 4;
-#X msg 415 294 attractpt \$1 \$2 0;
-#X obj 414 259 pack;
-#N canvas 0 23 761 506 boid-ctrl 0;
-#X msg 412 352 dump;
-#X msg 89 101 neighbors \$1;
-#X floatatom 89 86 5 0 4 0 - neighbors -;
-#X floatatom 458 20 5 0 0 0 - maxspeed -;
-#X msg 458 35 maxspeed \$1;
-#X floatatom 475 56 5 0 0 0 - minspeed -;
-#X msg 475 71 minspeed \$1;
-#X floatatom 293 44 5 0 0 0 - center -;
-#X msg 293 59 center \$1;
-#X floatatom 312 87 5 0 0 0 - attract -;
-#X msg 312 102 attract \$1;
-#X floatatom 315 128 5 0 0 0 - match -;
-#X msg 315 143 match \$1;
-#X floatatom 228 70 5 0 0 0 - avoid -;
-#X msg 228 85 avoid \$1;
-#X floatatom 190 109 5 0 0 0 - repel -;
-#X msg 190 124 repel \$1;
-#X floatatom 113 147 5 0 0 0 - edgedist -;
-#X msg 113 162 edgedist \$1;
-#X floatatom 483 99 5 0 0 0 - speed -;
-#X msg 483 114 speed \$1;
-#X floatatom 486 135 5 0 0 0 - inertia -;
-#X msg 486 150 inertia \$1;
-#X floatatom 492 170 5 0 0 0 - accel -;
-#X msg 492 185 accel \$1;
-#X floatatom 498 208 5 0 0 0 - prefdist -;
-#X msg 498 223 prefdist \$1;
-#X msg 412 371 reset;
-#X floatatom 151 317 5 0 0 0 - flyrect[0] -;
-#X floatatom 190 317 5 0 0 0 - flyrect[1] -;
-#X floatatom 229 317 5 0 0 0 - flyrect[2] -;
-#X floatatom 268 317 5 0 0 0 - - -;
-#X floatatom 63 47 5 0 0 0 - - -;
-#X msg 63 62 number \$1;
-#X floatatom 412 318 5 0 0 0 - - -;
-#X msg 412 333 mode \$1;
-#X obj 306 282 s boidParam;
-#X obj 412 392 s boidParam;
-#X msg 185 395 flyrect \$1 \$2 \$3 \$4 \$5 \$6;
-#X obj 185 377 pack 0 0 0 0 0 0;
-#X floatatom 307 317 5 0 0 0 - - -;
-#X floatatom 346 317 5 0 0 0 - - -;
-#X obj 185 416 s boidParam;
-#X connect 0 0 37 0;
-#X connect 1 0 36 0;
-#X connect 2 0 1 0;
-#X connect 3 0 4 0;
-#X connect 4 0 36 0;
-#X connect 5 0 6 0;
-#X connect 6 0 36 0;
-#X connect 7 0 8 0;
-#X connect 8 0 36 0;
-#X connect 9 0 10 0;
-#X connect 10 0 36 0;
-#X connect 11 0 12 0;
-#X connect 12 0 36 0;
-#X connect 13 0 14 0;
-#X connect 14 0 36 0;
-#X connect 15 0 16 0;
-#X connect 16 0 36 0;
-#X connect 17 0 18 0;
-#X connect 18 0 36 0;
-#X connect 19 0 20 0;
-#X connect 20 0 36 0;
-#X connect 21 0 22 0;
-#X connect 22 0 36 0;
-#X connect 23 0 24 0;
-#X connect 24 0 36 0;
-#X connect 25 0 26 0;
-#X connect 26 0 36 0;
-#X connect 27 0 37 0;
-#X connect 28 0 39 0;
-#X connect 29 0 39 1;
-#X connect 30 0 39 2;
-#X connect 31 0 39 3;
-#X connect 32 0 33 0;
-#X connect 33 0 36 0;
-#X connect 34 0 35 0;
-#X connect 35 0 37 0;
-#X connect 38 0 42 0;
-#X connect 39 0 38 0;
-#X connect 40 0 39 4;
-#X connect 41 0 39 5;
-#X restore 456 20 pd boid-ctrl;
-#N canvas 623 96 399 413 boid-pref 0;
-#X obj 76 299 text get bpref;
-#X msg 81 161 read bpref-0.txt;
-#X obj 76 276 counter;
-#X msg 76 252 0;
-#X obj 157 319 sel 0 1 2;
-#X obj 76 325 route bang;
-#X obj 133 368 s boidParam;
-#X obj 133 347 list trim;
-#X obj 49 37 loadbang;
-#X obj 42 19 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 88 80 define_loudspeakers 2 0 90 180 270;
-#X obj 88 101 s gaviovbap;
-#X obj 49 58 t b b b;
-#X obj 49 227 t b b;
-#X obj 151 256 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 68 137 read ../txt/bpref-1.txt;
-#X obj 68 187 text define -k bpref;
-#A set number 20 \; neighbors 4 \; maxspeed 47 \; minspeed 8 \; center
-5 \; attract 32 \; match 27 \; avoid 21 \; repel 25 \; edgedist 37
-\; speed 29 \; inertia 5 \; accel 10 \; prefdist 10 \; flyrect 0 0
-0 0 0 0 \; attractpt 59.8671 132.062 0 \;;
-#X connect 0 0 5 0;
-#X connect 0 1 4 0;
-#X connect 1 0 16 0;
-#X connect 2 0 0 0;
-#X connect 3 0 2 0;
-#X connect 4 0 14 0;
-#X connect 4 2 3 0;
-#X connect 5 1 7 0;
-#X connect 7 0 6 0;
-#X connect 8 0 12 0;
-#X connect 9 0 12 0;
-#X connect 10 0 11 0;
-#X connect 12 0 13 0;
-#X connect 12 1 15 0;
-#X connect 12 2 10 0;
-#X connect 13 0 2 0;
-#X connect 13 1 3 0;
-#X connect 14 0 2 0;
-#X connect 15 0 16 0;
-#X restore 455 46 pd boid-pref;
-#X msg 42 391 \; gaviotamp-set 0 \; gaviofreq-set 0 \;;
-#X msg 512 516 \; gaviolp-set 7115 \; gaviohp-set 96 \; gaviofreq-set
-15 \; gaviobase-set 31 \; gaviospread-set 3 \; gaviolpmax-set 4040
-\; gaviotab-set 7 10 \; gavioboid-set 1 \;;
-#X msg 51 514 \; gaviotamp-set 0 \; gaviolp-set 2500 \; gaviohp-set
-18000 \; gaviospread-set 1 \; gaviobase-set 100 \; gaviolpmax-set 2.5
-\; gaviofreq-set 97 \; gavioboid-set 1 \;;
-#X msg 201 514 \; gaviotamp-set 0 \; gaviolp-set 1250 \; gaviohp-set
-2397 \; gaviofreq-set 97 \; gaviobase-set 72 \; gaviospread-set 0.35
-\; gaviolpmax-set 1 \; gaviotab-set 5 3 \; gavioboid-set 1 \;;
-#X msg 351 517 \; gaviotamp-set 0 \; gaviolp-set 9860 \; gaviohp-set
-1119 \; gaviofreq-set 88 \; gaviobase-set 93 \; gaviospread-set 5 \;
-gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
-#X obj 42 454 r gaviopreset;
-#X obj 42 475 sel 0 1 2 3, f 56;
+#X msg 416 301 attractpt \$1 \$2 0;
+#X obj 415 266 pack;
 #X connect 0 0 32 0;
 #X connect 1 0 37 0;
 #X connect 2 0 17 0;
@@ -2135,11 +1991,6 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 42 0 35 0;
 #X connect 43 0 20 0;
 #X connect 44 0 43 0;
-#X connect 52 0 53 0;
-#X connect 53 0 49 0;
-#X connect 53 1 50 0;
-#X connect 53 2 51 0;
-#X connect 53 3 48 0;
 #X restore 22 97 pd gavio-flocking;
 #N canvas 0 22 450 300 samples 0;
 #X msg 39 41 read -resize ../../../Sounds/Thunder.wav thunder;
@@ -2160,15 +2011,15 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X obj 362 99 route dsp;
 #X msg 362 125 set \$1;
 #X msg 267 145 \; pd dsp \$1;
-#N canvas 0 23 662 428 ambience 0;
+#N canvas 442 45 413 428 ambience 0;
 #X obj 24 15 noise~;
 #X obj 24 243 hip~ 600;
 #X obj 24 268 hip~ 600;
 #X obj 24 162 lop~ 1800;
 #X obj 24 185 lop~ 1800;
 #X obj 40 332 delwrite~ lrdel 100;
-#X obj 282 331 delread4~ lrdel;
-#X obj 282 256 osc~ 0.01;
+#X obj 224 333 delread4~ lrdel;
+#X obj 224 258 osc~ 0.01;
 #X obj 194 12 r ambsound;
 #X obj 226 73 pack f 10;
 #X obj 226 105 line~;
@@ -2180,26 +2031,17 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X obj 24 99 *~;
 #X obj 194 38 t f f;
 #X obj 95 28 > 0;
-#X msg 371 40 \; ambsound-set 0 \;;
-#X msg 372 87 \; ambsound-set 1 \; gaviopreset-set 0 \; gaviotamp-set
-1 \;;
-#X msg 503 162 \; ambsound-set 0 \; amblp-set 1800 \; ambhp-set 600
-\;;
-#X msg 376 161 \; ambsound-set 0 \; ambhp-set 34 \; amblp-set 853 \;
-;
-#X obj 282 281 *~ 50;
-#X obj 282 305 +~ 50;
+#X obj 224 283 *~ 50;
+#X obj 224 307 +~ 50;
 #X obj 24 295 *~ 0.01;
 #X obj 24 382 throw~ panPos-ambience;
-#X obj 517 38 r ambsound_preset;
-#X obj 517 64 sel 0 1 2;
 #X connect 0 0 16 0;
 #X connect 1 0 2 0;
-#X connect 2 0 25 0;
+#X connect 2 0 21 0;
 #X connect 3 0 4 0;
 #X connect 4 0 1 0;
-#X connect 6 0 26 0;
-#X connect 7 0 23 0;
+#X connect 6 0 22 0;
+#X connect 7 0 19 0;
 #X connect 8 0 17 0;
 #X connect 9 0 10 0;
 #X connect 10 0 11 1;
@@ -2214,14 +2056,10 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 17 0 18 0;
 #X connect 17 1 9 0;
 #X connect 18 0 14 0;
-#X connect 23 0 24 0;
-#X connect 24 0 6 0;
-#X connect 25 0 5 0;
-#X connect 25 0 26 0;
-#X connect 27 0 28 0;
-#X connect 28 0 20 0;
-#X connect 28 1 22 0;
-#X connect 28 2 21 0;
+#X connect 19 0 20 0;
+#X connect 20 0 6 0;
+#X connect 21 0 5 0;
+#X connect 21 0 22 0;
 #X restore 22 71 pd ambience;
 #X connect 6 0 11 0;
 #X connect 8 0 9 0;
@@ -2324,14 +2162,14 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X restore 14 41 pd OSC-messages fromUnity;
 #X obj 16 170 cnv 15 100 60 empty empty empty 20 12 0 14 -204786 -66577
 0;
-#N canvas 64 217 705 516 controls 0;
-#X obj 7 9 _4chan-mix gavio dacout;
-#X obj 280 9 _4chan-mix cloud dacout;
-#X obj 318 201 _vol 1;
-#X obj 364 201 _vol 2;
-#X obj 410 201 _vol 3;
-#X obj 456 201 _vol 4;
-#N canvas 5 5 572 385 master 0;
+#N canvas 64 88 724 532 controls 0;
+#X obj 8 101 _4chan-mix gavio dacout;
+#X obj 282 101 _4chan-mix cloud dacout;
+#X obj 331 309 _vol 1;
+#X obj 377 309 _vol 2;
+#X obj 423 309 _vol 3;
+#X obj 469 309 _vol 4;
+#N canvas 5 5 863 385 master 0;
 #X obj 101 101 cnv 15 136 144 empty empty empty 20 12 0 14 -204786
 -66577 0;
 #X msg 283 167 1 \$1 \, 2 \$1 \, 3 \$1 \, 4 \$1;
@@ -2356,11 +2194,11 @@ gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
 #X connect 12 0 1 0;
 #X connect 12 1 7 0;
 #X coords 0 -1 1 1 138 146 1 100 100;
-#X restore 508 201 pd master;
-#X obj 658 213 vsl 15 128 0 127 0 0 subwoofer-vol subwoofer-vol-set
+#X restore 518 309 pd master;
+#X obj 659 324 vsl 15 128 0 127 0 0 subwoofer-vol subwoofer-vol-set
 sub 0 -9 0 10 -232576 -1 -1 0 1;
-#X obj 548 9 _4chan-mix bird dacout;
-#X obj 414 9 _4chan-mix flapping dacout;
+#X obj 550 101 _4chan-mix bird dacout;
+#X obj 416 101 _4chan-mix flapping dacout;
 #N canvas 163 150 734 440 listen 0;
 #X obj 324 232 oscparse;
 #X obj 324 205 netreceive -u -b;
@@ -2422,67 +2260,227 @@ listening_port 0 -10 0 15 -262130 -1 -1 6161 256;
 #X connect 21 0 22 0;
 #X connect 22 0 23 0;
 #X coords 0 -1 1 1 200 80 1 100 100;
-#X restore 107 181 pd listen;
-#X obj 11 312 vsl 15 128 1e-05 1 1 0 gaviotamp gaviotamp-set gaviotamp
-0 -9 0 10 -262144 -1 -1 9395 1;
-#X obj 29 321 vsl 15 128 20 20000 1 0 gaviolp gaviolp-set gaviolp 0
--9 0 10 -262144 -1 -1 7999 1;
-#X obj 47 330 vsl 15 128 20 20000 1 0 gaviohp gaviohp-set gaviohp 0
--9 0 10 -262144 -1 -1 12506 1;
-#X obj 65 339 vsl 15 128 0 100 0 0 gaviofreq gaviofreq-set gaviofreq
-0 -9 0 10 -262144 -1 -1 12319 1;
-#X obj 83 347 vsl 15 128 0 127 0 0 gaviobase gaviobase-set gaviobase
-0 -9 0 10 -262144 -1 -1 10000 1;
-#X obj 101 357 vsl 15 128 0 5 0 0 gaviospread gaviospread-set gaviospread
-0 -9 0 10 -262144 -1 -1 2540 1;
-#X obj 120 368 vsl 15 128 0.01 20000 1 0 gaviolpmax gaviolpmax-set
-gaviolpmax 0 -9 0 10 -262144 -1 -1 4833 1;
-#X obj 12 280 hradio 15 1 0 3 gaviopreset gaviopreset-set gaviopreset
-0 -8 0 10 -262144 -1 -1 0;
-#X obj 242 338 vsl 15 128 0 1 0 0 ambsound ambsound-set ambsound 0
--9 0 10 -262144 -1 -1 1994 1;
-#X obj 260 347 vsl 15 128 20 20000 1 0 ambhp ambhp-set ambhp 0 -9 0
-10 -262144 -1 -1 9200 1;
-#X obj 278 355 vsl 15 128 20 20000 1 0 amblp amblp-set amblp 0 -9 0
-10 -262144 -1 -1 11200 1;
-#X obj 242 307 tgl 15 0 cloud cloud-set cloud 17 7 0 10 -262144 -1
+#X restore 8 15 pd listen;
+#X obj 359 59 tgl 15 0 cloud cloud-set cloud 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 283 15 tgl 60 0 pd-dsp pd-dsp-set DSP 15 30 0 15 -204786 -1
+-1 1 1;
+#X obj 146 101 _4chan-mix ambience dacout;
+#X obj 360 19 bng 15 250 50 0 triggerCloud triggerCloud-set triggerCloud
+17 7 0 10 -262144 -1 -1;
+#X obj 360 39 bng 15 250 50 0 bird_sound bird_sound-set bird_sound
+17 7 0 10 -262144 -1 -1;
+#X obj 216 15 bng 60 250 50 0 init init-set init 20 30 0 15 -204786
+-1 -1;
+#X obj 620 14 tgl 60 0 record record-set record 8 30 0 15 -261234 -1
 -1 0 1;
-#X obj 140 368 _tabtab gaviotab;
-#X obj 136 279 tgl 15 0 gavioplot gavioplot-set gavioplot 17 7 0 10
--262144 -1 -1 0 1;
-#X obj 69 279 tgl 15 0 gavioboid gavioboid-set gavioboid 17 7 0 10
--262144 -1 -1 1 1;
-#X text 314 176 MAIN VOLUME ________________________________________
+#N canvas 0 22 1263 598 gavio 0;
+#X obj 107 138 hradio 15 1 0 3 gaviopreset gaviopreset-set preset 0
+-8 0 10 -262144 -1 -1 0;
+#X obj 235 171 _tabtab gaviotab;
+#X obj 204 138 tgl 15 0 gavioplot gavioplot-set plot 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 163 138 tgl 15 0 gavioboid gavioboid-set boid 17 7 0 10 -262144
+-1 -1 1 1;
+#X obj 106 173 vsl 15 128 1e-05 1 1 0 gaviotamp gaviotamp-set vol 0
+-9 0 10 -262144 -1 -1 9395 1;
+#X obj 124 173 vsl 15 128 20 20000 1 0 gaviolp gaviolp-set lp 0 -9
+0 10 -262144 -1 -1 7999 1;
+#X obj 142 173 vsl 15 128 20 20000 1 0 gaviohp gaviohp-set hp 0 -9
+0 10 -262144 -1 -1 12506 1;
+#X obj 160 173 vsl 15 128 0 100 0 0 gaviofreq gaviofreq-set frq 0 -9
+0 10 -262144 -1 -1 12319 1;
+#X obj 178 173 vsl 15 128 0 127 0 0 gaviobase gaviobase-set bas 0 -9
+0 10 -262144 -1 -1 10000 1;
+#X obj 196 173 vsl 15 128 0 5 0 0 gaviospread gaviospread-set spr 0
+-9 0 10 -262144 -1 -1 2540 1;
+#X obj 214 173 vsl 15 128 0.01 20000 1 0 gaviolpmax gaviolpmax-set
+lpm 0 -9 0 10 -262144 -1 -1 4833 1;
+#X msg 397 72 \; gaviotamp-set 0 \; gaviofreq-set 0 \;;
+#X msg 563 398 \; gaviolp-set 7115 \; gaviohp-set 96 \; gaviofreq-set
+15 \; gaviobase-set 31 \; gaviospread-set 3 \; gaviolpmax-set 4040
+\; gaviotab-set 7 10 \; gavioboid-set 1 \;;
+#X msg 102 396 \; gaviotamp-set 0 \; gaviolp-set 2500 \; gaviohp-set
+18000 \; gaviospread-set 1 \; gaviobase-set 100 \; gaviolpmax-set 2.5
+\; gaviofreq-set 97 \; gavioboid-set 1 \;;
+#X msg 252 396 \; gaviotamp-set 0 \; gaviolp-set 1250 \; gaviohp-set
+2397 \; gaviofreq-set 97 \; gaviobase-set 72 \; gaviospread-set 0.35
+\; gaviolpmax-set 1 \; gaviotab-set 5 3 \; gavioboid-set 1 \;;
+#X msg 402 399 \; gaviotamp-set 0 \; gaviolp-set 9860 \; gaviohp-set
+1119 \; gaviofreq-set 88 \; gaviobase-set 93 \; gaviospread-set 5 \;
+gaviolpmax-set 461 \; gaviotab-set 7 13 \; gavioboid-set 1 \;;
+#X obj 93 336 r gaviopreset;
+#X obj 93 357 sel 0 1 2 3, f 56;
+#N canvas 0 23 761 506 boid-ctrl 0;
+#X msg 412 352 dump;
+#X msg 89 101 neighbors \$1;
+#X floatatom 89 86 5 0 4 0 - neighbors -;
+#X floatatom 458 20 5 0 0 0 - maxspeed -;
+#X msg 458 35 maxspeed \$1;
+#X floatatom 475 56 5 0 0 0 - minspeed -;
+#X msg 475 71 minspeed \$1;
+#X floatatom 293 44 5 0 0 0 - center -;
+#X msg 293 59 center \$1;
+#X floatatom 312 87 5 0 0 0 - attract -;
+#X msg 312 102 attract \$1;
+#X floatatom 315 128 5 0 0 0 - match -;
+#X msg 315 143 match \$1;
+#X floatatom 228 70 5 0 0 0 - avoid -;
+#X msg 228 85 avoid \$1;
+#X floatatom 190 109 5 0 0 0 - repel -;
+#X msg 190 124 repel \$1;
+#X floatatom 113 147 5 0 0 0 - edgedist -;
+#X msg 113 162 edgedist \$1;
+#X floatatom 483 99 5 0 0 0 - speed -;
+#X msg 483 114 speed \$1;
+#X floatatom 486 135 5 0 0 0 - inertia -;
+#X msg 486 150 inertia \$1;
+#X floatatom 492 170 5 0 0 0 - accel -;
+#X msg 492 185 accel \$1;
+#X floatatom 498 208 5 0 0 0 - prefdist -;
+#X msg 498 223 prefdist \$1;
+#X msg 412 371 reset;
+#X floatatom 151 317 5 0 0 0 - flyrect[0] -;
+#X floatatom 190 317 5 0 0 0 - flyrect[1] -;
+#X floatatom 229 317 5 0 0 0 - flyrect[2] -;
+#X floatatom 268 317 5 0 0 0 - - -;
+#X floatatom 63 47 5 0 0 0 - - -;
+#X msg 63 62 number \$1;
+#X floatatom 412 318 5 0 0 0 - - -;
+#X msg 412 333 mode \$1;
+#X obj 306 282 s boidParam;
+#X obj 412 392 s boidParam;
+#X msg 185 395 flyrect \$1 \$2 \$3 \$4 \$5 \$6;
+#X obj 185 377 pack 0 0 0 0 0 0;
+#X floatatom 307 317 5 0 0 0 - - -;
+#X floatatom 346 317 5 0 0 0 - - -;
+#X obj 185 416 s boidParam;
+#X connect 0 0 37 0;
+#X connect 1 0 36 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 36 0;
+#X connect 5 0 6 0;
+#X connect 6 0 36 0;
+#X connect 7 0 8 0;
+#X connect 8 0 36 0;
+#X connect 9 0 10 0;
+#X connect 10 0 36 0;
+#X connect 11 0 12 0;
+#X connect 12 0 36 0;
+#X connect 13 0 14 0;
+#X connect 14 0 36 0;
+#X connect 15 0 16 0;
+#X connect 16 0 36 0;
+#X connect 17 0 18 0;
+#X connect 18 0 36 0;
+#X connect 19 0 20 0;
+#X connect 20 0 36 0;
+#X connect 21 0 22 0;
+#X connect 22 0 36 0;
+#X connect 23 0 24 0;
+#X connect 24 0 36 0;
+#X connect 25 0 26 0;
+#X connect 26 0 36 0;
+#X connect 27 0 37 0;
+#X connect 28 0 39 0;
+#X connect 29 0 39 1;
+#X connect 30 0 39 2;
+#X connect 31 0 39 3;
+#X connect 32 0 33 0;
+#X connect 33 0 36 0;
+#X connect 34 0 35 0;
+#X connect 35 0 37 0;
+#X connect 38 0 42 0;
+#X connect 39 0 38 0;
+#X connect 40 0 39 4;
+#X connect 41 0 39 5;
+#X restore 398 189 pd boid-ctrl;
+#X obj 768 405 text get bpref;
+#X msg 804 209 read bpref-0.txt;
+#X obj 762 373 counter;
+#X msg 771 338 0;
+#X obj 821 309 sel 0 1 2;
+#X obj 768 431 route bang;
+#X obj 847 502 s boidParam;
+#X obj 841 464 list trim;
+#X obj 734 77 loadbang;
+#X obj 710 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 782 116 define_loudspeakers 2 0 90 180 270;
+#X obj 810 150 s gaviovbap;
+#X obj 711 107 t b b b;
+#X obj 737 309 t b b;
+#X obj 814 342 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 761 181 read ../txt/bpref-1.txt;
+#X obj 755 242 text define -k bpref;
+#A set number 20 \; neighbors 4 \; maxspeed 47 \; minspeed 8 \; center
+5 \; attract 32 \; match 27 \; avoid 21 \; repel 25 \; edgedist 37
+\; speed 29 \; inertia 5 \; accel 10 \; prefdist 10 \; flyrect 0 0
+0 0 0 0 \; attractpt 59.8671 132.062 0 \;;
+#X connect 16 0 17 0;
+#X connect 17 0 13 0;
+#X connect 17 1 14 0;
+#X connect 17 2 15 0;
+#X connect 17 3 12 0;
+#X connect 19 0 24 0;
+#X connect 19 1 23 0;
+#X connect 20 0 35 0;
+#X connect 21 0 19 0;
+#X connect 22 0 21 0;
+#X connect 23 0 33 0;
+#X connect 23 2 22 0;
+#X connect 24 1 26 0;
+#X connect 26 0 25 0;
+#X connect 27 0 31 0;
+#X connect 28 0 31 0;
+#X connect 29 0 30 0;
+#X connect 31 0 32 0;
+#X connect 31 1 34 0;
+#X connect 31 2 29 0;
+#X connect 32 0 21 0;
+#X connect 32 1 22 0;
+#X connect 33 0 21 0;
+#X connect 34 0 35 0;
+#X coords 0 -1 1 1 238 208 1 100 100;
+#X restore 8 309 pd gavio;
+#N canvas 0 22 834 529 ambience 0;
+#X obj 106 161 vsl 15 128 0 1 0 0 ambsound ambsound-set vol 0 -9 0
+10 -262144 -1 -1 1994 1;
+#X obj 124 161 vsl 15 128 20 20000 1 0 ambhp ambhp-set hp 0 -9 0 10
+-262144 -1 -1 9200 1;
+#X obj 142 161 vsl 15 128 20 20000 1 0 amblp amblp-set lp 0 -9 0 10
+-262144 -1 -1 11200 1;
+#X obj 106 129 hradio 15 1 0 3 ambsound_preset ambsound_preset-set
+preset 0 -8 0 10 -262144 -1 -1 0;
+#X msg 217 38 \; ambsound-set 0 \;;
+#X msg 480 294 \; ambsound-set 0 \; amblp-set 1800 \; ambhp-set 600
+\;;
+#X msg 353 293 \; ambsound-set 0 \; ambhp-set 34 \; amblp-set 853 \;
 ;
-#X obj 24 188 tgl 60 0 pd-dsp pd-dsp-set DSP 15 30 0 15 -204786 -1
--1 0 1;
-#X obj 445 364 tgl 15 0 autoPos-cloud autoPos-cloud-set autoPos-cloud
-17 7 0 10 -204800 -1 -1 0 1;
-#X obj 445 384 tgl 15 0 autoPos-bird autoPos-bird-set autoPos-bird
-17 7 0 10 -204800 -1 -1 0 1;
-#X obj 555 364 tgl 15 0 cloud-spigot cloud-spigot-set cloud-spigot
-17 7 0 10 -204786 -1 -1 1 1;
-#X obj 555 384 tgl 15 0 bird-spigot bird-spigot-set bird-spigot 17
-7 0 10 -204786 -1 -1 1 1;
-#X obj 144 9 _4chan-mix ambience dacout;
-#X obj 445 404 tgl 15 0 autoPos-ambience autoPos-ambience-set autoPos-ambience
-17 7 0 10 -204800 -1 -1 1 1;
-#X obj 555 404 tgl 15 0 ambience-spigot ambience-spigot-set ambience-spigot
-17 7 0 10 -204786 -1 -1 1 1;
-#X obj 556 452 bng 15 250 50 0 triggerCloud triggerCloud-set triggerCloud
-17 7 0 10 -262144 -1 -1;
-#X obj 368 385 bng 15 250 50 0 bird_sound bird_sound-set bird_sound
-17 7 0 10 -262144 -1 -1;
-#X obj 299 366 hradio 15 1 0 3 ambsound_preset ambsound_preset-set
-ambsound_preset 0 -8 0 10 -262144 -1 -1 0;
-#X obj 445 424 tgl 15 0 autoPos-flapping autoPos-flapping-set autoPos-flapping
-17 7 0 10 -204800 -1 -1 1 1;
-#X obj 555 424 tgl 15 0 flapping-spigot flapping-spigot-set flapping-spigot
-17 7 0 10 -204786 -1 -1 1 1;
+#X obj 350 73 r ambsound_preset;
+#X obj 350 99 sel 0 1 2;
+#X msg 537 140 \; gaviopreset-set 0 \; gaviotamp-set 0 \;;
+#X obj 194 349 r ambhp;
+#X floatatom 194 375 0 0 0 0 - - -;
+#X floatatom 262 405 0 0 0 0 - - -;
+#X obj 262 379 r amblp;
+#X msg 237 186 \; ambsound-set 0 \; ambhp-set 15000 \; amblp-set 17000
+\;;
+#X connect 7 0 8 0;
+#X connect 8 0 14 0;
+#X connect 8 1 6 0;
+#X connect 8 2 5 0;
+#X connect 10 0 11 0;
+#X connect 13 0 12 0;
+#X coords 0 -1 1 1 77 208 1 100 100;
+#X restore 248 309 pd ambience;
+#X obj 447 21 tgl 15 0 mute mute-set mute 17 7 0 10 -262144 -1 -1 0
+1;
 #X restore 21 186 pd controls;
 #X text 103 186 <-- click to open;
 #N canvas 501 124 742 476 init 0;
-#X obj 57 17 loadbang;
 #X obj 257 34 r gaviotamp;
 #X floatatom 257 60 5 0 0 0 - - -;
 #X obj 262 106 r ambsound;
@@ -2497,21 +2495,22 @@ ambsound_preset 0 -8 0 10 -262144 -1 -1 0;
 #X obj 420 212 r flapping-vol;
 #X obj 403 35 r cloud-vol;
 #X floatatom 403 61 5 0 0 0 - - -;
-#X msg 58 43 \; ambsound-set 0.157 \; ambhp-set 2980 \; amblp-set 8845
+#X obj 40 60 r init;
+#X msg 40 97 \; ambsound-set 0.157 \; ambhp-set 2980 \; amblp-set 8845
 \; ambience-vol-set 127 \; gaviopreset-set 0 \; gaviolp-set 1551 \;
 gavio-vol-set 125 \; gaviotamp-set 0.05 \; cloud-vol-set 120 \; bird-vol-set
 120 \; flapping-vol-set 100 \; all-v-set 100 \; master-set 100 \; cloud-spigot-set
 1 \; bird-spigot-set 1 \; ambience-spigot-set 1 \; autoPos-ambience-set
 1 \; flapping-spigot-set 1 \; autoPos-flapping-set 1 \; listen-set
-bang \;;
-#X connect 0 0 15 0;
-#X connect 1 0 2 0;
-#X connect 3 0 4 0;
-#X connect 7 0 6 0;
-#X connect 8 0 5 0;
-#X connect 9 0 10 0;
-#X connect 12 0 11 0;
-#X connect 13 0 14 0;
+bang \; mute-set 1 \;;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 8 0 9 0;
+#X connect 11 0 10 0;
+#X connect 12 0 13 0;
+#X connect 14 0 15 0;
 #X restore 14 138 pd init;
 #X obj 161 104 text define -k more_unity_messages;
 #A set pd-dsp-set 1 \; ambsound_preset-set 0 \; ambience-vol-set 127
@@ -2546,3 +2545,28 @@ bang \; stop-listening-set bang \; listening_port-set 6161 \;;
 #X restore 63 114 pd record;
 #X msg 264 151 \; record 1;
 #X msg 265 193 \; record 0;
+#X obj 356 151 loadbang;
+#X obj 356 202 s init;
+#X obj 356 176 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 0 22 450 300 gui-glue 0;
+#X obj 43 45 r mute;
+#X msg 43 97 gavio \, ambience \, cloud \, flapping \, bird;
+#X obj 43 71 t b f;
+#X obj 43 123 symbol;
+#X obj 43 201 f;
+#X obj 43 227 s;
+#X obj 43 175 t b a;
+#X obj 43 149 makefilename %s-mute-set;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 2 1 4 1;
+#X connect 3 0 7 0;
+#X connect 4 0 5 0;
+#X connect 6 0 4 0;
+#X connect 6 1 5 1;
+#X connect 7 0 6 0;
+#X restore 71 138 pd gui-glue;
+#X connect 15 0 17 0;
+#X connect 17 0 16 0;
