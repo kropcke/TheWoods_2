@@ -73,7 +73,6 @@ MonoBehaviour:
   numOfVoiceMails: 2
   oscObj: {fileID: 0}
   patchName: 
-  obiSolver1: {fileID: 0}
 --- !u!114 &3143578507052446124
 MonoBehaviour:
   m_ObjectHideFlags: 0

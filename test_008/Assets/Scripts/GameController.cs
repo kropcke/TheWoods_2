@@ -22,6 +22,7 @@ public class GameController : MonoBehaviourPunCallbacks
         Instance = this;
         if (!PhotonNetwork.IsConnected)
         {
+            Debug.LogFormat("Loaded start scene in gamecontroller");
             SceneManager.LoadScene(startScene);
             return;
         }
@@ -70,25 +71,25 @@ public class GameController : MonoBehaviourPunCallbacks
             QuitApplication();
         }
     }
-    public override void OnPlayerEnteredRoom(Player player)
-    {
-        Debug.Log("OnPlayerEnteredRoom() " + player.ActorNumber);
+    //public override void OnPlayerEnteredRoom(Player player)
+    //{
+    //    Debug.Log("OnPlayerEnteredRoom() " + player.ActorNumber);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
-        }
-    }
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
+    //    }
+    //}
 
-    public override void OnPlayerLeftRoom(Player player)
-    {
-        Debug.Log("OnPlayerLeftRoom() " + player.ActorNumber);
+    //public override void OnPlayerLeftRoom(Player player)
+    //{
+    //    Debug.Log("OnPlayerLeftRoom() " + player.ActorNumber);
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
-        }
-    }
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
+    //    }
+    //}
 
     public override void OnLeftRoom()
     {

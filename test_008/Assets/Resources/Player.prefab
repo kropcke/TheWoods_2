@@ -50,7 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeSize: 0.1
-  buttonTexture: {fileID: 2800000, guid: 14a973b32c42cf6488076425053f9327, type: 3}
+  restartButtonTexture: {fileID: 2800000, guid: 5317fb8f426baab4bad5a55d1cf652c3,
+    type: 3}
+  newGameTexture: {fileID: 2800000, guid: 914204e0b885e46b58de7cf87305e107, type: 3}
+  newGameButton: {fileID: 0}
 --- !u!33 &33217031605461450
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117,7 +120,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 114282797785504236}
   viewIdField: 0
-  InstantiationId: 6
+  InstantiationId: 4
   isRuntimeInstantiated: 0
 --- !u!114 &114282797785504236
 MonoBehaviour:

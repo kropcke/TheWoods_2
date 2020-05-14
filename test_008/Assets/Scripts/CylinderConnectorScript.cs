@@ -53,7 +53,6 @@ public class CylinderConnectorScript : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length == 2)
         {
-
             Vector3 MidPosition = StartObject.transform.position + ((EndObject.transform.position - StartObject.transform.position) * 0.5F);
             Vector3 Direction = (EndObject.transform.position - StartObject.transform.position).normalized;
             LinkObject.transform.position = MidPosition;
@@ -69,15 +68,11 @@ public class CylinderConnectorScript : MonoBehaviour
             {
                 LinkObject.transform.localScale = new Vector3(3f, 2F, 3F);
 
-            }
-     
+            }     
         }
         else
         {
             LinkObject.transform.localScale = defaultLinkSize;
         }
-
-    }
-   
-
+    }   
 }

@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SkylarNetworkingMainScene.unity
-    guid: 68325522f47955f40b93f723ec316637
-  - enabled: 1
     path: Assets/Scenes/SkylarNetworkingStartScene.unity
     guid: 6734ca22e4dc44497a7f93c8f0363de3
+  - enabled: 1
+    path: Assets/Scenes/SkylarNetworkingMainScene.unity
+    guid: 68325522f47955f40b93f723ec316637
   m_configObjects: {}
