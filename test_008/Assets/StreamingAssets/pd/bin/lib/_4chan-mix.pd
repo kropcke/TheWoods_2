@@ -1,4 +1,4 @@
-#N canvas 1 0 450 300 12;
+#N canvas 1 0 837 314 12;
 #X obj 251 31 r \$1-vol;
 #X obj 251 57 dbtorms;
 #X obj 251 83 / 22;
@@ -16,6 +16,18 @@
 #X obj 118 65 vu 15 120 \$1-vu-2 2 -1 -8 0 10 -66577 -1 0 0;
 #X obj 137 65 vu 15 120 \$1-vu-3 3 -1 -8 0 10 -66577 -1 0 0;
 #X obj 156 65 vu 15 120 \$1-vu-4 4 -1 -8 0 10 -66577 -1 1 0;
+#X obj 517 17 r \$1-mute;
+#X obj 535 72 r \$1-vol-set;
+#X obj 517 138 *;
+#X obj 643 41 loadbang;
+#X msg 643 67 set 1;
+#X obj 74 213 tgl 15 0 autoPos-\$1 autoPos-\$1-set autoPos-\$1 17 7
+0 10 -204800 -1 -1 0 1;
+#X obj 74 195 tgl 15 0 \$1-spigot \$1-spigot-set \$1-spigot 17 7 0
+10 -204786 -1 -1 0 1;
+#X obj 179 32 tgl 20 0 \$1-mute \$1-mute-set mute 3 9 0 6 -232576 -1
+-1 0 1;
+#X obj 643 93 s \$1-mute-set;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
@@ -25,4 +37,9 @@
 #X connect 5 0 7 1;
 #X connect 5 1 6 0;
 #X connect 7 0 8 0;
-#X coords 0 -1 1 1 130 160 2 70 30;
+#X connect 15 0 17 0;
+#X connect 16 0 17 1;
+#X connect 17 0 10 0;
+#X connect 18 0 19 0;
+#X connect 19 0 23 0;
+#X coords 0 -1 1 1 131 205 2 70 30;
