@@ -10,7 +10,6 @@ using System;
 public class WaitingController : MonoBehaviourPunCallbacks
 {
 
-    private PhotonView myphotonView;
     [SerializeField]
     private int mainSceneIndex;
     [SerializeField]
@@ -25,21 +24,21 @@ public class WaitingController : MonoBehaviourPunCallbacks
     private GameObject waitingMenu;
     [SerializeField]
     private GameObject videoPlayer;
+    [SerializeField]
+    private GameObject backgroundAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-        myphotonView = GetComponent<PhotonView>();
         //playerCountUpdate();
+        
     }
 
     public override void OnJoinedRoom()
     {
-        print("Loading Waiting Scene");
         print("number of players" + PhotonNetwork.PlayerList.Length);
         if (PhotonNetwork.PlayerList.Length == 3)
         {
-            Debug.Log("Player count ==3 on joinedRoom");
             readyToStart = true;
             waitingMenu.SetActive(false);
         }
@@ -48,19 +47,16 @@ public class WaitingController : MonoBehaviourPunCallbacks
 
     private void playerCountUpdate()
     {
-        Debug.Log("Player count update");
         
         playersCount = PhotonNetwork.PlayerList.Length;
         roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
         if (playersCount == roomSize)
         {
-            Debug.Log("Player count ==3");
             readyToStart = true;
             waitingMenu.SetActive(false);
         }
         else
         {
-            Debug.Log("Player count !=3");
             readyToStart = false;
             waitingMenu.SetActive(true);
             
@@ -95,6 +91,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
         WaitForthePlayers();
         if (videoPlayer.activeInHierarchy && !isMainSceneLoaded)
         {
+            backgroundAudio.GetComponent<AudioSource>().volume = 0.5f;
             if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying)
             {
             
@@ -131,36 +128,14 @@ public class WaitingController : MonoBehaviourPunCallbacks
         //{
         //    return;
         //}
-        print("after if StartGame()");
         PhotonNetwork.CurrentRoom.IsOpen = false;
-        // StartCoroutine(playVideo());
         videoPlayer.SetActive(true);
 
 
 
     }
 
-    private IEnumerator playVideo()
-    {
-        //print("Device Type"+ SystemInfo.deviceType);
-        //if(SystemInfo.deviceType == DeviceType.Handheld)
-        //{
-        //    Handheld.PlayFullScreenMovie("IntroAnimation.mp4", Color.black, FullScreenMovieControlMode.Full);
-        //}
-        ////Handheld.PlayFullScreenMovie("IntroAnimation.mp4", Color.black, FullScreenMovieControlMode.Full);
-        //try
-        //{
-        //    videoPlayer.GetComponent<VideoPlayer>().Play();
-        //}
-        //catch
-        //{
-        //    print("Exception while running video");
-        //}
-        yield return new WaitForSeconds(10);
-        videoPlayer.SetActive(true);
-        
-
-    }
+   
 
    
 }

@@ -13,21 +13,16 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     public static GameObject LocalPlayerInstance;
 
     GameObject lightningEndpoint;
-    //GameObject rendererEndPoint;
 
     GameObject ARCam, testPos;
 
     bool oriented = false;
     GameObject middleBranch;
-    string deviceName = null;
     bool gameOver = false;
 
     public Texture restartButtonTexture;
     public Texture newGameTexture;
     GameObject server;
-    int currentIndex = -1;
-    bool gameStart = false;
-
 
     private GameObject newGameButton;
 
@@ -41,15 +36,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
        
     }
-    public void onClickNewButton()
-    {
-        Debug.Log("onClickNewButton");
-        newGameButton.SetActive(false);
-        server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
-                               "NewGame");
-        PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LoadLevel(0);
-    }
+
     //TODO: Refactor this 
     private void OnGUI()
     {
@@ -58,41 +45,56 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             if (gameOver)
             {
-                //Debug.Log();
-            }
-            else
-            {
-                Rect position;
-
-                if (Screen.orientation == ScreenOrientation.Landscape)
-                {
-                    position = new Rect((Screen.width / 2) + 750, 10, 100, 100);
-                }
-                else if (Screen.orientation == ScreenOrientation.Portrait)
-                {
-                    position = new Rect((Screen.width / 2) + 300, 10, 100, 100);
-                }
-                else
-                {
-                    position = new Rect((Screen.width / 2) + 300, 70, 100, 100);
-                }
-                bool restartGame = GUI.Button(position, restartButtonTexture);
-
-                if (restartGame)
+                Rect position = new Rect((Screen.width / 2)-200, (Screen.height / 2), 350, 80);
+                bool newGame = GUI.Button(position, newGameTexture);
+                if (newGame)
                 {
 
-                    gameOver = false;
                     server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
-                               "RestartGame");
+                               "NewGame");
+                    PhotonNetwork.LoadLevel(0);
 
 
                 }
             }
+            //else
+            //{
+            //    Rect position;
+
+            //    if (Screen.orientation == ScreenOrientation.Landscape)
+            //    {
+            //        position = new Rect((Screen.width / 2) + 750, 10, 100, 100);
+            //    }
+            //    else if (Screen.orientation == ScreenOrientation.Portrait)
+            //    {
+            //        position = new Rect((Screen.width / 2) + 300, 10, 100, 100);
+            //    }
+            //    else
+            //    {
+            //        position = new Rect((Screen.width / 2) + 300, 70, 100, 100);
+            //    }
+            //    bool restartGame = GUI.Button(position, restartButtonTexture);
+
+            //    if (restartGame)
+            //    {
+
+            //        gameOver = false;
+            //        server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
+            //                  "RestartGame");
+                   
+
+
+
+
+            //    }
+            //}
                
            }
                 
 
     }
+
+
 
     public override void OnDisable()
     {
@@ -179,7 +181,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             {
                 birds[i].SetActive(false);
             }
-            currentIndex = index;
             middleBranch.transform.GetChild(index).gameObject.SetActive(true);
         }
     }

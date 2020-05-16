@@ -28,9 +28,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-
         PhotonNetwork.AutomaticallySyncScene = true;
-        
     }
 
 
@@ -39,16 +37,36 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         startButton.SetActive(false);
         Connect();
     }
-
+    IEnumerator delayStart()
+    {
+        yield return new WaitForSeconds(5f);
+        PhotonNetwork.JoinRandomRoom();
+    }
     public void Connect()
     {
         isConnecting = true;
-
+        //This is called byServer(laptop)
         if (PhotonNetwork.IsConnected)
         {
             print("Joining Room...");
-            PhotonNetwork.JoinRandomRoom();
+            if(SystemInfo.deviceType == DeviceType.Desktop)
+            {
+                PhotonNetwork.LeaveRoom();
+                waitingMenu.SetActive(true);
+                StartCoroutine(delayStart());
+                
+            }
+            else
+            {
+                PhotonNetwork.Disconnect();
+                startButton.SetActive(true);
+            }
+            
+            
+            //PhotonNetwork.JoinRandomRoom();
+        
         }
+
         else
         {
             print("Connecting...");
@@ -59,17 +77,40 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-
-        if (isConnecting)
+        if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            print("OnConnectedToMaster: Next -> try to Join Random Room");
-
-            loadingButton.SetActive(false);
-            startButton.SetActive(true);
-            waitingMenu.SetActive(false);
-
-
+            if (isConnecting)
+            {
+                waitingMenu.SetActive(true);
+                PhotonNetwork.JoinRandomRoom();
+            }
         }
+        else
+        {
+            if (isConnecting)
+            {
+                print("OnConnectedToMaster: Next -> try to Join Random Room");
+
+                loadingButton.SetActive(false);
+                startButton.SetActive(true);
+                waitingMenu.SetActive(false);
+
+
+            }
+        }
+        //    if (isConnecting)
+        //    {
+        //        print("OnConnectedToMaster: Next -> try to Join Random Room");
+
+        //        loadingButton.SetActive(false);
+        //        startButton.SetActive(true);
+        //        waitingMenu.SetActive(false);
+
+
+        //}
+       
+
+        
         
     }
 
@@ -78,13 +119,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         print("OnJoinRandomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         print("OnCreateRoomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
     }
     public override void OnDisconnected(DisconnectCause cause)
     {

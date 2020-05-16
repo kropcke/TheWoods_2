@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
 
@@ -70,9 +72,8 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
     public string patchName;
     bool enableOSC = true;
 
-    //bool flag = true;
-    //public bool enableDots = false;
-    //bool enableDotsSent = true;
+    bool gameStarted = false;
+
 
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalServerInstance;
@@ -108,13 +109,13 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
             distractionDestroyTimes = new List<float>();
             distractionTargetPositions = new List<Vector3>();
 
+            //Start audio coming from Pd
             if (enableOSC) {
                 OscMessage message = new OscMessage();
-                message.address = "/pd-dsp-set";
+                message.address = "/GameOnOff";
                 message.values.Add(1);
                 oscObj.Send(message);
             }
-            // StartCoroutine(playVideo("intro"));
 
         }
         //DontDestroyOnLoad(gameObject);
@@ -140,26 +141,24 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
     //TODO: REfactor this to accomodate multiple transfers from client to server
     public void UpdateVariableInServer(string option) {
         if (photonView.IsMine) {
-            Debug.LogFormat("Inside UpdateVariableInServer");
+            
             if (option == "NewGame") {
-                PhotonNetwork.Disconnect();
-                //PhotonNetwork.LeaveRoom();
-                PhotonNetwork.LoadLevel(0);
-                //SceneManager.LoadScene(0);
+                //Stops audio coming from Pd
+                if (enableOSC)
+                {
+                    OscMessage message = new OscMessage();
+                    message.address = "/GameOnOff";
+                    message.values.Add(0);
+                    oscObj.Send(message);
+                }
             } else if (option == "RestartGame") {
+                Debug.LogFormat("Inside RestartGame");
                 GameConfiguration.restartGame = true;
             }
 
         }
     }
-    private void debugDictionaryContent() {
-        if (debugMode) {
-            foreach (KeyValuePair<GameObject, int> val in audioBubbleToAudioClipNumber) {
-                //Now you can access the key and value both separately from this attachStat as:
-                Debug.LogFormat("{0} : {1}", val.Key, val.Value);
-            }
-        }
-    }
+
     public void chooseNewVoicemail(GameObject[] audioVisualization) {
         int voicemailNum = (int)Random.Range(1, numOfVoiceMails + 1);
         Debug.LogFormat("voicemailNum:" + voicemailNum);
@@ -198,7 +197,12 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
             PhotonNetwork.Instantiate("Player", new Vector3(-0.5f, 0.5f, 0.5f), Quaternion.identity);
         }
     }
-
+    IEnumerator startNewGame()
+    {
+        yield return null;
+        gameStarted = false;
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
     public void Update() {
         if (photonView.IsMine) {
 
@@ -206,10 +210,18 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
                 simulateTwoPlayers();
 
             }
+            if (gameStarted && PhotonNetwork.PlayerList.Length ==1)
+            {
+
+                StartCoroutine(startNewGame());
+            }
             players = GameObject.FindGameObjectsWithTag("Player");
-
             if (players.Length == 2) {
-
+                if (!gameStarted)
+                {
+                    gameStarted = true;
+                }
+                
                 players[0] = players[0].transform.GetChild(1).gameObject;
                 players[1] = players[1].transform.GetChild(1).gameObject;
 
@@ -365,33 +377,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
 
         }
     }
-    //void UpdateAudioClipMovement()
-    //{
-
-    //    for (int i = 0; i < audioBubblesFlying.Count; i++)
-    //    {
-
-    //        audioBubblesFlying[i].transform.position += audioBubbleMovementVectors[i];
-    //        audioBubbleMovementVectors[i] = Vector3.Lerp(
-    //            audioBubbleMovementVectors[i],
-    //            (audioBubbleTargetPositions[i] - audioBubblesFlying[i].transform.position).normalized * audioBubbleMoveSpeed,
-    //            0.1f * Time.deltaTime
-    //            );
-
-    //        if (Vector3.Distance(audioBubblesFlying[i].transform.position, audioBubbleTargetPositions[i]) < distToChangeTarget)
-    //        {
-    //            audioBubbleTargetPositions[i] = CreateNewRandomPosition();
-    //        }
-    //        //OscMessage message = new OscMessage();
-
-    //        //message.address = "/UpdateXYZ";
-    //        //message.values.Add(audioBubblesFlying[i].transform.position.x);
-    //        //message.values.Add(audioBubblesFlying[i].transform.position.y);
-    //        //message.values.Add(audioBubblesFlying[i].transform.position.z);
-    //        //oscObj.Send(message);
-
-    //    }
-    //}
 
     void UpdateAttachedAudioPosition() {
         if (players.Length == 2) {
@@ -438,6 +423,15 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
                 //Play the voice mail as soon as the bird is on the branch
                 if (!VoicemailPlaying() && !audioBubblesNowPlaying.Contains(audioBubblesHolding[i])) {
                     audioBubblesNowPlaying.Add(audioBubblesHolding[i]);
+                    if (enableOSC)
+                    {
+                        OscMessage message1 = new OscMessage();
+
+                        message1.address = "/BirdMessage";
+                        message1.values.Add(audioBubblesPlayed.Count); //0-3
+                        message1.values.Add(1);
+                        oscObj.Send(message1);
+                    }
 
                     AudioPickedUp(audioBubblesHolding[i]);
 
@@ -560,6 +554,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
             //TODO: Send the value 0 or 1 only once
             if (DistractionController.inDistraction) {
                 if (enableOSC) {
+
                     OscMessage message1 = new OscMessage();
 
                     message1.address = "/TriggerDistraction";
@@ -599,8 +594,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
                 d.transform.position).normalized * distractionMoveSpeed * Time.deltaTime);
 
             d.GetComponent<AudioSource>().enabled = true;
-
-            //UnityPD.SendFloat("clouds-set", 1);
 
         }
     }
@@ -666,7 +659,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
             audioBubblesHolding[i].transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime * 1f);
         }
 
-        //ResetAudioBubbleState();
+        
     }
 
     void ResetAudioBubbleState()
@@ -763,10 +756,18 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
         yield return new WaitForSeconds(t);
         if (audioBubble != null) {
             audioBubblesPlayed.Add(audioBubble);
+            if (enableOSC)
+            {
+                OscMessage message1 = new OscMessage();
 
+                message1.address = "/BirdMessage";
+                message1.values.Add(audioBubblesPlayed.Count-1); //0-3
+                message1.values.Add(0);
+                oscObj.Send(message1);
+            }
             for (int i = 0; i < audioBubblesPlayed.Count - 1; i++) {
                 middleBranch.transform.GetChild(i).gameObject.SetActive(true);
-
+                //middleBranch.transform.GetChild(i).transform.GetChild(3).gameObject.SetActive(false);
                 players[0].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
                     RpcTarget.All, i);
                 players[1].transform.parent.GetComponent<PhotonView>().RPC("EnableBird",
@@ -802,11 +803,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable {
     }
 
     public void OnApplicationQuit() {
-        if (enableOSC) {
-            OscMessage message = new OscMessage();
-            message.address = "/pd-dsp-set";
-            message.values.Add(0);
-            oscObj.Send(message);
-        }
+        
     }
 }
