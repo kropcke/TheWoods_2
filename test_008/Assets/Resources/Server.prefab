@@ -73,6 +73,7 @@ MonoBehaviour:
   numOfVoiceMails: 2
   oscObj: {fileID: 0}
   patchName: 
+  timeToWaitBeforeSpawningFirstBird: 5
 --- !u!114 &3143578507052446124
 MonoBehaviour:
   m_ObjectHideFlags: 0
