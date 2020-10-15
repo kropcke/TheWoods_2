@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Clouds_BackLit
-  m_Shader: {fileID: 4800000, guid: e0671274277ee7141b3a83ae16a49ce9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 706434613e2fb59469ff56f98439f010, type: 3}
   m_ShaderKeywords: ADVAMBIENT_ON ADVFOG_ON SHADOW_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -80,7 +80,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeIntensity: 5
+    - _EdgeIntensity: 10
     - _Glossiness: 0.5
     - _InvFade: 0.25
     - _McBAmt: 55.09
