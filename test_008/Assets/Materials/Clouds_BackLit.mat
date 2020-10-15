@@ -4,10 +4,11 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Clouds_BackLit
-  m_Shader: {fileID: 4800000, guid: e0671274277ee7141b3a83ae16a49ce9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 706434613e2fb59469ff56f98439f010, type: 3}
   m_ShaderKeywords: ADVAMBIENT_ON ADVFOG_ON SHADOW_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -39,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EdgeLit:
-        m_Texture: {fileID: 8400000, guid: 645fae7ab5b645845b027987257ec473, type: 2}
+        m_Texture: {fileID: 8400000, guid: ba0ef7809d73884478f1c4ec76c1fed3, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
