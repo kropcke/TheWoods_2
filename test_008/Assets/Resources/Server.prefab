@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1361970781177538854}
   - component: {fileID: 3808293538712429933}
   - component: {fileID: 8076864713938324439}
+  - component: {fileID: -1168229299301979014}
   m_Layer: 0
   m_Name: Server
   m_TagString: Server
@@ -207,3 +208,19 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &-1168229299301979014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884803577550987787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0addf69071f54b78a7a719db83b8807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dot: {fileID: 5562176941289941448, guid: 203f17f25df8c8d48924f96b050190c2, type: 3}
+  size: 0.01
+  delta: 0.1
+  count: 10

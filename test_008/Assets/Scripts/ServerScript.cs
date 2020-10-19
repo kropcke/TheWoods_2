@@ -248,6 +248,8 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     gameStarted = true;
                 }
+                int photonViewId1 = players[0].GetPhotonView().ViewID;
+                int photonViewId2 = players[1].GetPhotonView().ViewID;
 
                 players[0] = players[0].transform.GetChild(1).gameObject;
                 players[1] = players[1].transform.GetChild(1).gameObject;
@@ -263,8 +265,18 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                     if (lightening && !lighteningAssigned)
                     {
                         lightening.SetActive(true);
-                        players[0].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All, lightening.transform.GetChild(0).GetChild(0).gameObject.name);
-                        players[1].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All, lightening.transform.GetChild(0).GetChild(1).gameObject.name);
+                        if (photonViewId1 > photonViewId2)
+                        {
+                            players[0].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All, lightening.transform.GetChild(0).GetChild(0).gameObject.name);
+                            players[1].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All, lightening.transform.GetChild(0).GetChild(1).gameObject.name);
+
+                        }
+                        else
+                        {
+                            players[1].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All, lightening.transform.GetChild(0).GetChild(0).gameObject.name);
+                            players[0].transform.parent.GetComponent<PhotonView>().RPC("TakeControl", RpcTarget.All, lightening.transform.GetChild(0).GetChild(1).gameObject.name);
+
+                        }
                         lighteningAssigned = true;
 
                         StartCoroutine(waitBeforeSpawningFirstBird(timeToWaitBeforeSpawningFirstBird));
