@@ -339,6 +339,7 @@
      <Compile Include="Assets\Scripts\General\Rotator.cs" />
      <Compile Include="Assets\Scripts\LobbyManager.cs" />
      <Compile Include="Assets\Scripts\OSC.cs" />
+     <Compile Include="Assets\Scripts\PlayerConnectorScript.cs" />
      <Compile Include="Assets\Scripts\PlayerConnectorScript1.cs" />
      <Compile Include="Assets\Scripts\PlayerConnectorScript2.cs" />
      <Compile Include="Assets\Scripts\PlayerInput.cs" />
