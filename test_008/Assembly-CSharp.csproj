@@ -329,6 +329,7 @@
      <Compile Include="Assets\Scripts\CylinderConnectorScript.cs" />
      <Compile Include="Assets\Scripts\DebuggingUI.cs" />
      <Compile Include="Assets\Scripts\DistractionController.cs" />
+     <Compile Include="Assets\Scripts\Fx\ParticleFeathers.cs" />
      <Compile Include="Assets\Scripts\Fx\Screenshot.cs" />
      <Compile Include="Assets\Scripts\GameConfiguration.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
