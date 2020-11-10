@@ -888,6 +888,13 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         yield return null;
         gameOver = true;
+        if (enableOSC)
+        {
+            OscMessage message = new OscMessage();
+            message.address = "/GameOnOff";
+            message.values.Add(0);
+            oscObj.Send(message);
+        }
         ShowMenuOptions("gameOver");
 
     }

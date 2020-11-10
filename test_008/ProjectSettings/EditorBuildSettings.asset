@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SkylarNetworkingMainScene.unity
     guid: 68325522f47955f40b93f723ec316637
+  - enabled: 1
+    path: Assets/Scenes/TheWoodsEndScene.unity
+    guid: 704a53169f0b440cba9321a34b1f1316
   m_configObjects: {}
