@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using System;
+using UnityEngine.Video;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -23,76 +22,76 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     public Texture restartButtonTexture;
     public Texture newGameTexture;
     GameObject server;
-
-    private GameObject newGameButton;
+    private bool endingGame = false;
+    // private GameObject newGameButton;
 
     public void Awake()
     {
         if (photonView.IsMine)
         {
             LocalPlayerInstance = gameObject;
-            newGameButton = GameObject.Find("NewGameButton");
-            
+            //newGameButton = GameObject.Find("NewGameButton");
+
         }
-       
+
     }
 
     //TODO: Refactor this 
-    private void OnGUI()
-    {
-        if (photonView.IsMine)
-        {
+    //private void OnGUI()
+    //{
+    //    if (photonView.IsMine)
+    //    {
 
-            if (gameOver)
-            {
-                Rect position = new Rect((Screen.width / 2)-200, (Screen.height / 2), 350, 80);
-                bool newGame = GUI.Button(position, newGameTexture);
-                if (newGame)
-                {
+    //        if (gameOver)
+    //        {
+    //            Rect position = new Rect((Screen.width / 2)-200, (Screen.height / 2), 350, 80);
+    //            bool newGame = GUI.Button(position, newGameTexture);
+    //            if (newGame)
+    //            {
 
-                    server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
-                               "NewGame");
-                    PhotonNetwork.LoadLevel(0);
+    //                server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
+    //                           "NewGame");
+    //                PhotonNetwork.LoadLevel(0);
 
 
-                }
-            }
-            //else
-            //{
-            //    Rect position;
+    //            }
+    //        }
+    //        //else
+    //        //{
+    //        //    Rect position;
 
-            //    if (Screen.orientation == ScreenOrientation.Landscape)
-            //    {
-            //        position = new Rect((Screen.width / 2) + 750, 10, 100, 100);
-            //    }
-            //    else if (Screen.orientation == ScreenOrientation.Portrait)
-            //    {
-            //        position = new Rect((Screen.width / 2) + 300, 10, 100, 100);
-            //    }
-            //    else
-            //    {
-            //        position = new Rect((Screen.width / 2) + 300, 70, 100, 100);
-            //    }
-            //    bool restartGame = GUI.Button(position, restartButtonTexture);
+    //        //    if (Screen.orientation == ScreenOrientation.Landscape)
+    //        //    {
+    //        //        position = new Rect((Screen.width / 2) + 750, 10, 100, 100);
+    //        //    }
+    //        //    else if (Screen.orientation == ScreenOrientation.Portrait)
+    //        //    {
+    //        //        position = new Rect((Screen.width / 2) + 300, 10, 100, 100);
+    //        //    }
+    //        //    else
+    //        //    {
+    //        //        position = new Rect((Screen.width / 2) + 300, 70, 100, 100);
+    //        //    }
+    //        //    bool restartGame = GUI.Button(position, restartButtonTexture);
 
-            //    if (restartGame)
-            //    {
+    //        //    if (restartGame)
+    //        //    {
 
-            //        gameOver = false;
-            //        server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
-            //                  "RestartGame");
-                   
-
+    //        //        gameOver = false;
+    //        //        server.GetComponent<PhotonView>().RPC("UpdateVariableInServer", RpcTarget.All,
+    //        //                  "RestartGame");
 
 
 
-            //    }
-            //}
-               
-           }
-                
 
-    }
+
+    //        //    }
+    //        //}
+
+    //       }
+
+
+    //}
 
 
 
@@ -124,7 +123,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             GameObject g1 = GameObject.Find(soundClip);
-            
+
             g1.GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer.SetFloat("VoiceMailVolume", 0.5f);
             g1.GetComponent<AudioSource>().panStereo = -1.0f;
             g1.GetComponent<AudioSource>().Play();
@@ -137,14 +136,14 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         yield return new WaitForSeconds(length);
         Debug.Log("AudioPlayed");
 
-        for(int i=0; i<4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (middleBranch.transform.GetChild(i).gameObject.activeInHierarchy)
             {
                 middleBranch.transform.GetChild(i).gameObject.transform.GetChild(3).gameObject.SetActive(false);
             }
         }
-        
+
     }
 
     [PunRPC]
@@ -165,7 +164,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     public void ShowMenu(string option)
     {
         if (photonView.IsMine)
-        { 
+        {
             gameOver = true;
 
         }
@@ -196,13 +195,13 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
 
     }
-    
+
     void Start()
     {
         if (photonView.IsMine)
         {
             //TOOD: Pass from serverscript
-            
+
             middleBranch = GameObject.Find("NewMiddleBranch");
             server = GameObject.FindGameObjectWithTag("Server");
             ARCam = GameObject.Find("ARCamera");
@@ -223,14 +222,24 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
+    private void StartClosingVideo()
+    {
+        //send Pd message
+        if (!endingGame)
+        {
+            PhotonNetwork.LoadLevel(2);
+        }
+
+    }
     public void Update()
     {
-        if (photonView.IsMine )
+        if (photonView.IsMine)
         {
             Debug.Log("gameOver = " + gameOver);
+
             if (gameOver)
             {
-                newGameButton.SetActive(true);
+                StartClosingVideo();
             }
             if (ARCam)
             {
@@ -248,22 +257,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         lightningEndpoint.transform.position = transform.GetChild(1).position;
                     }
-                    
-                    //if (flag)
-                    //{
-                    //    lineRenderer.SetPosition(0, branchTip.transform.position);
-                    //    lineRenderer.SetPosition(1, transform.GetChild(1).position);
-                    //    if (enableDots)
-                    //    {
-                    //        lineRenderer.enabled = false;
-                    //        createDots(branchTip.transform.position, transform.GetChild(1).position);
-                    //    }
-                    //    else
-                    //    {
-                    //        lineRenderer.enabled = true;
-                    //    }
-
-                    //}
 
 
                     // Correct for rotating around
@@ -296,39 +289,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    //void createDots(Vector3 start, Vector3 end)
-    //{
-    //    foreach (var d in dots)
-    //    {
-    //        Destroy(d);
-    //    }
-    //    dots.Clear();
 
-    //    Vector3 distance = end - start;
-    //    Vector3 step = distance * delta;
-
-    //    Vector3 direction = (end - start).normalized;
-    //    Vector3 pointer = start;
-
-    //    while ((end - start).magnitude > (pointer - start).magnitude)
-    //    {
-    //        var g = GetOneDot();
-    //        g.transform.position = pointer;
-    //       // g.transform.forward = ARCam.transform.forward;
-    //        dots.Add(g);
-    //        pointer += (direction * delta);
-    //    }
-    //}
-    //GameObject GetOneDot()
-    //{
-    //    var dotObject = new GameObject();
-    //    dotObject.transform.localScale = Vector3.one * size;
-    //    dotObject.transform.parent = transform;
-
-    //    var sr = dotObject.AddComponent<SpriteRenderer>();
-    //    sr.sprite = dot;
-    //    return dotObject;
-    //}
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)

@@ -259,12 +259,14 @@ VideoPlayer:
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
+  - {fileID: 0}
   m_DirectAudioVolumes:
   - 0.73
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 0101
+  m_DirectAudioMutes: 0000
+  m_ControlledAudioTrackCount: 2
   m_PlayOnAwake: 1
   m_SkipOnDrop: 0
   m_Looping: 0
@@ -835,7 +837,6 @@ GameObject:
   - component: {fileID: 1071594786}
   - component: {fileID: 1071594785}
   - component: {fileID: 1071594784}
-  - component: {fileID: 1071594788}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -916,23 +917,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1071594788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071594783}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b41fbbd7f640d74d890d6485ee3c1fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoad: SkylarNetworkingMainScene
-  startButton: {fileID: 0}
-  loadingButton: {fileID: 0}
-  waitingMenu: {fileID: 0}
-  roomSize: 3
 --- !u!1 &1121014632
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,7 +949,7 @@ AudioSource:
   m_Volume: 0.949
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

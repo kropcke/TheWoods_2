@@ -92,6 +92,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
         if (videoPlayer.activeInHierarchy && !isMainSceneLoaded)
         {
             backgroundAudio.GetComponent<AudioSource>().volume = 0.5f;
+            videoPlayer.transform.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
             if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying)
             {
             
@@ -101,6 +102,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
                 {
                     Debug.Log("Loading Main Scene");
                     PhotonNetwork.LoadLevel(mainSceneIndex);
+
                 }
             }
         }
