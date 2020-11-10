@@ -81,6 +81,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
     public static GameObject LocalServerInstance;
 
+
     public void Awake()
     {
         if (photonView.IsMine)
@@ -782,6 +783,9 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             audioBubblesHolding[i].transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime * 1f);
         }
 
+        // play particle feather effect
+        var particleFeatherGameObject = GameObject.Find("FeatherParticleManager");
+        particleFeatherGameObject.GetComponent<ParticleFeathers>().enabled = true;
 
     }
 
