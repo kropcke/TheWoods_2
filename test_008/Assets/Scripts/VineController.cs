@@ -31,36 +31,6 @@ public class VineController : MonoBehaviour {
     void Start() {
         // A = gameObject;
 
-        if (flagReverse) {
-
-            SecondaryOffset = -SecondaryOffset;
-        } else {
-
-        }
-
-        // Add additional waypoints to create a curve
-        // One outside of A
-        A1 = new GameObject("A1");
-        A1.transform.parent = A.transform;
-        A1.transform.position = A.transform.position;
-        A1.transform.position += new Vector3(SecondaryOffset, 0, 0);
-        waypoints[1] = A1.transform;
-
-        // And one outside of B
-        B1 = new GameObject("B1");
-        B1.transform.parent = B.transform;
-        B1.transform.position = B.transform.position;
-        B1.transform.position += new Vector3(-SecondaryOffset, 0, 0);
-        waypoints[2] = B1.transform;
-
-        waypoints[3] = B.transform;
-        int n = waypoints.Length;
-        // Debug.Log("There are " + n + " waypoints");
-
-        spline.Reset();
-        decorator.lookForward = true;
-
-        decorator.Run();
     }
 
     public void Setup(SplineKitSpline spline, SplineKitDecorator decorator, GameObject phone, GameObject branchTip, bool reverse) {
