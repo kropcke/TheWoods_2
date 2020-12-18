@@ -22,29 +22,17 @@ public class VineController : MonoBehaviour {
 
     public float SecondaryOffset = 3f;
 
-    public SplineKitSpline spline;
-    public SplineKitDecorator decorator;
+    private SplineKitSpline spline;
+    private SplineKitDecorator decorator;
     public bool flagReverse = false;
 
     // TODO: Random distribution, rotation
 
     void Start() {
-        A = gameObject;
+        // A = gameObject;
 
-        // Set up LineRenderer
-        line = gameObject.AddComponent<LineRenderer>();
-        line.material = lineMat;
-        line.positionCount = 10;
-        line.startWidth = 0.1f;
-        line.endWidth = 0.1f;
+        if (flagReverse) {
 
-        // Set up Catmul-Rom curve
-        waypoints = new Transform[4];
-        waypoints[0] = A.transform;
-
-        // if (flagReverse) {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
             SecondaryOffset = -SecondaryOffset;
         } else {
 
@@ -75,24 +63,58 @@ public class VineController : MonoBehaviour {
         decorator.Run();
     }
 
-    void Setup() {
-        if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
-            // connectPlayerToBranch(players[0].transform.GetChild(1).gameObject, players[1].transform.GetChild(1).gameObject);
-        } else {
-            // connectPlayerToBranch(players[1].transform.GetChild(1).gameObject, players[0].transform.GetChild(1).gameObject);
+    public void Setup(SplineKitSpline spline, SplineKitDecorator decorator, GameObject phone, GameObject branchTip, bool reverse) {
+        this.spline = spline;
+        this.decorator = decorator;
+
+        A = phone;
+        B = branchTip;
+
+        // Set up LineRenderer
+        line = gameObject.AddComponent<LineRenderer>();
+        line.material = lineMat;
+        line.positionCount = 10;
+        line.startWidth = 0.1f;
+        line.endWidth = 0.1f;
+
+        // Set up Catmul-Rom curve
+        waypoints = new Transform[4];
+        waypoints[0] = A.transform;
+
+        if (flagReverse) {
+            SecondaryOffset = -SecondaryOffset;
         }
+
+        // Add additional waypoints to create a curve
+        // One outside of A
+        A1 = new GameObject("A1");
+        A1.transform.parent = A.transform;
+        A1.transform.position = A.transform.position;
+        A1.transform.position += new Vector3(SecondaryOffset, 0, 0);
+        waypoints[1] = A1.transform;
+
+        // And one outside of B
+        B1 = new GameObject("B1");
+        B1.transform.parent = B.transform;
+        B1.transform.position = B.transform.position;
+        B1.transform.position += new Vector3(-SecondaryOffset, 0, 0);
+        waypoints[2] = B1.transform;
+
+        waypoints[3] = B.transform;
+        int n = waypoints.Length;
+
+        spline.Reset();
+        decorator.lookForward = true;
+
+        decorator.Run();
+
+        isSetup = true;
     }
 
     bool isSetup = false;
 
     void Update() {
-        if (!isSetup) {
-            // When 2 players join, setup the vines
-            if (players.Length == 2) {
-                Setup();
-                isSetup = true;
-            }
-        } else {
+        if (isSetup) {
             // After the vines have been setup, run the real update loop
             spline.SetControlPoint(0, waypoints[0].position);
             spline.SetControlPoint(1, waypoints[1].position);
