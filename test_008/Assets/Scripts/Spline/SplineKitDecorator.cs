@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SplineDecorator : MonoBehaviour {
+public class SplineKitDecorator : MonoBehaviour {
 
-    public BezierSplineCalculator spline;
+    public SplineKitSpline spline;
 
     public int frequency;
 

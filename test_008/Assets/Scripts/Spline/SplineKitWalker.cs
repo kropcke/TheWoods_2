@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class SplineWalker : MonoBehaviour {
+public class SplineKitWalker : MonoBehaviour {
 
-	public BezierSplineCalculator spline;
+	public SplineKitSpline spline;
 
 	public float duration;
 
 	public bool lookForward;
 
-	public SplineWalkerMode mode;
+	public SplineKitWalkerMode mode;
 
 	private float progress;
 	private bool goingForward = true;
@@ -17,9 +17,9 @@ public class SplineWalker : MonoBehaviour {
 		if (goingForward) {
 			progress += Time.deltaTime / duration;
 			if (progress > 1f) {
-				if (mode == SplineWalkerMode.Once) {
+				if (mode == SplineKitWalkerMode.Once) {
 					progress = 1f;
-				} else if (mode == SplineWalkerMode.Loop) {
+				} else if (mode == SplineKitWalkerMode.Loop) {
 					progress -= 1f;
 				} else {
 					progress = 2f - progress;

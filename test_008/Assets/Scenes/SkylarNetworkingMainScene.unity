@@ -1813,7 +1813,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 794324151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b154883273c2845f39445c8015d81639, type: 3}
+  m_Script: {fileID: 11500000, guid: 10c660d81478d56429d809410c6b469b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   points:
@@ -1821,9 +1821,6 @@ MonoBehaviour:
   - {x: 2, y: 0, z: 0}
   - {x: 3, y: 0, z: 0}
   - {x: 4, y: 0, z: 0}
-  lengths: []
-  lengthsTime: []
-  TotalLength: 0
   modes: 0000000000000000
   loop: 0
 --- !u!1 &856737284
@@ -3215,11 +3212,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508429809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0a4dcb27166bb846855605043b4af92, type: 3}
+  m_Script: {fileID: 11500000, guid: 06e93c37d84458b4ba08577cfde655c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
-  frequency: 7
+  spline: {fileID: 794324153}
+  frequency: 0
   lookForward: 0
   items:
   - {fileID: 473092, guid: a97c402f591eca34b9d6b591c04a86ba, type: 3}
@@ -3266,11 +3263,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1538859808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0a4dcb27166bb846855605043b4af92, type: 3}
+  m_Script: {fileID: 11500000, guid: 06e93c37d84458b4ba08577cfde655c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 0}
-  frequency: 7
+  spline: {fileID: 1979573798}
+  frequency: 0
   lookForward: 0
   items:
   - {fileID: 473092, guid: a97c402f591eca34b9d6b591c04a86ba, type: 3}
@@ -3878,7 +3875,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1979573796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b154883273c2845f39445c8015d81639, type: 3}
+  m_Script: {fileID: 11500000, guid: 10c660d81478d56429d809410c6b469b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   points:
@@ -3886,9 +3883,6 @@ MonoBehaviour:
   - {x: 2, y: 0, z: 0}
   - {x: 3, y: 0, z: 0}
   - {x: 4, y: 0, z: 0}
-  lengths: []
-  lengthsTime: []
-  TotalLength: 0
   modes: 0000000000000000
   loop: 0
 --- !u!1 &1984305279

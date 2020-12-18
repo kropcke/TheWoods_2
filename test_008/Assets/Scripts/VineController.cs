@@ -22,8 +22,8 @@ public class VineController : MonoBehaviour {
 
     public float SecondaryOffset = 3f;
 
-    public BezierSplineCalculator spline;
-    public SplineDecorator decorator;
+    public SplineKitSpline spline;
+    public SplineKitDecorator decorator;
     public bool flagReverse = false;
 
     // TODO: Random distribution, rotation

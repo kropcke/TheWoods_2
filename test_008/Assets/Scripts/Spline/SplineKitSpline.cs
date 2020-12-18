@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class BezierSplineCalculator : MonoBehaviour {
+public class SplineKitSpline : MonoBehaviour {
 
     [SerializeField]
     private Vector3[] points;
 
     [SerializeField]
-    private BezierControlPointMode[] modes;
+    private SplineKitControlPointMode[] modes;
 
     [SerializeField]
     private bool loop;
@@ -64,11 +64,11 @@ public class BezierSplineCalculator : MonoBehaviour {
         EnforceMode(index);
     }
 
-    public BezierControlPointMode GetControlPointMode(int index) {
+    public SplineKitControlPointMode GetControlPointMode(int index) {
         return modes[(index + 1) / 3];
     }
 
-    public void SetControlPointMode(int index, BezierControlPointMode mode) {
+    public void SetControlPointMode(int index, SplineKitControlPointMode mode) {
         int modeIndex = (index + 1) / 3;
         modes[modeIndex] = mode;
         if (loop) {
@@ -83,8 +83,8 @@ public class BezierSplineCalculator : MonoBehaviour {
 
     private void EnforceMode(int index) {
         int modeIndex = (index + 1) / 3;
-        BezierControlPointMode mode = modes[modeIndex];
-        if (mode == BezierControlPointMode.Free || !loop && (modeIndex == 0 || modeIndex == modes.Length - 1)) {
+        SplineKitControlPointMode mode = modes[modeIndex];
+        if (mode == SplineKitControlPointMode.Free || !loop && (modeIndex == 0 || modeIndex == modes.Length - 1)) {
             return;
         }
 
@@ -112,7 +112,7 @@ public class BezierSplineCalculator : MonoBehaviour {
 
         Vector3 middle = points[middleIndex];
         Vector3 enforcedTangent = middle - points[fixedIndex];
-        if (mode == BezierControlPointMode.Aligned) {
+        if (mode == SplineKitControlPointMode.Aligned) {
             enforcedTangent = enforcedTangent.normalized * Vector3.Distance(middle, points[enforcedIndex]);
         }
         points[enforcedIndex] = middle + enforcedTangent;
@@ -135,7 +135,7 @@ public class BezierSplineCalculator : MonoBehaviour {
             t -= i;
             i *= 3;
         }
-        return transform.TransformPoint(BezierMath.GetPoint(points[i], points[i + 1], points[i + 2], points[i + 3], t));
+        return transform.TransformPoint(SplineKitCurve.GetPoint(points[i], points[i + 1], points[i + 2], points[i + 3], t));
     }
 
     public Vector3 GetVelocity(float t) {
@@ -149,7 +149,7 @@ public class BezierSplineCalculator : MonoBehaviour {
             t -= i;
             i *= 3;
         }
-        return transform.TransformPoint(BezierMath.GetFirstDerivative(points[i], points[i + 1], points[i + 2], points[i + 3], t)) - transform.position;
+        return transform.TransformPoint(SplineKitCurve.GetFirstDerivative(points[i], points[i + 1], points[i + 2], points[i + 3], t)) - transform.position;
     }
 
     public Vector3 GetDirection(float t) {
@@ -184,9 +184,9 @@ public class BezierSplineCalculator : MonoBehaviour {
             new Vector3(3f, 0f, 0f),
             new Vector3(4f, 0f, 0f)
         };
-        modes = new BezierControlPointMode[] {
-            BezierControlPointMode.Free,
-            BezierControlPointMode.Free
+        modes = new SplineKitControlPointMode[] {
+            SplineKitControlPointMode.Free,
+            SplineKitControlPointMode.Free
         };
     }
 }
