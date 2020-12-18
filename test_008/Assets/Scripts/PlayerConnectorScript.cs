@@ -19,6 +19,11 @@ public class PlayerConnectorScript : MonoBehaviour {
     bool createdots = true;
     public int count;
 
+    public BezierSplineCalculator player1Spline;
+    public BezierSplineCalculator player2Spline;
+    public SplineDecorator player1Decorator;
+    public SplineDecorator player2Decorator;
+
     void Start() {
 
     }
