@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerConnectorScript : MonoBehaviour
-{
+public class PlayerConnectorScript : MonoBehaviour {
     GameObject[] players;
     GameObject middleBranch;
     public GameObject dot;
@@ -20,59 +19,46 @@ public class PlayerConnectorScript : MonoBehaviour
     bool createdots = true;
     public int count;
 
-    void Start()
-    {
+    void Start() {
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         players = GameObject.FindGameObjectsWithTag("Player");
         middleBranch = GameObject.Find("NewMiddleBranch");
-        if (players.Length == 2)
-        {
+        if (players.Length == 2) {
 
-            if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID)
-            {
+            if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
                 connectPlayerToBranch(players[0].transform.GetChild(1).gameObject, players[1].transform.GetChild(1).gameObject);
-            }
-            else
-            {
+            } else {
                 connectPlayerToBranch(players[1].transform.GetChild(1).gameObject, players[0].transform.GetChild(1).gameObject);
             }
 
         }
 
-
     }
-    void connectPlayerToBranch(GameObject gameObj1, GameObject gameObj2)
-    {
-        if (createdots)
-        {
+    void connectPlayerToBranch(GameObject gameObj1, GameObject gameObj2) {
+        if (createdots) {
             dots1 = createDots(middleBranch.transform.GetChild(4).transform.position, gameObj1.transform.position);
             dots2 = createDots(middleBranch.transform.GetChild(5).transform.position, gameObj2.transform.position);
             createdots = false;
         }
-        if (dots1 != null)
-        {
+        if (dots1 != null) {
             updateDots(middleBranch.transform.GetChild(4).transform.position, gameObj1.transform.position, dots1);
         }
-        if (dots2 != null)
-        {
+        if (dots2 != null) {
             updateDots(middleBranch.transform.GetChild(5).transform.position, gameObj2.transform.position, dots2);
         }
     }
 
-    List<GameObject> createDots(Vector3 start, Vector3 end)
-    {
+    List<GameObject> createDots(Vector3 start, Vector3 end) {
 
         Vector3 distance = end - start;
         Vector3 delta = distance / count;
         List<GameObject> dots = new List<GameObject>();
 
-        for (int i = 0; i < count; i++)
-        {
+        for (int i = 0; i < count; i++) {
             var g = GetOneDot();
             g.transform.localScale = Vector3.one * size;
             g.transform.parent = transform;
@@ -83,28 +69,23 @@ public class PlayerConnectorScript : MonoBehaviour
         return dots;
     }
 
-    void updateDots(Vector3 start, Vector3 end, List<GameObject> dots)
-    {
+    void updateDots(Vector3 start, Vector3 end, List<GameObject> dots) {
         Vector3 distance = end - start;
         Vector3 delta = distance / count;
 
         int i = 0;
-        foreach (var d in dots)
-        {
+        foreach (var d in dots) {
             d.transform.position = start + i * delta;
             i++;
         }
     }
 
-    GameObject GetOneDot()
-    {
+    GameObject GetOneDot() {
         var gameObject1 = Instantiate(dot);
         gameObject1.transform.localScale = Vector3.one * size;
         gameObject1.transform.parent = transform;
         return gameObject1;
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-    }
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) { }
 }

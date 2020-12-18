@@ -349,6 +349,12 @@
      <Compile Include="Assets\Scripts\SkylarsNetworkManager.cs" />
      <Compile Include="Assets\Scripts\SoundClipGameObjects.cs" />
      <Compile Include="Assets\Scripts\SoundClipParticles.cs" />
+     <Compile Include="Assets\Scripts\Spline\Bezier.cs" />
+     <Compile Include="Assets\Scripts\Spline\BezierControlPointMode.cs" />
+     <Compile Include="Assets\Scripts\Spline\BezierSpline.cs" />
+     <Compile Include="Assets\Scripts\Spline\SplineDecorator.cs" />
+     <Compile Include="Assets\Scripts\Spline\SplineWalker.cs" />
+     <Compile Include="Assets\Scripts\Spline\SplineWalkerMode.cs" />
      <Compile Include="Assets\Scripts\StaticVariables.cs" />
      <Compile Include="Assets\Scripts\WaitingController.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
