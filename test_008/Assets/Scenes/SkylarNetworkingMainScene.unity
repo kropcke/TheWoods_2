@@ -793,6 +793,16 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 664450228543975254, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849391826438077403, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4093708368894869337, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -808,11 +818,39 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.0046
       objectReference: {fileID: 0}
+    - target: {fileID: 4388453252630256073, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364000386194764831, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_Name
+      value: FeatherParticleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364000386194764831, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997224372892118330, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8123674489763115724, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 2469818541172490235}
+    - target: {fileID: 0}
+      propertyPath: enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c6817ee1cea40c6b2b240a19e4e1fd, type: 3}
 --- !u!1 &389906591

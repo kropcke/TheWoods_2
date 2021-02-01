@@ -65,6 +65,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     List<float> distractionSpawnTimes;
     List<float> distractionDestroyTimes;
     private GameObject middleBranch;
+    private GameObject particleFeatherGameObject;
 
     private string voicemailPattern = "Voicemail-";
     public int numOfVoiceMails = 2;
@@ -136,7 +137,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
 
             middleBranch = GameObject.Find("NewMiddleBranch");
-
+            particleFeatherGameObject = GameObject.Find("FeatherParticleManager");
             variables = GameObject.FindGameObjectWithTag("GameConfiguration").GetComponent<GameConfiguration>();
             distractionAudioPlayer = variables.audioSource;
 
@@ -668,9 +669,14 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                     message1.values.Add(1);
                     oscObj.Send(message1);
                 }
-
+                
                 if ((audioBubblesHolding.Count > 0 || audioBubblesNowPlaying.Count > 0 || audioBubblesPlayed.Count > 0))
                 {
+                    players[0].transform.parent.GetComponent<PhotonView>().RPC("EnableFeatherParticles",
+                        RpcTarget.All, "EnableFeatherParticles");
+                    players[1].transform.parent.GetComponent<PhotonView>().RPC("EnableFeatherParticles",
+                        RpcTarget.All, "EnableFeatherParticles");
+                    middleBranch.transform.GetChild(6).gameObject.SetActive(true);
                     FlyawayAndDestroyBird();
                     ResetAudioBubbleState();
                 }
@@ -686,6 +692,16 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                     message.values.Add(0);
                     oscObj.Send(message);
                 }
+
+                if (middleBranch.transform.GetChild(6).gameObject.activeInHierarchy)
+                {
+                    players[0].transform.parent.GetComponent<PhotonView>().RPC("DisableFeatherParticles",
+                        RpcTarget.All, "DisableFeatherParticles");
+                    players[1].transform.parent.GetComponent<PhotonView>().RPC("DisableFeatherParticles",
+                        RpcTarget.All, "DisableFeatherParticles");
+                    middleBranch.transform.GetChild(6).gameObject.SetActive(false);
+                }
+                
             }
         }
     }
@@ -782,10 +798,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             Vector3 newPos = new Vector3(currentPos.x + 1, currentPos.y + 2, currentPos.z + 2);
             audioBubblesHolding[i].transform.position = Vector3.Lerp(currentPos, newPos, Time.deltaTime * 1f);
         }
-
-        // play particle feather effect
-        var particleFeatherGameObject = GameObject.Find("FeatherParticleManager");
-        particleFeatherGameObject.GetComponent<ParticleFeathers>().enabled = true;
 
     }
 

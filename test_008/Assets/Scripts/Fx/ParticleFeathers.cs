@@ -11,13 +11,14 @@ public class ParticleFeathers : MonoBehaviour {
     private float time = 0f;
 
     // Start is called before the first frame update
-    void Start() {
+    public void Start() {
         StopAll();
     }
 
     // Update is called once per frame
-    void Update() {
-        if (enabled) {
+    public void Update() {
+        if (gameObject.activeInHierarchy)
+        {
             if (time == 0f) {
                 StartAll();
             }
@@ -32,20 +33,38 @@ public class ParticleFeathers : MonoBehaviour {
                 StopAll();
             }
         }
+        // if (enabled) {
+        //     Debug.Log("enabled");
+        //     if (time == 0f) {
+        //         StartAll();
+        //     }
+        //
+        //     if (time < runtime) {
+        //         time += Time.deltaTime;
+        //     }
+        //
+        //     if (time > runtime) {
+        //         enabled = false;
+        //         time = 0f;
+        //         StopAll();
+        //     }
+        // }
 
     }
 
-    void StartAll() {
+    private void StartAll() {
         foreach (var e in emitters) {
             var particles = e.GetComponent<ParticleSystem>();
             particles.Play();
         }
     }
 
-    void StopAll() {
+    private void StopAll() {
         foreach (var e in emitters) {
             var particles = e.GetComponent<ParticleSystem>();
             particles.Stop();
         }
+
+        gameObject.SetActive(false);
     }
 }

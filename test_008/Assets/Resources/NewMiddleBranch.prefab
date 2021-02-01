@@ -4979,7 +4979,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1909046039688978669}
-  - component: {fileID: 8989424375524785372}
   m_Layer: 0
   m_Name: FeatherParticleManager
   m_TagString: Untagged
@@ -5002,22 +5001,6 @@ Transform:
   m_Father: {fileID: 4578076234403976}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8989424375524785372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6364000386194764831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 103524b6b86c6b242b725ffda5883478, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emitters:
-  - {fileID: 479648794552489593}
-  enabled: 0
-  runtime: 4
 --- !u!1 &6364196432800983525
 GameObject:
   m_ObjectHideFlags: 0

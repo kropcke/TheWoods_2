@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     bool oriented = false;
     GameObject middleBranch;
+    private GameObject particleFeatherGameObject;
     bool gameOver = false;
 
     public Texture restartButtonTexture;
@@ -195,7 +196,24 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
 
     }
+    [PunRPC]
+    public void EnableFeatherParticles(string name)
+    {
+        if (photonView.IsMine)
+        {
+            middleBranch.transform.GetChild(6).gameObject.SetActive(true);
+        }
 
+    }
+    [PunRPC]
+    public void DisableFeatherParticles(string name)
+    {
+        if (photonView.IsMine)
+        {
+            middleBranch.transform.GetChild(6).gameObject.SetActive(false);
+        }
+
+    }
     void Start()
     {
         if (photonView.IsMine)
@@ -203,6 +221,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             //TOOD: Pass from serverscript
 
             middleBranch = GameObject.Find("NewMiddleBranch");
+            particleFeatherGameObject = GameObject.Find("FeatherParticleManager");
             server = GameObject.FindGameObjectWithTag("Server");
             ARCam = GameObject.Find("ARCamera");
             ARCam.GetComponent<Vuforia.VuforiaBehaviour>().enabled = true;
@@ -235,8 +254,10 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            Debug.Log("gameOver = " + gameOver);
-
+            if (middleBranch.transform.GetChild(6).gameObject.activeInHierarchy)
+            {
+                print("Active");
+            }
             if (gameOver)
             {
                 StartClosingVideo();
