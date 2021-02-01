@@ -43,5 +43,7 @@ MonoBehaviour:
   - StopVoiceMail
   - TakeControl
   - UpdateVariableInServer
+  - DisableFeatherParticles
+  - EnableFeatherParticles
   DisableAutoOpenWizard: 1
   ShowSettings: 1
