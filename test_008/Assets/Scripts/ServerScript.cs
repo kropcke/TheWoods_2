@@ -237,7 +237,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 simulateTwoPlayers();
 
             }
-            if (gameStarted && PhotonNetwork.PlayerList.Length == 1)
+            if (gameStarted && PhotonNetwork.PlayerList.Length == 1 && !simulatePlayers)
             {
 
                 StartCoroutine(startNewGame());
@@ -259,6 +259,8 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     GameObject.Find("LightningStart").transform.position = players[0].transform.position;
                     GameObject.Find("LightningEnd").transform.position = players[1].transform.position;
+
+                    StartCoroutine(waitBeforeSpawningFirstBird(timeToWaitBeforeSpawningFirstBird));
 
                 }
                 else

@@ -1,14 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
-using Photon.Pun;
-using Photon.Realtime;
-using System;
 
-public class WaitingController : MonoBehaviourPunCallbacks
-{
+public class WaitingController : MonoBehaviourPunCallbacks {
 
     [SerializeField]
     private int mainSceneIndex;
@@ -19,7 +18,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
 
     private bool readyToStart;
     private bool startingGame;
-    private bool isMainSceneLoaded =false;
+    private bool isMainSceneLoaded = false;
     [SerializeField]
     private GameObject waitingMenu;
     [SerializeField]
@@ -27,104 +26,89 @@ public class WaitingController : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject backgroundAudio;
 
+    public bool simulatePlayers = true;
     // Start is called before the first frame update
-    void Start()
-    {
-        //playerCountUpdate();
-        
+    void Start() {
+
     }
 
-    public override void OnJoinedRoom()
-    {
+    public override void OnJoinedRoom() {
         print("number of players" + PhotonNetwork.PlayerList.Length);
-        if (PhotonNetwork.PlayerList.Length == 3)
-        {
+        if (PhotonNetwork.PlayerList.Length == 3) {
             readyToStart = true;
             waitingMenu.SetActive(false);
         }
 
     }
 
-    private void playerCountUpdate()
-    {
-        
+    private void playerCountUpdate() {
+
         playersCount = PhotonNetwork.PlayerList.Length;
         roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
-        if (playersCount == roomSize)
-        {
+        if (playersCount == roomSize || simulatePlayers) {
             readyToStart = true;
             waitingMenu.SetActive(false);
-        }
-        else
-        {
+        } else {
             readyToStart = false;
             waitingMenu.SetActive(true);
-            
-            
 
         }
     }
-    
-    public override void OnPlayerEnteredRoom(Player player)
-    {
+
+    public override void OnPlayerEnteredRoom(Player player) {
         Debug.Log("Player entered in Waiting controller: " + player.ActorNumber);
         playerCountUpdate();
-        
-        if (PhotonNetwork.IsMasterClient)
-        {
+
+        if (PhotonNetwork.IsMasterClient) {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
         }
     }
-    public override void OnPlayerLeftRoom(Player player)
-    {
+    public override void OnPlayerLeftRoom(Player player) {
         Debug.Log("Player left the room in Waiting controller: " + player.ActorNumber);
         playerCountUpdate();
-        if (PhotonNetwork.IsMasterClient)
-        {
+        if (PhotonNetwork.IsMasterClient) {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
         }
     }
     // Update is called once per frame
-    void Update()
-    {
-      
-        WaitForthePlayers();
-        if (videoPlayer.activeInHierarchy && !isMainSceneLoaded)
-        {
-            backgroundAudio.GetComponent<AudioSource>().volume = 0.5f;
-            videoPlayer.transform.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
-            if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying)
-            {
-            
-                isMainSceneLoaded = true;
-               
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    Debug.Log("Loading Main Scene");
-                    PhotonNetwork.LoadLevel(mainSceneIndex);
+    void Update() {
 
+        if (simulatePlayers && !isMainSceneLoaded) {
+            isMainSceneLoaded = true;
+            if (PhotonNetwork.IsMasterClient) {
+                PhotonNetwork.LoadLevel(mainSceneIndex);
+            }
+        } else {
+            WaitForthePlayers();
+            if (videoPlayer.activeInHierarchy && !isMainSceneLoaded) {
+                backgroundAudio.GetComponent<AudioSource>().volume = 0.5f;
+                videoPlayer.transform.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
+                if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying) {
+
+                    isMainSceneLoaded = true;
+
+                    if (PhotonNetwork.IsMasterClient) {
+                        Debug.Log("Loading Main Scene");
+                        PhotonNetwork.LoadLevel(mainSceneIndex);
+
+                    }
                 }
             }
         }
-      
-       
+
     }
 
-    private void WaitForthePlayers()
-    {
-        if (readyToStart)
-        {
-            
-            if (startingGame)
-            {
+    private void WaitForthePlayers() {
+        if (readyToStart) {
+
+            if (startingGame) {
                 return;
             }
             StartGame();
         }
     }
 
-    private void StartGame()
-    {
+    private void StartGame() {
         startingGame = true;
         //if (!PhotonNetwork.IsMasterClient)
         //{
@@ -133,11 +117,6 @@ public class WaitingController : MonoBehaviourPunCallbacks
         PhotonNetwork.CurrentRoom.IsOpen = false;
         videoPlayer.SetActive(true);
 
-
-
     }
 
-   
-
-   
 }
