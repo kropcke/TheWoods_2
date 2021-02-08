@@ -51,7 +51,7 @@ MonoBehaviour:
   magneticSpeed: 0.1
   collectionRadius: 0.1
   audioBubblesFlyingAtOneTime: 1
-  audioBubblePrefab: PrettyBird
+  birdPrefab: PrettyBird
   audioBubblesFlying: []
   audioBubblesPlayed: []
   audioBubblesHolding: []

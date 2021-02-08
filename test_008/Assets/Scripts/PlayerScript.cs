@@ -17,14 +17,11 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     bool oriented = false;
     GameObject middleBranch;
-    private GameObject particleFeatherGameObject;
     bool gameOver = false;
 
-    public Texture restartButtonTexture;
-    public Texture newGameTexture;
     GameObject server;
     private bool endingGame = false;
-    // private GameObject newGameButton;
+    private GameObject feathersParticleSystem;
 
     public void Awake()
     {
@@ -146,7 +143,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         }
 
     }
-
+    
     [PunRPC]
     public void StopVoiceMail(string soundClip)
     {
@@ -189,7 +186,8 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            for (int index = 0; index < middleBranch.transform.childCount; index++)
+            GameObject[] birdsOnBranch = GameObject.FindGameObjectsWithTag("BirdOnBranch");
+            for (int index = 0; index < birdsOnBranch.Length; index++)
             {
                 middleBranch.transform.GetChild(index).gameObject.SetActive(false);
             }
@@ -197,31 +195,25 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     }
     [PunRPC]
-    public void EnableFeatherParticles(string name)
+    public void EnableFeatherParticles(int index)
     {
         if (photonView.IsMine)
         {
-            middleBranch.transform.GetChild(6).gameObject.SetActive(true);
+            feathersParticleSystem.transform.GetComponent<ParticleFeathers>().enabled = true;
+            
         }
 
     }
-    [PunRPC]
-    public void DisableFeatherParticles(string name)
-    {
-        if (photonView.IsMine)
-        {
-            middleBranch.transform.GetChild(6).gameObject.SetActive(false);
-        }
-
-    }
+    
     void Start()
     {
         if (photonView.IsMine)
         {
+            
             //TOOD: Pass from serverscript
 
             middleBranch = GameObject.Find("NewMiddleBranch");
-            particleFeatherGameObject = GameObject.Find("FeatherParticleManager");
+            feathersParticleSystem = GameObject.Find("Feathers");
             server = GameObject.FindGameObjectWithTag("Server");
             ARCam = GameObject.Find("ARCamera");
             ARCam.GetComponent<Vuforia.VuforiaBehaviour>().enabled = true;
@@ -230,11 +222,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
             //GameObject.FindWithTag("ARImage").transform.GetChild(0).gameObject.
             //GetPhotonView().RequestOwnership();
             transform.localScale = Vector3.one * cubeSize;
-
-            //lineRenderer = transform.GetComponent<LineRenderer>();
-
-
-
 
         }
 
@@ -254,10 +241,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            if (middleBranch.transform.GetChild(6).gameObject.activeInHierarchy)
-            {
-                print("Active");
-            }
+           
             if (gameOver)
             {
                 StartClosingVideo();

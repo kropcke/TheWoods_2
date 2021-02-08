@@ -27,10 +27,10 @@ public class WaitingController : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject backgroundAudio;
 
+    public bool simulatePlayers = false;
     // Start is called before the first frame update
     void Start()
     {
-        //playerCountUpdate();
         
     }
 
@@ -50,7 +50,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
         
         playersCount = PhotonNetwork.PlayerList.Length;
         roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
-        if (playersCount == roomSize)
+        if (playersCount == roomSize || simulatePlayers)
         {
             readyToStart = true;
             waitingMenu.SetActive(false);
@@ -87,26 +87,34 @@ public class WaitingController : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-      
-        WaitForthePlayers();
-        if (videoPlayer.activeInHierarchy && !isMainSceneLoaded)
-        {
-            backgroundAudio.GetComponent<AudioSource>().volume = 0.5f;
-            videoPlayer.transform.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
-            if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying)
-            {
-            
-                isMainSceneLoaded = true;
-               
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    Debug.Log("Loading Main Scene");
-                    PhotonNetwork.LoadLevel(mainSceneIndex);
 
+        if (simulatePlayers && !isMainSceneLoaded)
+        {
+            isMainSceneLoaded = true;
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel(mainSceneIndex);
+            }
+        }else{
+            WaitForthePlayers();
+            if (videoPlayer.activeInHierarchy && !isMainSceneLoaded)
+            {
+                backgroundAudio.GetComponent<AudioSource>().volume = 0.5f;
+                videoPlayer.transform.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
+                if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying)
+                {
+                
+                    isMainSceneLoaded = true;
+                   
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        Debug.Log("Loading Main Scene");
+                        PhotonNetwork.LoadLevel(mainSceneIndex);
+
+                    }
                 }
             }
         }
-      
        
     }
 

@@ -17,38 +17,21 @@ public class ParticleFeathers : MonoBehaviour {
 
     // Update is called once per frame
     public void Update() {
-        if (gameObject.activeInHierarchy)
-        {
+        if (enabled) {
             if (time == 0f) {
                 StartAll();
             }
-
+        
             if (time < runtime) {
                 time += Time.deltaTime;
             }
-
+        
             if (time > runtime) {
                 enabled = false;
                 time = 0f;
                 StopAll();
             }
         }
-        // if (enabled) {
-        //     Debug.Log("enabled");
-        //     if (time == 0f) {
-        //         StartAll();
-        //     }
-        //
-        //     if (time < runtime) {
-        //         time += Time.deltaTime;
-        //     }
-        //
-        //     if (time > runtime) {
-        //         enabled = false;
-        //         time = 0f;
-        //         StopAll();
-        //     }
-        // }
 
     }
 
@@ -65,6 +48,5 @@ public class ParticleFeathers : MonoBehaviour {
             particles.Stop();
         }
 
-        gameObject.SetActive(false);
     }
 }

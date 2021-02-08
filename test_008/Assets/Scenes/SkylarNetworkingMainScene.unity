@@ -404,7 +404,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 7, y: -10, z: 6.078125, w: 1.5e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -719,6 +719,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1433695314, guid: 55c6817ee1cea40c6b2b240a19e4e1fd, type: 3}
       propertyPath: viewIdField
       value: 3
@@ -793,15 +801,35 @@ PrefabInstance:
       propertyPath: InstantiationId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 479648794552489593, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 664450228543975254, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 665928272898780545, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: BirdOnBranch
+      objectReference: {fileID: 0}
+    - target: {fileID: 1496658662693949629, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: BirdOnBranch
+      objectReference: {fileID: 0}
     - target: {fileID: 3849391826438077403, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850167231433226508, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: BirdOnBranch
       objectReference: {fileID: 0}
     - target: {fileID: 4093708368894869337, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
@@ -818,10 +846,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.0046
       objectReference: {fileID: 0}
+    - target: {fileID: 4387536492040297246, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_TagString
+      value: BirdOnBranch
+      objectReference: {fileID: 0}
     - target: {fileID: 4388453252630256073, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534815563405984394, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6364000386194764831, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
@@ -831,28 +869,48 @@ PrefabInstance:
     - target: {fileID: 6364000386194764831, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6997224372892118330, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: looping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8123674489763115724, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
         type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 2469818541172490235}
-    - target: {fileID: 0}
-      propertyPath: enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c6817ee1cea40c6b2b240a19e4e1fd, type: 3}
+--- !u!1 &383727378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4534815563405984394, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 383727377}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &383727379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383727378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 103524b6b86c6b242b725ffda5883478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitters:
+  - {fileID: 383727380}
+  enabled: 0
+  runtime: 3
+--- !u!1 &383727380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 479648794552489593, guid: 55c6817ee1cea40c6b2b240a19e4e1fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 383727377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &389906591
 GameObject:
   m_ObjectHideFlags: 0
@@ -4470,6 +4528,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PrettyBird
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393502474363973378, guid: 69cff944a47203d4b8d83873f1823083,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69cff944a47203d4b8d83873f1823083, type: 3}
