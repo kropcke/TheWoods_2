@@ -34,16 +34,17 @@ public class PlayerConnectorScript : MonoBehaviour {
     bool ready = false;
 
     void Start() {
-        player1Vine = new VineController();
-        player2Vine = new VineController();
+        Material lineMat = Resources.Load<Material>("LineVine");
+        player1Vine = new VineController("player1", lineMat);
+        player2Vine = new VineController("player2", lineMat);
 
         player1Spline = GameObject.Find("Spline1").GetComponent<SplineKitSpline>();
         player2Spline = GameObject.Find("Spline2").GetComponent<SplineKitSpline>();
         player1Decorator = GameObject.Find("Decorator1").GetComponent<SplineKitDecorator>();
         player2Decorator = GameObject.Find("Decorator2").GetComponent<SplineKitDecorator>();
 
-        branchTip1 = branch.transform.Find("Tip1").gameObject;
-        branchTip2 = branch.transform.Find("Tip2").gameObject;
+        branchTip1 = branch.transform.Find("BranchTip1").gameObject;
+        branchTip2 = branch.transform.Find("BranchTip2").gameObject;
 
     }
 
@@ -55,23 +56,45 @@ public class PlayerConnectorScript : MonoBehaviour {
             middleBranch = GameObject.Find("NewMiddleBranch");
             if (players.Length == 2) {
 
-                // if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
-                //     connectPlayerToBranch(players[0].transform.GetChild(1).gameObject, players[1].transform.GetChild(1).gameObject);
-                // } else {
-                //     connectPlayerToBranch(players[1].transform.GetChild(1).gameObject, players[0].transform.GetChild(1).gameObject);
-                // }
-
                 if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
-                    GameObject phone = players[0].transform.GetChild(1).gameObject;
-                    player1Vine.Setup(player1Spline, player1Decorator, phone, branchTip1, false);
+                    GameObject phone1 = players[0].transform.GetChild(1).gameObject;
+                    GameObject phone2 = players[1].transform.GetChild(1).gameObject;
+                    print("setup vine 1");
+                    player1Vine.Setup(
+                        player1Spline,
+                        player1Decorator, 
+                        players[0].transform.GetChild(1).gameObject, branchTip1, 
+                        true
+                    );
+                    player2Vine.Setup(
+                        player2Spline,
+                        player2Decorator, 
+                        players[1].transform.GetChild(1).gameObject, branchTip2, 
+                        true
+                    );
 
                 } else {
-                    GameObject phone = players[1].transform.GetChild(1).gameObject;
-                    player2Vine.Setup(player2Spline, player2Decorator, phone, branchTip2, true);
+                    GameObject phone1 = players[1].transform.GetChild(1).gameObject;
+                    GameObject phone2 = players[0].transform.GetChild(1).gameObject;
+                    player1Vine.Setup(
+                        player1Spline,
+                        player1Decorator, 
+                        players[1].transform.GetChild(1).gameObject, branchTip1, 
+                        true
+                    );
+                    player2Vine.Setup(
+                        player2Spline,
+                        player2Decorator, 
+                        players[0].transform.GetChild(1).gameObject, branchTip2, 
+                        true
+                    );
                 }
 
             }
             ready = true;
+        } else {
+            player1Vine.Update();
+            player2Vine.Update();
         }
     }
 

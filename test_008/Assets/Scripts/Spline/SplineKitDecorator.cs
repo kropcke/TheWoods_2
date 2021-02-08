@@ -46,9 +46,9 @@ public class SplineKitDecorator : MonoBehaviour {
                 }
 
                 float r = 0.8f;
-                r = Random.Range(.5f, 1.2f);
+                r = Random.Range(.5f,1.2f);
                 r *= (float)p / (float)instances.Length;
-                item.transform.localScale += new Vector3(r, r, r);
+                item.transform.localScale = new Vector3(r,r,r);
                 item.transform.Rotate(0f, Random.Range(-10f, 45f), 0f);
 
                 // item.transform.parent = transform;

@@ -5032,7 +5032,7 @@ GameObject:
   - component: {fileID: 1488462921}
   - component: {fileID: 1488462922}
   m_Layer: 0
-  m_Name: Tip2
+  m_Name: BranchTip2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5155,7 +5155,7 @@ GameObject:
   - component: {fileID: 1433695313}
   - component: {fileID: 1433695314}
   m_Layer: 0
-  m_Name: Tip1
+  m_Name: BranchTip1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

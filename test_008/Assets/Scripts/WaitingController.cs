@@ -26,7 +26,7 @@ public class WaitingController : MonoBehaviourPunCallbacks {
     [SerializeField]
     private GameObject backgroundAudio;
 
-    public bool simulatePlayers = true;
+    public bool simulatePlayers = false;
     // Start is called before the first frame update
     void Start() {
 

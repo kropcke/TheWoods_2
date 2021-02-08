@@ -28,10 +28,18 @@ public class VineController : MonoBehaviour {
 
     // TODO: Random distribution, rotation
 
-    void Start() {
-        // A = gameObject;
+    private string playerName;
 
+    public VineController(string player, Material lineMat) {
+        // print("created VineController for " + player);
+        playerName = player;
+        this.lineMat = lineMat;
     }
+
+    void Start() {
+        // This will never be called as VineController isn't attached to any entities
+    }
+    bool isSetup = false;
 
     public void Setup(SplineKitSpline spline, SplineKitDecorator decorator, GameObject phone, GameObject branchTip, bool reverse) {
         this.spline = spline;
@@ -41,11 +49,11 @@ public class VineController : MonoBehaviour {
         B = branchTip;
 
         // Set up LineRenderer
-        line = gameObject.AddComponent<LineRenderer>();
+        line = phone.AddComponent<LineRenderer>();
         line.material = lineMat;
         line.positionCount = 10;
-        line.startWidth = 0.1f;
-        line.endWidth = 0.1f;
+        line.startWidth = 0.02f;
+        line.endWidth = 0.02f;
 
         // Set up Catmul-Rom curve
         waypoints = new Transform[4];
@@ -58,14 +66,14 @@ public class VineController : MonoBehaviour {
         // Add additional waypoints to create a curve
         // One outside of A
         A1 = new GameObject("A1");
-        A1.transform.parent = A.transform;
+        // A1.transform.parent = A.transform;
         A1.transform.position = A.transform.position;
         A1.transform.position += new Vector3(SecondaryOffset, 0, 0);
         waypoints[1] = A1.transform;
 
         // And one outside of B
         B1 = new GameObject("B1");
-        B1.transform.parent = B.transform;
+        // B1.transform.parent = B.transform;
         B1.transform.position = B.transform.position;
         B1.transform.position += new Vector3(-SecondaryOffset, 0, 0);
         waypoints[2] = B1.transform;
@@ -79,12 +87,18 @@ public class VineController : MonoBehaviour {
         decorator.Run();
 
         isSetup = true;
+        // print("Done " + playerName);
     }
 
-    bool isSetup = false;
 
-    void Update() {
+    public void Update() {
         if (isSetup) {
+            A1.transform.position = A.transform.position;
+            A1.transform.position += new Vector3(SecondaryOffset, 0, 0);
+            B1.transform.position = B.transform.position;
+            B1.transform.position += new Vector3(-SecondaryOffset, 0, 0);
+
+
             // After the vines have been setup, run the real update loop
             spline.SetControlPoint(0, waypoints[0].position);
             spline.SetControlPoint(1, waypoints[1].position);
@@ -97,6 +111,9 @@ public class VineController : MonoBehaviour {
             }
 
             DrawSpline(Color.white);
+
+            
+            
         }
 
     }
