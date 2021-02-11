@@ -50,19 +50,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magneticSpeed: 0.1
   collectionRadius: 0.1
-  audioBubblesFlyingAtOneTime: 1
+  maxNumOfBirdsFlyingAtOneTime: 1
   birdPrefab: PrettyBird
-  audioBubblesFlying: []
-  audioBubblesPlayed: []
-  audioBubblesHolding: []
-  audioBubbleMoveSpeed: 0.01
-  smoothSpeed: 0.02
-  audioBubblesLeft: 
-  audioBubblestotalCount: 4
-  audioBubblesCollected: 0
+  birdsFlying: []
+  birdsPlayedVoiceMail: []
+  birdsHolding: []
+  birdMoveSpeed: 0.01
+  birdsLeft: 
+  totalBirdCount: 4
+  birdsCollected: 0
+  timeBetweenBirdSpawns: 5
+  timeToWaitBeforeSpawningFirstBird: 5
   audioBubbleVisualizations: []
   players: []
-  timeBetweenSpawns: 5
   distractionPrefabs:
   - Clouds
   distractionAudioPlayer: {fileID: 0}
@@ -74,7 +74,6 @@ MonoBehaviour:
   numOfVoiceMails: 2
   oscObj: {fileID: 0}
   patchName: 
-  timeToWaitBeforeSpawningFirstBird: 5
 --- !u!114 &3143578507052446124
 MonoBehaviour:
   m_ObjectHideFlags: 0

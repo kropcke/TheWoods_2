@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using System.Collections;
-using UnityEngine.Video;
 
 public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -132,8 +131,6 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator disableParticleSystem(float length)
     {
         yield return new WaitForSeconds(length);
-        Debug.Log("AudioPlayed");
-
         for (int i = 0; i < 4; i++)
         {
             if (middleBranch.transform.GetChild(i).gameObject.activeInHierarchy)

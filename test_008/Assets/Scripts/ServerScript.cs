@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
@@ -15,8 +14,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     bool startedGameOver = false;
     public static bool gameOver = false;
     bool gameStarted = false;
-    bool debugMode = true; // // todo: Move to gamecontroller.
-    bool simulatePlayers = false;
+    bool simulatePlayers = true;
 
     // Bird variables
     public float magneticSpeed = 0.5f;
@@ -25,18 +23,18 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public string birdPrefab;
     public List<GameObject> birdsFlying;
     public List<GameObject> birdsPlayedVoiceMail;
-    public HashSet<GameObject> birdsCurrentlyPlayingVoiceMail;
+    HashSet<GameObject> birdsCurrentlyPlayingVoiceMail;
     List<Vector3> birdMovementVectors;
     List<Vector3> birdTargetPositions;
     public List<GameObject> birdsHolding;
     public float birdMoveSpeed = 0.01f;
     public List<int> birdsLeft; // what is this?
-    public Dictionary<GameObject, int> birdToVoiceMailNumber;
+    Dictionary<GameObject, int> birdToVoiceMailNumber;
     public int totalBirdCount = 4;
     public int birdsCollected = 0;
     float distToChangeTarget = 0.25f; // for both cloud and bird
     public float timeBetweenBirdSpawns = 5f;
-    float lastSpawnTime = 0;
+    float birdLastSpawnTime = 0;
     public float timeToWaitBeforeSpawningFirstBird = 5f;
     bool readyToSpawnFirstBird = false;
 
@@ -61,10 +59,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     public float distractionMoveSpeed = 0.2f;
     public List<Vector3> distractionMoveVectors;
     public List<Vector3> distractionTargetPositions;
-    public Vector3 distractionIntialPosition;
-    List<float> distractionSpawnTimes;
-    List<float> distractionDestroyTimes;
-    
+    float distractionDestroyTime = 0;
+    public float timeBetweenDistractionSpawns = 3f;
+    bool readyToSpawnFirstDistraction = false;
+    public float timeToWaitBeforeSpawningFirstDistraction = 3f;
 
     private string voicemailPattern = "Voicemail-";
     public int numOfVoiceMails = 2;
@@ -102,8 +100,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             distractions = new List<GameObject>();
             distractionMoveVectors = new List<Vector3>();
-            distractionSpawnTimes = new List<float>();
-            distractionDestroyTimes = new List<float>();
             distractionTargetPositions = new List<Vector3>();
 
             //Start audio coming from Pd
@@ -169,6 +165,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                     GameObject.Find("LightningStart").transform.position = players[0].transform.position;
                     GameObject.Find("LightningEnd").transform.position = players[1].transform.position;
                     StartCoroutine(waitBeforeSpawningFirstBird(timeToWaitBeforeSpawningFirstBird));
+                    StartCoroutine(waitBeforeSpawningFirstDistraction(timeToWaitBeforeSpawningFirstDistraction));
 
                 }
                 else
@@ -191,6 +188,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                         lighteningAssigned = true;
 
                         StartCoroutine(waitBeforeSpawningFirstBird(timeToWaitBeforeSpawningFirstBird));
+                        StartCoroutine(waitBeforeSpawningFirstDistraction(timeToWaitBeforeSpawningFirstDistraction));
 
                     }
 
@@ -272,7 +270,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             }
             else if (option == "RestartGame")
             {
-                Debug.LogFormat("Inside RestartGame");
                 GameConfiguration.restartGame = true;
             }
 
@@ -333,6 +330,12 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         readyToSpawnFirstBird = true;
 
     }
+    IEnumerator waitBeforeSpawningFirstDistraction(float t)
+    {
+        yield return new WaitForSeconds(t);
+        readyToSpawnFirstDistraction = true;
+
+    }
     void ShowMenuOptions(string option)
     {
         //TODO:Change this
@@ -345,14 +348,14 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (
             readyToSpawnFirstBird && birdsFlying.Count + birdsHolding.Count < maxNumOfBirdsFlyingAtOneTime &&
-            Time.time - lastSpawnTime > timeBetweenBirdSpawns &&
+            Time.time - birdLastSpawnTime > timeBetweenBirdSpawns &&
             birdsLeft.Count > 0
         )
         {
             CreateAudioBubbleRandomClip();
-            lastSpawnTime = Time.time;
+            birdLastSpawnTime = Time.time;
         }
-        if (distractions.Count < numDistractionsAtOneTime)
+        if (readyToSpawnFirstDistraction && distractions.Count < numDistractionsAtOneTime && Time.time - distractionDestroyTime > timeBetweenDistractionSpawns)
         {
             CreateDistraction();
 
@@ -417,7 +420,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             if (Vector3.Distance(birdsFlying[i].transform.position, birdTargetPositions[i]) < distToChangeTarget)
             {
                 birdTargetPositions[i] = CreateNewRandomPosition();
-                // print("new position: " + birdTargetPositions[i].ToString());
             }
             if (enableOSC)
             {
@@ -595,7 +597,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (photonView.IsMine)
         {
             int clipNumber = birdsLeft[(int)Random.Range(0, birdsLeft.Count - 1)];
-            Debug.Log("clipNumber" + clipNumber);
             GameObject bubble = PhotonNetwork.Instantiate(birdPrefab, CreateNewRandomPosition(), Quaternion.identity);
             birdsLeft.Remove(clipNumber);
             birdsFlying.Add(bubble);
@@ -672,7 +673,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (players.Length == 2)
         {
-            distractionIntialPosition = CreateNewRandomPosition();
             GameObject d = PhotonNetwork.Instantiate(distractionPrefabs[Random.Range(0, distractionPrefabs.Length)], CreateNewRandomPosition(), Quaternion.identity);
             distractions.Add(d);
             float angle = Random.Range(0, 2 * Mathf.PI);
@@ -688,24 +688,6 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         }
     }
-
-    void UpdateDistractionsTimeout()
-    {
-        for (int i = 0; i < distractions.Count; i++)
-        {
-            if (Time.time > distractionDestroyTimes[i])
-            {
-                PhotonNetwork.Destroy(distractions[i]);
-                distractionSpawnTimes.RemoveAt(i);
-                distractionTargetPositions.RemoveAt(i);
-                distractionMoveVectors.RemoveAt(i);
-                distractions.RemoveAt(i);
-                distractionDestroyTimes.RemoveAt(i);
-                i--;
-            }
-        }
-    }
-
     void UpdateDistractionMovement()
     {
         for (int i = 0; i < distractions.Count; i++)
@@ -729,6 +711,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 distractionTargetPositions.RemoveAt(i);
                 PhotonNetwork.Destroy(distractions[i]);
                 distractions.RemoveAt(i);
+                distractionDestroyTime = Time.time;
             }
 
         }
@@ -833,11 +816,10 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             PhotonNetwork.Destroy(distractions[0]);
             distractions.RemoveAt(0);
+            distractionDestroyTime = Time.time;
         }
         distractions = new List<GameObject>();
         distractionMoveVectors = new List<Vector3>();
-        distractionSpawnTimes = new List<float>();
-        distractionDestroyTimes = new List<float>();
         distractionTargetPositions = new List<Vector3>();
         distractionsPickedUp = 0;
     }
@@ -900,7 +882,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             birdToVoiceMailNumber.Remove(audioBubble);
             birdsHolding.Remove(audioBubble);
             birdsCollected++;
-            lastSpawnTime = Time.time - 4f; // let the bird be created 5 - 4 = 1second after current audio clip
+            birdLastSpawnTime = Time.time - 4f; // let the bird be created 5 - 4 = 1second after current audio clip
         }
     }
 
