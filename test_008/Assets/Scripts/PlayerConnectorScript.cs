@@ -43,8 +43,8 @@ public class PlayerConnectorScript : MonoBehaviour {
         player1Decorator = GameObject.Find("Decorator1").GetComponent<SplineKitDecorator>();
         player2Decorator = GameObject.Find("Decorator2").GetComponent<SplineKitDecorator>();
 
-        branchTip1 = branch.transform.Find("BranchTip1").gameObject;
-        branchTip2 = branch.transform.Find("BranchTip2").gameObject;
+        branchTip1 = GameObject.Find("BranchTip2").gameObject;
+        branchTip2 = GameObject.Find("BranchTip1").gameObject;
 
     }
 

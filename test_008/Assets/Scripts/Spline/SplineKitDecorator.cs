@@ -45,9 +45,9 @@ public class SplineKitDecorator : MonoBehaviour {
                     item.transform.LookAt(position + spline.GetDirection(p * stepSize));
                 }
 
-                float r = 0.8f;
-                r = Random.Range(.5f,1.2f);
-                r *= (float)p / (float)instances.Length;
+                float r = 0.2f;
+                // r = Random.Range(.5f,.5f);
+                // r *= (float)p / (float)instances.Length;
                 item.transform.localScale = new Vector3(r,r,r);
                 item.transform.Rotate(0f, Random.Range(-10f, 45f), 0f);
 

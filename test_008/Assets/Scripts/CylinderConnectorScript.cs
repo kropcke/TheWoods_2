@@ -59,6 +59,7 @@ public class CylinderConnectorScript : MonoBehaviour
 
             LinkObject.transform.rotation = Quaternion.LookRotation(Direction, Vector3.right) * Quaternion.Euler(0, 0, 0);
             Vector3 unused = EndObject.transform.position - StartObject.transform.position;
+            // TODO: this is bad- don't do this
             if (enableCylinder)
             {
 

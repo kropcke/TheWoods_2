@@ -235,7 +235,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (photonView.IsMine)
         {
-            Debug.Log("gameOver = " + gameOver);
+            // Debug.Log("gameOver = " + gameOver);
 
             if (gameOver)
             {
