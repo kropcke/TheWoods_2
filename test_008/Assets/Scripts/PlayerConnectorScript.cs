@@ -51,11 +51,15 @@ public class PlayerConnectorScript : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // make sure VineController.Setup() is called only once
+    
         if (!ready) {
+            print("something awesome");
+            
             players = GameObject.FindGameObjectsWithTag("Player");
+            print(players.Length);
             middleBranch = GameObject.Find("NewMiddleBranch");
             if (players.Length == 2) {
-
+                print("players something");
                 if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
                     GameObject phone1 = players[0].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[1].transform.GetChild(1).gameObject;
@@ -89,9 +93,9 @@ public class PlayerConnectorScript : MonoBehaviour {
                         true
                     );
                 }
-
+                ready = true;
             }
-            ready = true;
+            
         } else {
             player1Vine.Update();
             player2Vine.Update();
