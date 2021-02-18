@@ -167,6 +167,8 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                     StartCoroutine(waitBeforeSpawningFirstBird(timeToWaitBeforeSpawningFirstBird));
                     StartCoroutine(waitBeforeSpawningFirstDistraction(timeToWaitBeforeSpawningFirstDistraction));
 
+                    StartCoroutine(waitBeforeSpawningFirstBird(timeToWaitBeforeSpawningFirstBird));
+
                 }
                 else
                 {

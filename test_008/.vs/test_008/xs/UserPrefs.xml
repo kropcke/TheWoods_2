@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameEndController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerConnectorScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/WaitingController.cs" Line="138" Column="6" />
-      <File FileName="Assets/Scripts/PlayerScript.cs" Line="305" Column="1" />
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="227" Column="22" />
+      <File FileName="Assets/Scripts/WaitingController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerScript.cs" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="52" Column="33" />
       <File FileName="Assets/Scripts/GameEndController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerConnectorScript.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,7 +18,7 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="GameEndController.cs" selected="True" />
+                <Node name="PlayerConnectorScript.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -26,11 +27,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="../../../Assets/Scripts/DistractionController.cs" line="11" offsetX="-1" offsetY="-1" expression="variables" liveUpdate="False" />
-    <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
+    <Watch file="../../../Assets/Scripts/DistractionController.cs" line="11" column="0" endLine="0" endColumn="0" offsetX="-1" offsetY="-1" expression="variables" liveUpdate="False" />
+    <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" column="0" endLine="0" endColumn="0" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8d077523-f89a-43a3-b03e-4151dc3105f5" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="da360a9b-ede1-40dc-a1c4-a57adbf1ce21" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

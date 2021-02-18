@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerConnectorScript : MonoBehaviour
-{
+public class PlayerConnectorScript : MonoBehaviour {
     GameObject[] players;
     GameObject middleBranch;
     public GameObject dot;
@@ -20,91 +19,137 @@ public class PlayerConnectorScript : MonoBehaviour
     bool createdots = true;
     public int count;
 
-    void Start()
-    {
+    public SplineKitSpline player1Spline;
+    public SplineKitSpline player2Spline;
+    public SplineKitDecorator player1Decorator;
+    public SplineKitDecorator player2Decorator;
+
+    private VineController player1Vine;
+    private VineController player2Vine;
+
+    public GameObject branch;
+    private GameObject branchTip1;
+    private GameObject branchTip2;
+
+    bool ready = false;
+
+    void Start() {
+        Material lineMat = Resources.Load<Material>("LineVine");
+        player1Vine = new VineController("player1", lineMat);
+        player2Vine = new VineController("player2", lineMat);
+
+        player1Spline = GameObject.Find("Spline1").GetComponent<SplineKitSpline>();
+        player2Spline = GameObject.Find("Spline2").GetComponent<SplineKitSpline>();
+        player1Decorator = GameObject.Find("Decorator1").GetComponent<SplineKitDecorator>();
+        player2Decorator = GameObject.Find("Decorator2").GetComponent<SplineKitDecorator>();
+
+        branchTip1 = GameObject.Find("BranchTip2").gameObject;
+        branchTip2 = GameObject.Find("BranchTip1").gameObject;
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        players = GameObject.FindGameObjectsWithTag("Player");
-        middleBranch = GameObject.Find("NewMiddleBranch");
-        if (players.Length == 2)
-        {
+    void Update() {
+        // make sure VineController.Setup() is called only once
+    
+        if (!ready) {
+            print("something awesome");
+            
+            players = GameObject.FindGameObjectsWithTag("Player");
+            print(players.Length);
+            middleBranch = GameObject.Find("NewMiddleBranch");
+            if (players.Length == 2) {
+                print("players something");
+                if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
+                    GameObject phone1 = players[0].transform.GetChild(1).gameObject;
+                    GameObject phone2 = players[1].transform.GetChild(1).gameObject;
+                    print("setup vine 1");
+                    player1Vine.Setup(
+                        player1Spline,
+                        player1Decorator, 
+                        players[0].transform.GetChild(1).gameObject, branchTip1, 
+                        true
+                    );
+                    player2Vine.Setup(
+                        player2Spline,
+                        player2Decorator, 
+                        players[1].transform.GetChild(1).gameObject, branchTip2, 
+                        true
+                    );
 
-            if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID)
-            {
-                connectPlayerToBranch(players[0].transform.GetChild(1).gameObject, players[1].transform.GetChild(1).gameObject);
+                } else {
+                    GameObject phone1 = players[1].transform.GetChild(1).gameObject;
+                    GameObject phone2 = players[0].transform.GetChild(1).gameObject;
+                    player1Vine.Setup(
+                        player1Spline,
+                        player1Decorator, 
+                        players[1].transform.GetChild(1).gameObject, branchTip1, 
+                        true
+                    );
+                    player2Vine.Setup(
+                        player2Spline,
+                        player2Decorator, 
+                        players[0].transform.GetChild(1).gameObject, branchTip2, 
+                        true
+                    );
+                }
+                ready = true;
             }
-            else
-            {
-                connectPlayerToBranch(players[1].transform.GetChild(1).gameObject, players[0].transform.GetChild(1).gameObject);
-            }
-
-        }
-
-
-    }
-    void connectPlayerToBranch(GameObject gameObj1, GameObject gameObj2)
-    {
-        if (createdots)
-        {
-            dots1 = createDots(middleBranch.transform.GetChild(4).transform.position, gameObj1.transform.position);
-            dots2 = createDots(middleBranch.transform.GetChild(5).transform.position, gameObj2.transform.position);
-            createdots = false;
-        }
-        if (dots1 != null)
-        {
-            updateDots(middleBranch.transform.GetChild(4).transform.position, gameObj1.transform.position, dots1);
-        }
-        if (dots2 != null)
-        {
-            updateDots(middleBranch.transform.GetChild(5).transform.position, gameObj2.transform.position, dots2);
+            
+        } else {
+            player1Vine.Update();
+            player2Vine.Update();
         }
     }
 
-    List<GameObject> createDots(Vector3 start, Vector3 end)
-    {
+    // void connectPlayerToBranch(GameObject gameObj1, GameObject gameObj2) {
+    //     if (createdots) {
+    //         dots1 = createDots(middleBranch.transform.GetChild(4).transform.position, gameObj1.transform.position);
+    //         dots2 = createDots(middleBranch.transform.GetChild(5).transform.position, gameObj2.transform.position);
+    //         createdots = false;
+    //     }
+    //     if (dots1 != null) {
+    //         updateDots(middleBranch.transform.GetChild(4).transform.position, gameObj1.transform.position, dots1);
+    //     }
+    //     if (dots2 != null) {
+    //         updateDots(middleBranch.transform.GetChild(5).transform.position, gameObj2.transform.position, dots2);
+    //     }
+    // }
 
-        Vector3 distance = end - start;
-        Vector3 delta = distance / count;
-        List<GameObject> dots = new List<GameObject>();
+    // List<GameObject> createDots(Vector3 start, Vector3 end) {
 
-        for (int i = 0; i < count; i++)
-        {
-            var g = GetOneDot();
-            g.transform.localScale = Vector3.one * size;
-            g.transform.parent = transform;
-            dots.Add(g);
+    //     Vector3 distance = end - start;
+    //     Vector3 delta = distance / count;
+    //     List<GameObject> dots = new List<GameObject>();
 
-        }
+    //     for (int i = 0; i < count; i++) {
+    //         var g = GetOneDot();
+    //         g.transform.localScale = Vector3.one * size;
+    //         g.transform.parent = transform;
+    //         dots.Add(g);
 
-        return dots;
-    }
+    //     }
 
-    void updateDots(Vector3 start, Vector3 end, List<GameObject> dots)
-    {
-        Vector3 distance = end - start;
-        Vector3 delta = distance / count;
+    //     return dots;
+    // }
 
-        int i = 0;
-        foreach (var d in dots)
-        {
-            d.transform.position = start + i * delta;
-            i++;
-        }
-    }
+    // void updateDots(Vector3 start, Vector3 end, List<GameObject> dots) {
+    //     Vector3 distance = end - start;
+    //     Vector3 delta = distance / count;
 
-    GameObject GetOneDot()
-    {
-        var gameObject1 = Instantiate(dot);
-        gameObject1.transform.localScale = Vector3.one * size;
-        gameObject1.transform.parent = transform;
-        return gameObject1;
-    }
+    //     int i = 0;
+    //     foreach (var d in dots) {
+    //         d.transform.position = start + i * delta;
+    //         i++;
+    //     }
+    // }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-    }
+    // GameObject GetOneDot() {
+    //     var gameObject1 = Instantiate(dot);
+    //     gameObject1.transform.localScale = Vector3.one * size;
+    //     gameObject1.transform.parent = transform;
+    //     return gameObject1;
+    // }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) { }
 }

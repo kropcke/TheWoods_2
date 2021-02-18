@@ -223,3 +223,8 @@ MonoBehaviour:
   size: 0.01
   delta: 0.1
   count: 10
+  player1Spline: {fileID: 0}
+  player2Spline: {fileID: 0}
+  player1Decorator: {fileID: 0}
+  player2Decorator: {fileID: 0}
+  branch: {fileID: 1621686502081742, guid: 55c6817ee1cea40c6b2b240a19e4e1fd, type: 3}
