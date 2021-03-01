@@ -70,7 +70,8 @@ MonoBehaviour:
   distractionMoveSpeed: 0.2
   distractionMoveVectors: []
   distractionTargetPositions: []
-  distractionIntialPosition: {x: 0, y: 0, z: 0}
+  timeBetweenDistractionSpawns: 3
+  timeToWaitBeforeSpawningFirstDistraction: 3
   numOfVoiceMails: 2
   oscObj: {fileID: 0}
   patchName: 

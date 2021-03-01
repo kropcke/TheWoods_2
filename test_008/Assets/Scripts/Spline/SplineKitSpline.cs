@@ -135,7 +135,33 @@ public class SplineKitSpline : MonoBehaviour {
             t -= i;
             i *= 3;
         }
-        return transform.TransformPoint(SplineKitCurve.GetPoint(points[i], points[i + 1], points[i + 2], points[i + 3], t));
+        return SplineKitCurve.GetPoint(
+                points[i],
+                points[i + 1],
+                points[i + 2],
+                points[i + 3],
+                t
+            );
+        // return transform.TransformPoint(
+        //     SplineKitCurve.GetPoint(
+        //         points[i],
+        //         points[i + 1],
+        //         points[i + 2],
+        //         points[i + 3],
+        //         t
+        //     )
+        // );
+    }
+
+    void OnDrawGizmos() {
+        int i = 0;
+        foreach (var point in points) {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(point, .03f);
+
+            // UnityEditor.Handles.Label(point + Vector3.forward * .0f, i.ToString());
+            i++;
+        }
     }
 
     public Vector3 GetVelocity(float t) {

@@ -40,6 +40,7 @@ public class PlayerConnectorScript : MonoBehaviour {
 
         player1Spline = GameObject.Find("Spline1").GetComponent<SplineKitSpline>();
         player2Spline = GameObject.Find("Spline2").GetComponent<SplineKitSpline>();
+        
         player1Decorator = GameObject.Find("Decorator1").GetComponent<SplineKitDecorator>();
         player2Decorator = GameObject.Find("Decorator2").GetComponent<SplineKitDecorator>();
 
@@ -61,30 +62,31 @@ public class PlayerConnectorScript : MonoBehaviour {
             if (players.Length == 2) {
                 print("players something");
                 if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
+                    print("setup vine 1");
                     GameObject phone1 = players[0].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[1].transform.GetChild(1).gameObject;
-                    print("setup vine 1");
                     player1Vine.Setup(
                         player1Spline,
                         player1Decorator, 
                         players[0].transform.GetChild(1).gameObject, branchTip1, 
-                        true
+                        false
                     );
                     player2Vine.Setup(
                         player2Spline,
                         player2Decorator, 
                         players[1].transform.GetChild(1).gameObject, branchTip2, 
-                        true
+                        false
                     );
 
                 } else {
+                    print("setup vine 2");
                     GameObject phone1 = players[1].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[0].transform.GetChild(1).gameObject;
                     player1Vine.Setup(
                         player1Spline,
                         player1Decorator, 
                         players[1].transform.GetChild(1).gameObject, branchTip1, 
-                        true
+                        false
                     );
                     player2Vine.Setup(
                         player2Spline,

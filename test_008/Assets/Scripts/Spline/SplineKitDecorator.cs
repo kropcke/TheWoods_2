@@ -1,7 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class SplineKitDecorator : MonoBehaviour {
+
+    // [SerializeField]
+    public float scaleMin = .1f;
+    public float scaleMax = .15f;
+
 
     public SplineKitSpline spline;
 
@@ -16,6 +22,8 @@ public class SplineKitDecorator : MonoBehaviour {
     bool running = false;
 
     private float stepSize;
+
+
 
     void Start() { }
 
@@ -46,8 +54,8 @@ public class SplineKitDecorator : MonoBehaviour {
                 }
 
                 float r = 0.2f;
-                // r = Random.Range(.5f,.5f);
-                // r *= (float)p / (float)instances.Length;
+                r = Random.Range(scaleMin, scaleMax);
+                r *= (float)p / (float)instances.Length;
                 item.transform.localScale = new Vector3(r,r,r);
                 item.transform.Rotate(0f, Random.Range(-10f, 45f), 0f);
 
@@ -75,4 +83,6 @@ public class SplineKitDecorator : MonoBehaviour {
             }
         }
     }
+
+
 }
