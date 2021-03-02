@@ -54,15 +54,12 @@ public class PlayerConnectorScript : MonoBehaviour {
         // make sure VineController.Setup() is called only once
 
         if (!ready) {
-            print("something awesome");
 
             players = GameObject.FindGameObjectsWithTag("Player");
-            print(players.Length);
             middleBranch = GameObject.Find("NewMiddleBranch");
             if (players.Length == 2) {
-                print("players something");
                 if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
-                    print("setup vine 1");
+                    // print("setup vine 1");
                     GameObject phone1 = players[0].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[1].transform.GetChild(1).gameObject;
                     player1Vine.Setup(
@@ -79,7 +76,7 @@ public class PlayerConnectorScript : MonoBehaviour {
                     );
 
                 } else {
-                    print("setup vine 2");
+                    // print("setup vine 2");
                     GameObject phone1 = players[1].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[0].transform.GetChild(1).gameObject;
                     player1Vine.Setup(
