@@ -14,7 +14,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     bool startedGameOver = false;
     public static bool gameOver = false;
     bool gameStarted = false;
-    bool simulatePlayers = false;
+    bool simulatePlayers = true;
 
     // Bird variables
     public float magneticSpeed = 0.5f;
@@ -229,6 +229,9 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
                 MagneticAudioMovement();
 
             }
+
+
+            // Server Commands
             if (Input.GetKeyDown(KeyCode.Space) || GameConfiguration.restartGame)
             {
                 Debug.LogFormat("Restarting game: Restart variable value is {0} ", GameConfiguration.restartGame);
@@ -243,6 +246,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
             {
                 AudioPickedUp(birdsHolding[0]);
             }
+            // Add a bird to the branch
             if (Input.GetKeyDown(KeyCode.D) && birdsHolding.Count > 0)
             {
                 birdsLeft.Add(birdToVoiceMailNumber[birdsHolding[0]]);

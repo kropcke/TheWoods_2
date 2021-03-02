@@ -20,7 +20,7 @@ public class VineController : MonoBehaviour {
     public bool displayTangents = false;
     public bool displayPath = true;
 
-    public float SecondaryOffset = 2f;
+    public float SecondaryOffset = .6f;
 
     private SplineKitSpline spline;
     private SplineKitDecorator decorator;
@@ -51,31 +51,31 @@ public class VineController : MonoBehaviour {
         // Set up LineRenderer
         line = phone.AddComponent<LineRenderer>();
         line.material = lineMat;
-        line.positionCount = 2;
-        line.startWidth = 0.02f;
-        line.endWidth = 0.02f;
+        line.positionCount = 10;
+        line.widthMultiplier = 0.004f;
 
         // Set up Catmul-Rom curve
         waypoints = new Transform[4];
         waypoints[0] = phoneGameObject.transform;
 
-        if (flagReverse) {
-            SecondaryOffset = -SecondaryOffset;
-        }
+        // if (flagReverse) {
+        //     SecondaryOffset = -SecondaryOffset;
+        // }
+        this.flagReverse = reverse;
 
         // Add additional waypoints to create a curve
         // One outside of A
         A1 = new GameObject("A1");
         // A1.transform.parent = A.transform;
         A1.transform.position = phoneGameObject.transform.position;
-        A1.transform.position += new Vector3(SecondaryOffset, 0, 0);
+        // A1.transform.position += new Vector3(SecondaryOffset, 0, 0);
         waypoints[1] = A1.transform;
 
         // And one outside of B
         B1 = new GameObject("B1");
         // B1.transform.parent = B.transform;
         B1.transform.position = branchTipGameObject.transform.position;
-        B1.transform.position += new Vector3(-SecondaryOffset, 0, 0);
+        // B1.transform.position += new Vector3(-SecondaryOffset, 0, 0);
         waypoints[2] = B1.transform;
 
         waypoints[3] = branchTipGameObject.transform;
@@ -92,30 +92,45 @@ public class VineController : MonoBehaviour {
 
     public void Update() {
         if (isSetup) {
-            GameObject middleBranch = GameObject.Find("NewMiddleBranch");
-            A1.transform.position = phoneGameObject.transform.position + new Vector3(SecondaryOffset, 0, 0);
-            B1.transform.position = branchTipGameObject.transform.position + new Vector3(-SecondaryOffset, 0, 0) /* + middleBranch.transform.position */;
-            
+            float distance = Vector3.Distance(phoneGameObject.transform.position, branchTipGameObject.transform.position);
+
+            var delta = (phoneGameObject.transform.position - branchTipGameObject.transform.position);
+            delta.y = 0;
+            var normalized = delta.normalized;
+
+            float offset = distance / 2;
+
+            if (flagReverse) {
+                offset *= -1;
+            }
+
+
+            delta *= -1;
+            Vector3 offsetA1 = delta / 2;
+            Vector3 offsetB1 = delta / 2;
+
+
+            A1.transform.position = phoneGameObject.transform.position + offsetA1;
+            B1.transform.position = branchTipGameObject.transform.position - offsetB1;
 
             // After the vines have been setup, run the real update loop
             spline.SetControlPoint(0, phoneGameObject.transform.position);
-            spline.SetControlPoint(1, phoneGameObject.transform.position);
-            spline.SetControlPoint(2, branchTipGameObject.transform.position);
+            spline.SetControlPoint(1, A1.transform.position);
+            spline.SetControlPoint(2, B1.transform.position);
             spline.SetControlPoint(3, branchTipGameObject.transform.position);
 
-            // spline.SetControlPoint(0, phoneGameObject.transform.position);
-            // spline.SetControlPoint(1, phoneGameObject.transform.position);
-            // spline.SetControlPoint(2, new Vector3(1,0,1));
-            // spline.SetControlPoint(3, new Vector3(1,0,1));
+
 
             float resolution = 1f / (float)(line.positionCount - 1);
-            for (int i = 0; i < line.positionCount; i++) {
+            for (int i = 0; i < line.positionCount - 1; i++) {
                 line.SetPosition(i, spline.GetPoint((float)i * resolution));
             }
+            line.SetPosition(line.positionCount - 1, spline.GetPoint(1f));
 
             // line.SetPosition(0, phoneGameObject.transform.position);
-            // line.SetPosition(1, branchTipGameObject.transform.position);
-            // line.SetPosition(1, middleBranch.transform.position);
+            // line.SetPosition(1, A1.transform.position);
+            // line.SetPosition(2, B1.transform.position);
+            // line.SetPosition(3, branchTipGameObject.transform.position);
 
             DrawSpline(Color.white);
 
@@ -131,6 +146,7 @@ public class VineController : MonoBehaviour {
             Debug.DrawLine(last, next, color);
             last = next;
         }
+        Debug.DrawLine(last, branchTipGameObject.transform.position, color);
 
     }
 

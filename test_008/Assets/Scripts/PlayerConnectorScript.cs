@@ -40,66 +40,78 @@ public class PlayerConnectorScript : MonoBehaviour {
 
         player1Spline = GameObject.Find("Spline1").GetComponent<SplineKitSpline>();
         player2Spline = GameObject.Find("Spline2").GetComponent<SplineKitSpline>();
+
         player1Decorator = GameObject.Find("Decorator1").GetComponent<SplineKitDecorator>();
         player2Decorator = GameObject.Find("Decorator2").GetComponent<SplineKitDecorator>();
 
-        branchTip1 = GameObject.Find("BranchTip2").gameObject;
-        branchTip2 = GameObject.Find("BranchTip1").gameObject;
+        branchTip1 = GameObject.Find("BranchTip2");
+        branchTip2 = GameObject.Find("BranchTip1");
 
     }
 
     // Update is called once per frame
     void Update() {
         // make sure VineController.Setup() is called only once
-    
+
         if (!ready) {
-            print("something awesome");
-            
+
             players = GameObject.FindGameObjectsWithTag("Player");
-            print(players.Length);
             middleBranch = GameObject.Find("NewMiddleBranch");
             if (players.Length == 2) {
-                print("players something");
                 if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
+                    // print("setup vine 1");
                     GameObject phone1 = players[0].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[1].transform.GetChild(1).gameObject;
-                    print("setup vine 1");
                     player1Vine.Setup(
                         player1Spline,
-                        player1Decorator, 
-                        players[0].transform.GetChild(1).gameObject, branchTip1, 
-                        true
+                        player1Decorator,
+                        players[0].transform.GetChild(1).gameObject, branchTip1,
+                        false
                     );
                     player2Vine.Setup(
                         player2Spline,
-                        player2Decorator, 
-                        players[1].transform.GetChild(1).gameObject, branchTip2, 
-                        true
+                        player2Decorator,
+                        players[1].transform.GetChild(1).gameObject, branchTip2,
+                        false
                     );
 
                 } else {
+                    // print("setup vine 2");
                     GameObject phone1 = players[1].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[0].transform.GetChild(1).gameObject;
                     player1Vine.Setup(
                         player1Spline,
-                        player1Decorator, 
-                        players[1].transform.GetChild(1).gameObject, branchTip1, 
-                        true
+                        player1Decorator,
+                        players[1].transform.GetChild(1).gameObject, branchTip1,
+                        false
                     );
                     player2Vine.Setup(
                         player2Spline,
-                        player2Decorator, 
-                        players[0].transform.GetChild(1).gameObject, branchTip2, 
+                        player2Decorator,
+                        players[0].transform.GetChild(1).gameObject, branchTip2,
                         true
                     );
                 }
                 ready = true;
             }
-            
+
         } else {
+            // player1Vine.Update();
+            // player2Vine.Update();
+        }
+    }
+
+    void LateUpdate() {
+        if (ready) {
             player1Vine.Update();
             player2Vine.Update();
         }
+    }
+
+    public void OnDrawGizmos() {
+        // Gizmos.color = Color.red;
+        // Gizmos.DrawSphere(branchTip1.transform.position, .05f);
+        // Gizmos.DrawSphere(branchTip2.transform.position, .05f);
     }
 
     // void connectPlayerToBranch(GameObject gameObj1, GameObject gameObj2) {
