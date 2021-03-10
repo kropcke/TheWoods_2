@@ -159,7 +159,7 @@ public class SplineKitSpline : MonoBehaviour {
             // Gizmos.color = Color.green;
             // Gizmos.DrawSphere(point, .03f);
 
-            UnityEditor.Handles.Label(point + Vector3.forward * .0f, i.ToString());
+            // UnityEditor.Handles.Label(point + Vector3.forward * .0f, i.ToString());
             i++;
         }
     }

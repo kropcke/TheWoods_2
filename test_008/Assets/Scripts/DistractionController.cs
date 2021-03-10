@@ -79,7 +79,9 @@ public class DistractionController : MonoBehaviourPunCallbacks
 	{
         if (other.gameObject.tag == "ConnectorLink")
         {
+			#if UNITY_IOS
             Handheld.Vibrate();
+			#endif
             if (photonView.IsMine)
             {
                 inDistraction = true;
