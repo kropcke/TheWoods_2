@@ -5,8 +5,8 @@ using UnityEngine;
 public class SplineKitDecorator : MonoBehaviour {
 
     // [SerializeField]
-    public float scaleMin = .1f;
-    public float scaleMax = .15f;
+    // public float scaleMin = .1f;
+    // public float scaleMax = .15f;
 
 
     public SplineKitSpline spline;
@@ -44,6 +44,9 @@ public class SplineKitDecorator : MonoBehaviour {
         }
 
         int inst = 0;
+        float scaleMultiplier = .05f;
+        float scaleReduction = 0.0025f;
+
         for (int p = 0, f = 0; f < frequency; f++) {
             for (int i = 0; i < items.Length; i++, p++) {
                 Transform item = Instantiate(items[i])as Transform;
@@ -54,11 +57,12 @@ public class SplineKitDecorator : MonoBehaviour {
                 }
 
                 float r = 0.2f;
-                r = Random.Range(scaleMin, scaleMax);
-                r *= (float)(p+1) / (float)instances.Length;
-                r = .05f;
+                // r = Random.Range(scaleMin, scaleMax);
+                // r *= (float)(p+1) / (float)instances.Length;
+                r = scaleMultiplier + p*scaleReduction;
+                // r = .05f;
                 item.transform.localScale = new Vector3(r,r,r);
-                item.transform.Rotate(0f, Random.Range(-10f, 45f), 0f);
+                item.transform.Rotate(0f, Random.Range(-10f, 90f), 0f);
 
                 // item.transform.parent = transform;
                 instances[inst] = item;
