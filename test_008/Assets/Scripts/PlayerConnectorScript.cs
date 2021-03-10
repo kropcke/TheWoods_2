@@ -59,24 +59,26 @@ public class PlayerConnectorScript : MonoBehaviour {
             middleBranch = GameObject.Find("NewMiddleBranch");
             if (players.Length == 2) {
                 if (players[0].GetPhotonView().ViewID > players[1].GetPhotonView().ViewID) {
-                    // print("setup vine 1");
+                    print("setup vine 1");
                     GameObject phone1 = players[0].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[1].transform.GetChild(1).gameObject;
                     player1Vine.Setup(
                         player1Spline,
                         player1Decorator,
-                        players[0].transform.GetChild(1).gameObject, branchTip1,
+                        // players[0].transform.GetChild(1).gameObject, branchTip1,
+                        players[1].transform.GetChild(1).gameObject, branchTip1,
                         false
                     );
                     player2Vine.Setup(
                         player2Spline,
                         player2Decorator,
-                        players[1].transform.GetChild(1).gameObject, branchTip2,
+                        // players[1].transform.GetChild(1).gameObject, branchTip2,
+                        players[0].transform.GetChild(1).gameObject, branchTip2,
                         true
                     );
 
                 } else {
-                    // print("setup vine 2");
+                    print("setup vine 2");
                     GameObject phone1 = players[1].transform.GetChild(1).gameObject;
                     GameObject phone2 = players[0].transform.GetChild(1).gameObject;
                     player1Vine.Setup(
