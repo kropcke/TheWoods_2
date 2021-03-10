@@ -72,7 +72,7 @@ public class PlayerConnectorScript : MonoBehaviour {
                         player2Spline,
                         player2Decorator,
                         players[1].transform.GetChild(1).gameObject, branchTip2,
-                        false
+                        true
                     );
 
                 } else {

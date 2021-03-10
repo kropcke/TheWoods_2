@@ -69,7 +69,7 @@ public class SplineKitDecorator : MonoBehaviour {
         running = true;
     }
 
-    void Update() {
+    void LateUpdate() {
         if (running) {
             int p = 0;
             foreach (var item in instances) {
