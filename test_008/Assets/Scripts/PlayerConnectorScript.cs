@@ -66,14 +66,14 @@ public class PlayerConnectorScript : MonoBehaviour {
                         player1Spline,
                         player1Decorator,
                         // players[0].transform.GetChild(1).gameObject, branchTip1,
-                        players[1].transform.GetChild(1).gameObject, branchTip1,
+                        players[0].transform.GetChild(1).gameObject, branchTip1,
                         false
                     );
                     player2Vine.Setup(
                         player2Spline,
                         player2Decorator,
                         // players[1].transform.GetChild(1).gameObject, branchTip2,
-                        players[0].transform.GetChild(1).gameObject, branchTip2,
+                        players[1].transform.GetChild(1).gameObject, branchTip2,
                         true
                     );
 
