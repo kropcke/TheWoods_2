@@ -68,14 +68,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         
         // All users are prompted to enter the same custom room name.
         btn.onClick.AddListener(JoinRoomButtonCallback);
-
-
         
         
         waitingMenu.SetActive(true);
 
-
-        
        
     }
 
@@ -101,40 +97,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             text.text = "client number " +  PhotonNetwork.PlayerList.Length;
         }
 
-        // print(PhotonNetwork.CurrentRoom.Players);
-        // text.text = GetComponent<PhotonView>().ownerId
+    }
 
-
-
-
-        // if(SystemInfo.deviceType == DeviceType.Desktop) {
-        //     // Query the desktop application for a custom room name
-        //     roomName = "myRoom"; // TODO add a textbox or something
-        //     print("PUN: Creating room '" + roomName + "'.");
-
-        //     // Create a "room" on the Photon Network 
-        //     print(PhotonNetwork.CountOfRooms);
-        //     PhotonNetwork.CreateRoom(roomName);
-        //     print(PhotonNetwork.CountOfRooms);
-
-        // } else {
-        //     // Ask the phone user for the room to join
-        //     roomName = "myRoom"; // TODO add a textbox to the phones
-
-        //     PhotonNetwork.JoinRoom(roomName);
-        // }
+    // Callback executed when PhotonNetwork.JoinOrCreateRoom() fails
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        // TODO: tell users that the room they tried to join is already full
     }
 
     public override void OnPlayerEnteredRoom(Player player)
     {
         print("player: " + player.ActorNumber);
     }
-
-    // public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    // {
-    //     print("PUN: Room list updated.");
-    //     print(roomList.ToArray());
-    // }
 
 
     IEnumerator delayStart()
@@ -145,8 +119,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
     public void Connect()
     {
-
-
 
         if (PhotonNetwork.IsConnected)
         {
