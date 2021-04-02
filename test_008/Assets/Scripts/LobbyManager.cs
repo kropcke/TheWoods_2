@@ -97,7 +97,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
     public override void OnJoinedRoom() {
         print("PUN: Joined room '" + roomName + "'.");
         print("Device joined: " + SystemInfo.deviceType);
-        roomJoinCallbackUI(true, roomName);
+
+        if (roomJoinCallbackUI != null) {
+            roomJoinCallbackUI(true, roomName);
+        }
 
         Text text = userID.GetComponent<Text>();
 
@@ -119,11 +122,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
         print("player: " + player.ActorNumber);
     }
 
-    IEnumerator delayStart() {
-        yield return new WaitForSeconds(5f);
-        // PhotonNetwork.JoinRandomRoom();
-        PhotonNetwork.JoinRoom(roomName);
-    }
     // public void Connect() {
 
     //     if (PhotonNetwork.IsConnected) {

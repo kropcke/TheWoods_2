@@ -19,7 +19,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
 
     private bool readyToStart;
     private bool startingGame;
-    private bool isMainSceneLoaded =false;
+    private bool isMainSceneLoaded = false;
     [SerializeField]
     private GameObject waitingMenu;
     [SerializeField]
@@ -27,11 +27,15 @@ public class WaitingController : MonoBehaviourPunCallbacks
     [SerializeField]
     private GameObject backgroundAudio;
 
+
+    public GameObject uiCanvas; // Canvas to display starting game UI
+
     public bool simulatePlayers = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        waitingMenu.SetActive(false);
+
     }
 
     public override void OnJoinedRoom()
@@ -41,35 +45,38 @@ public class WaitingController : MonoBehaviourPunCallbacks
         {
             readyToStart = true;
             waitingMenu.SetActive(false);
+            uiCanvas.SetActive(false);
         }
 
     }
 
     private void playerCountUpdate()
     {
-        
+
         playersCount = PhotonNetwork.PlayerList.Length;
         roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
         if (playersCount == roomSize || simulatePlayers)
         {
             readyToStart = true;
             waitingMenu.SetActive(false);
+            uiCanvas.SetActive(false);
         }
         else
         {
             readyToStart = false;
             waitingMenu.SetActive(true);
-            
-            
+            uiCanvas.SetActive(false);
+
+
 
         }
     }
-    
+
     public override void OnPlayerEnteredRoom(Player player)
     {
         Debug.Log("Player entered in Waiting controller: " + player.ActorNumber);
         playerCountUpdate();
-        
+
         if (PhotonNetwork.IsMasterClient)
         {
             Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient);
@@ -95,7 +102,9 @@ public class WaitingController : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.LoadLevel(mainSceneIndex);
             }
-        }else{
+        }
+        else
+        {
             WaitForthePlayers();
             if (videoPlayer.activeInHierarchy && !isMainSceneLoaded)
             {
@@ -103,9 +112,9 @@ public class WaitingController : MonoBehaviourPunCallbacks
                 videoPlayer.transform.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.None;
                 if (!videoPlayer.transform.GetComponent<VideoPlayer>().isPlaying)
                 {
-                
+
                     isMainSceneLoaded = true;
-                   
+
                     if (PhotonNetwork.IsMasterClient)
                     {
                         Debug.Log("Loading Main Scene");
@@ -115,14 +124,14 @@ public class WaitingController : MonoBehaviourPunCallbacks
                 }
             }
         }
-       
+
     }
 
     private void WaitForthePlayers()
     {
         if (readyToStart)
         {
-            
+
             if (startingGame)
             {
                 return;
@@ -145,7 +154,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
 
     }
 
-   
 
-   
+
+
 }
