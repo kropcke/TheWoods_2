@@ -1,13 +1,21 @@
-﻿using Photon.Pun;
-using Photon.Realtime;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class LobbyManager : MonoBehaviourPunCallbacks
-{
+public class LobbyManager : MonoBehaviourPunCallbacks {
+    #region Singleton
+    public static LobbyManager instance;
+
+    void Awake() {
+        instance = this;
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
+    #endregion
+
     public string sceneToLoad;
 
     bool isConnecting = false;
@@ -22,8 +30,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private GameObject waitingMenu;
-    
-    
+
     [SerializeField]
     private GameObject textInput;
     [SerializeField]
@@ -32,47 +39,50 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private GameObject userID;
     Button btn;
     InputField input;
-    
-    
 
     [SerializeField]
     private int roomSize = 3;
 
-    
-    string roomName = "test";
+    public string roomName = null; // The Photon room we eventually join.
+    public System.Action<bool, string> roomJoinCallbackUI = null; // Callback to update UI on room join succeed/fail.
 
-
-
-    void Awake()
-    {
-        PhotonNetwork.AutomaticallySyncScene = true;
-    }
-
-
-    private void Start()
-    {
+    private void Start() {
         btn = joinRoomButton.GetComponent<Button>();
         input = textInput.GetComponent<InputField>();
         startButton.SetActive(false);
         // Connect();
-        
+
         // Connect to the Photon Network
         print("PUN: Connecting to the Photon Network...");
         PhotonNetwork.ConnectUsingSettings();
     }
 
     // Callback executed when PhotonNetwork.ConnectUsingSettings() succeeds
-    public override void OnConnectedToMaster()
-    {
+    public override void OnConnectedToMaster() {
         print("PUN: Connected successfully to the Photon Network.");
-        
+
         // All users are prompted to enter the same custom room name.
         btn.onClick.AddListener(JoinRoomButtonCallback);
-        
-        
+
         waitingMenu.SetActive(true);
 
-       
+    }
+
+    // Called by UI/CreateRoomButton
+    public void CreateRoomClicked(string roomName) {
+        this.roomName = roomName;
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 3;
+        print("PUN: Create room '" + roomName + "'.");
+        PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+    }
+
+    // Called by UI/EnterRoomButton
+    public void EnterRoomClicked(string roomName, System.Action<bool, string> callback) {
+        this.roomJoinCallbackUI = callback; // save the callback for updating the UI later
+        this.roomName = roomName;
+        print("PUN: Join room '" + roomName + "'.");
+        PhotonNetwork.JoinRoom(roomName);
     }
 
     void JoinRoomButtonCallback() {
@@ -84,73 +94,61 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
     // Callback executed when PhotonNetwork.JoinOrCreateRoom() succeeds
-    public override void OnJoinedRoom()
-    {
+    public override void OnJoinedRoom() {
         print("PUN: Joined room '" + roomName + "'.");
         print("Device joined: " + SystemInfo.deviceType);
+        roomJoinCallbackUI(true, roomName);
 
         Text text = userID.GetComponent<Text>();
 
-        if(PhotonNetwork.PlayerList.Length == 1) {
+        if (PhotonNetwork.PlayerList.Length == 1) {
             text.text = "the server";
         } else {
-            text.text = "client number " +  PhotonNetwork.PlayerList.Length;
+            text.text = "client number " + PhotonNetwork.PlayerList.Length;
         }
 
     }
 
     // Callback executed when PhotonNetwork.JoinOrCreateRoom() fails
-    public override void OnJoinRoomFailed(short returnCode, string message)
-    {
+    public override void OnJoinRoomFailed(short returnCode, string message) {
+        roomJoinCallbackUI(false, message);
         // TODO: tell users that the room they tried to join is already full
     }
 
-    public override void OnPlayerEnteredRoom(Player player)
-    {
+    public override void OnPlayerEnteredRoom(Player player) {
         print("player: " + player.ActorNumber);
     }
 
-
-    IEnumerator delayStart()
-    {
+    IEnumerator delayStart() {
         yield return new WaitForSeconds(5f);
         // PhotonNetwork.JoinRandomRoom();
         PhotonNetwork.JoinRoom(roomName);
     }
-    public void Connect()
-    {
+    // public void Connect() {
 
-        if (PhotonNetwork.IsConnected)
-        {
-            print("Joining Room...");
-            print(SystemInfo.deviceType);
-            print("ee");
-            if(SystemInfo.deviceType == DeviceType.Desktop)
-            {
-                PhotonNetwork.CreateRoom(roomName);
-                // PhotonNetwork.LeaveRoom();
-                waitingMenu.SetActive(true);
-                StartCoroutine(delayStart());
-                
-            }
-            else
-            {
-                PhotonNetwork.Disconnect();
-                startButton.SetActive(true);
-            }
-            
-            
-            //PhotonNetwork.JoinRandomRoom();
-        
-        }
+    //     if (PhotonNetwork.IsConnected) {
+    //         print("Joining Room...");
+    //         print(SystemInfo.deviceType);
+    //         print("ee");
+    //         if (SystemInfo.deviceType == DeviceType.Desktop) {
+    //             PhotonNetwork.CreateRoom(roomName);
+    //             // PhotonNetwork.LeaveRoom();
+    //             waitingMenu.SetActive(true);
+    //             StartCoroutine(delayStart());
 
-        else
-        {
-            print("Connecting...");
-            PhotonNetwork.GameVersion = this.gameVersion;
-            PhotonNetwork.ConnectUsingSettings();
-        }
-    }
+    //         } else {
+    //             PhotonNetwork.Disconnect();
+    //             startButton.SetActive(true);
+    //         }
+
+    //         //PhotonNetwork.JoinRandomRoom();
+
+    //     } else {
+    //         print("Connecting...");
+    //         PhotonNetwork.GameVersion = this.gameVersion;
+    //         PhotonNetwork.ConnectUsingSettings();
+    //     }
+    // }
 
     // public override void OnConnectedToMaster()
     // {
@@ -172,7 +170,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //             startButton.SetActive(true);
     //             waitingMenu.SetActive(false);
 
-
     //         }
     //     }
     //     //    if (isConnecting)
@@ -183,41 +180,30 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //     //        startButton.SetActive(true);
     //     //        waitingMenu.SetActive(false);
 
-
     //     //}
-       
 
-        
-        
     // }
 
-    
-
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
+    public override void OnJoinRandomFailed(short returnCode, string message) {
         print("OnJoinRandomFailed() called, creating a new room with room for 3 players");
         PhotonNetwork.CreateRoom("Matt_Room", new RoomOptions { MaxPlayers = 3 });
         // PhotonNetwork.JoinRoom
     }
 
-    public override void OnCreateRoomFailed(short returnCode, string message)
-    {
+    public override void OnCreateRoomFailed(short returnCode, string message) {
         print("OnCreateRoomFailed() called, creating a new room with room for 3 players");
         PhotonNetwork.CreateRoom("Matt_Room_2", new RoomOptions { MaxPlayers = 3 });
-    } 
-    public override void OnDisconnected(DisconnectCause cause)
-    {
+    }
+    public override void OnDisconnected(DisconnectCause cause) {
         print("OnDisconnected() called");
         isConnecting = false;
     }
 
-    public void onClickStart()
-    {
+    public void onClickStart() {
         Debug.Log("onClickStart");
         startButton.SetActive(false);
         waitingMenu.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
     }
-
 
 }

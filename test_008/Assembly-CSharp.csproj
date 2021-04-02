@@ -356,6 +356,13 @@
      <Compile Include="Assets\Scripts\Spline\SplineKitWalker.cs" />
      <Compile Include="Assets\Scripts\Spline\SplineKitWalkerMode.cs" />
      <Compile Include="Assets\Scripts\StaticVariables.cs" />
+     <Compile Include="Assets\Scripts\UI\AboutButton.cs" />
+     <Compile Include="Assets\Scripts\UI\BackButton.cs" />
+     <Compile Include="Assets\Scripts\UI\CreateRoomButton.cs" />
+     <Compile Include="Assets\Scripts\UI\EnterRoomButton.cs" />
+     <Compile Include="Assets\Scripts\UI\JoinRoomButton.cs" />
+     <Compile Include="Assets\Scripts\UI\Link.cs" />
+     <Compile Include="Assets\Scripts\UI\RoomCodeText.cs" />
      <Compile Include="Assets\Scripts\VineController.cs" />
      <Compile Include="Assets\Scripts\WaitingController.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
