@@ -22,7 +22,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     private GameObject waitingMenu;
 
     [SerializeField]
-    private int roomSize = 3;
+    private int roomSize = 2;
 
 
 
@@ -119,13 +119,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         print("OnJoinRandomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 2});
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         print("OnCreateRoomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 2 });
     }
     public override void OnDisconnected(DisconnectCause cause)
     {

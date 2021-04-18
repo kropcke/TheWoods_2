@@ -37,7 +37,12 @@ public class WaitingController : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         print("number of players" + PhotonNetwork.PlayerList.Length);
-        if (PhotonNetwork.PlayerList.Length == 3)
+        //if (PhotonNetwork.PlayerList.Length == 3)
+        //{
+        //    readyToStart = true;
+        //    waitingMenu.SetActive(false);
+        //}
+        if (PhotonNetwork.PlayerList.Length == 2)
         {
             readyToStart = true;
             waitingMenu.SetActive(false);
@@ -50,6 +55,7 @@ public class WaitingController : MonoBehaviourPunCallbacks
         
         playersCount = PhotonNetwork.PlayerList.Length;
         roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
+        print(roomSize);
         if (playersCount == roomSize || simulatePlayers)
         {
             readyToStart = true;

@@ -43,6 +43,18 @@ public class GameController : MonoBehaviourPunCallbacks
                 GameObject g = PhotonNetwork.Instantiate(this.serverPrefab.name, new Vector3(0f, 3.5f, 0f), Quaternion.identity, 0);
                 g.transform.eulerAngles = new Vector3(90, 0, 0);
             }
+            
+            else
+            {
+                Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+            }
+            if (PlayerScript.LocalPlayerInstance == null)
+            {
+                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                GameObject p = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+                p.GetPhotonView().RPC("SetTag", RpcTarget.All, "Player");
+
+            }
             else
             {
                 Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);

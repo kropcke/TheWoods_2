@@ -1751,10 +1751,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7393502474363482914}
-  - component: {fileID: 7393502474373356748}
-  - component: {fileID: 7393502473485374445}
   - component: {fileID: 7393502473485374435}
   - component: {fileID: 7393502473485374444}
+  - component: {fileID: 7393502474373356748}
+  - component: {fileID: 7393502473485374445}
   m_Layer: 0
   m_Name: PrettyBird
   m_TagString: Bird
@@ -1790,38 +1790,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7393502474373356748
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7393502474363973378}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 77ca59271d0ff894da92a62325f5bd08, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1ba53b08a15a25e499e5a2d7bae3bbc3, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7393502473485374445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7393502474363973378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de52cc3196781943aae642cc8f48567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paramter: MotionState
 --- !u!114 &7393502473485374435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,6 +1827,38 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!95 &7393502474373356748
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393502474363973378}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 77ca59271d0ff894da92a62325f5bd08, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1ba53b08a15a25e499e5a2d7bae3bbc3, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7393502473485374445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393502474363973378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de52cc3196781943aae642cc8f48567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paramter: MotionState
 --- !u!1 &7393502474363973380
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ MonoBehaviour:
   - DestroySpaceship
   - DisableBirds
   - EnableBird
+  - EnableFeatherParticles
   - Fire
   - PlayVoiceMail
   - RespawnSpaceship
@@ -43,7 +44,5 @@ MonoBehaviour:
   - StopVoiceMail
   - TakeControl
   - UpdateVariableInServer
-  - DisableFeatherParticles
-  - EnableFeatherParticles
   DisableAutoOpenWizard: 1
   ShowSettings: 1

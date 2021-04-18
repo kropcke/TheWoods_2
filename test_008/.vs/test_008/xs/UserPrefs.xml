@@ -1,11 +1,22 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerConnectorScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
     <Files>
-      <File FileName="Assets/Scripts/WaitingController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ServerScript.cs" Line="15" Column="41" />
+      <File FileName="Assets/Scripts/WaitingController.cs" />
       <File FileName="Assets/Scripts/PlayerScript.cs" />
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="52" Column="33" />
-      <File FileName="Assets/Scripts/GameEndController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerConnectorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameEndController.cs" />
+      <File FileName="Assets/Scripts/PlayerConnectorScript.cs" />
+      <File FileName="Assets/Scripts/LobbyManager.cs" />
+      <File FileName="Assets/Scripts/SkylarsNetworkManager.cs" />
+      <File FileName="Assets/Scripts/AnimatorTestScript.cs" />
+      <File FileName="Assets/Scripts/AnimatorTestScript2.cs" />
+      <File FileName="Assets/Scripts/AudioMessageController.cs" />
+      <File FileName="Assets/Scripts/GameConfiguration.cs" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="38" Column="31" />
+      <File FileName="Assets/Scripts/RoomController.cs" />
+      <File FileName="Assets/Scripts/SoundClipGameObjects.cs" />
+      <File FileName="Assets/Scripts/StaticVariables.cs" />
+      <File FileName="Assets/Scripts/VineController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,12 +24,15 @@
           <Node name="test_008" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Photon" expanded="True">
+                <Node name="PhotonRealtime" expanded="True">
+                  <Node name="Code" expanded="True" />
+                </Node>
                 <Node name="PhotonUnityNetworking" expanded="True">
                   <Node name="Code" expanded="True" />
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="PlayerConnectorScript.cs" selected="True" />
+                <Node name="GameController.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -27,11 +41,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="../../../Assets/Scripts/DistractionController.cs" line="11" column="0" endLine="0" endColumn="0" offsetX="-1" offsetY="-1" expression="variables" liveUpdate="False" />
-    <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" column="0" endLine="0" endColumn="0" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
+    <Watch file="../../../Assets/Scripts/DistractionController.cs" line="11" offsetX="-1" offsetY="-1" expression="variables" liveUpdate="False" />
+    <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="da360a9b-ede1-40dc-a1c4-a57adbf1ce21" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0ecf334f-8dbc-46ff-96f6-20042d68bee4" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
