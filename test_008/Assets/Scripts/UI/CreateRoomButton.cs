@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CreateRoomButton : Link {
-    string roomName = "eheeee"; // todo randomly generate
+    string roomName = "123456";
 
     void Start() {
         button = GetComponent<Button>();

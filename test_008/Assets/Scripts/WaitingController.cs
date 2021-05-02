@@ -21,8 +21,6 @@ public class WaitingController : MonoBehaviourPunCallbacks
     private bool startingGame;
     private bool isMainSceneLoaded = false;
     [SerializeField]
-    private GameObject waitingMenu;
-    [SerializeField]
     private GameObject videoPlayer;
     [SerializeField]
     private GameObject backgroundAudio;
@@ -34,17 +32,16 @@ public class WaitingController : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        waitingMenu.SetActive(false);
 
     }
 
     public override void OnJoinedRoom()
     {
-        print("number of players" + PhotonNetwork.PlayerList.Length);
-        if (PhotonNetwork.PlayerList.Length == 3)
+        print("WaitingController: number of players = " + PhotonNetwork.PlayerList.Length);
+        if (PhotonNetwork.PlayerList.Length == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
+            print("WaitingController: ready");
             readyToStart = true;
-            waitingMenu.SetActive(false);
             uiCanvas.SetActive(false);
         }
 
@@ -58,17 +55,13 @@ public class WaitingController : MonoBehaviourPunCallbacks
         if (playersCount == roomSize || simulatePlayers)
         {
             readyToStart = true;
-            waitingMenu.SetActive(false);
             uiCanvas.SetActive(false);
+            
         }
         else
         {
             readyToStart = false;
-            waitingMenu.SetActive(true);
-            uiCanvas.SetActive(false);
-
-
-
+            uiCanvas.SetActive(true);
         }
     }
 
@@ -131,11 +124,11 @@ public class WaitingController : MonoBehaviourPunCallbacks
     {
         if (readyToStart)
         {
-
             if (startingGame)
             {
                 return;
             }
+            print("WaitingController: starting.");
             StartGame();
         }
     }
@@ -149,12 +142,5 @@ public class WaitingController : MonoBehaviourPunCallbacks
         //}
         PhotonNetwork.CurrentRoom.IsOpen = false;
         videoPlayer.SetActive(true);
-
-
-
     }
-
-
-
-
 }
