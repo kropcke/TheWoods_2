@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OpenEulaButton : Link
 {
-    public string eulaLink = "http://wizaga.com/thewoods.html";
+    public string eulaLink = "http://wizaga.com/TheWoods_PrivacyPolicy.html";
     private const string prefsKey = "eula_displayed";
 
     void Start()
