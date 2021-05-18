@@ -14,7 +14,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     bool startedGameOver = false;
     public static bool gameOver = false;
     bool gameStarted = false;
-    bool simulatePlayers = true;
+    bool simulatePlayers = false;
 
     // Bird variables
     public float magneticSpeed = 0.5f;
