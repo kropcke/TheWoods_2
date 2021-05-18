@@ -87,12 +87,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
         print("OnJoinRandomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom("Matt_Room", new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) {
         print("OnCreateRoomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom("Matt_Room_2", new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
         // Todo: fix this and add an error screen
     }
     public override void OnDisconnected(DisconnectCause cause) {
