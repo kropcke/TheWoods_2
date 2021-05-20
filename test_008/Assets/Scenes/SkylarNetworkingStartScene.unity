@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657892, g: 0.4964127, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -919,7 +919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &165226614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1816,7 +1816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &454958153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2981,6 +2981,7 @@ GameObject:
   - component: {fileID: 656463256}
   - component: {fileID: 656463255}
   - component: {fileID: 656463254}
+  - component: {fileID: 656463258}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -3077,6 +3078,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &656463258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656463253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4bddef1e88544dfbbd6345f3055c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &679360553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,7 +4093,6 @@ MonoBehaviour:
   button: {fileID: 0}
   thisPanel: {fileID: 454958152}
   nextPanel: {fileID: 165226613}
-  eulaLink: http://wizaga.com/thewoods.html
 --- !u!114 &943365605
 MonoBehaviour:
   m_ObjectHideFlags: 0

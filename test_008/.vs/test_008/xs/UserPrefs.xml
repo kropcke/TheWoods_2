@@ -1,11 +1,13 @@
 ﻿<Properties StartupConfiguration="{E882DC46-0CDC-657B-C7CB-332FA330A53B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerConnectorScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UI/OpenEulaButton.cs">
     <Files>
       <File FileName="Assets/Scripts/WaitingController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/PlayerScript.cs" />
-      <File FileName="Assets/Scripts/ServerScript.cs" Line="52" Column="33" />
-      <File FileName="Assets/Scripts/GameEndController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ServerScript.cs" />
+      <File FileName="Assets/Scripts/GameEndController.cs" />
       <File FileName="Assets/Scripts/PlayerConnectorScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerPrefsReset.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/UI/OpenEulaButton.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,7 +20,9 @@
                 </Node>
               </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="PlayerConnectorScript.cs" selected="True" />
+                <Node name="UI" expanded="True">
+                  <Node name="OpenEulaButton.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
           </Node>
@@ -31,7 +35,7 @@
     <Watch file="../../../Assets/Scripts/ServerScript.cs" line="110" column="0" endLine="0" endColumn="0" offsetX="-1" offsetY="-1" expression="distractionController" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="da360a9b-ede1-40dc-a1c4-a57adbf1ce21" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5516e27a-0617-427c-9ed6-3accf28268b5" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
