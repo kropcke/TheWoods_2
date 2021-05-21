@@ -74,7 +74,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 
     // Callback executed when PhotonNetwork.JoinOrCreateRoom() fails
     public override void OnJoinRoomFailed(short returnCode, string message) {
-        print("PUN: join room '" + roomName + "'.");
+        print("PUN: failed to join room '" + roomName + "'.");
         roomJoinCallbackUI(false, message);
         // TODO: tell users that the room they tried to join is already full
     }

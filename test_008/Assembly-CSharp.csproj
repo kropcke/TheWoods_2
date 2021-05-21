@@ -362,7 +362,6 @@
      <Compile Include="Assets\Scripts\UI\BlockRoomButton.cs" />
      <Compile Include="Assets\Scripts\UI\CreateRoomButton.cs" />
      <Compile Include="Assets\Scripts\UI\EnterRoomButton.cs" />
-     <Compile Include="Assets\Scripts\UI\EulaLoader.cs" />
      <Compile Include="Assets\Scripts\UI\JoinRoomButton.cs" />
      <Compile Include="Assets\Scripts\UI\Link.cs" />
      <Compile Include="Assets\Scripts\UI\OpenEulaButton.cs" />

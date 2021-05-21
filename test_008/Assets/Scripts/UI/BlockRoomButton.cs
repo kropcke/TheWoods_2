@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 using System.Net.Http;
 using System.Net;
 using System.Threading.Tasks;
-  using System.IO;
+using System.IO;
 
 
 public class BlockRoomButton : Link
@@ -52,48 +52,7 @@ public class BlockRoomButton : Link
 
         return reader.ReadToEnd();
 
-        // var task = Task.Run(() => httpClient.PostAsync(url, new StringContent(room)));
 
-        // task.Wait();
-        // print("sent");
-
-        // // response.EnsureSuccessStatusCode();
-        // // string content = await response.Content.ReadAsStringAsync();
-        // // print(content);
-        // // var task = Task.Run()
-
-        // var t = Task.Run(() =>  task.Result.Content.ReadAsStringAsync());
-        // t.Wait();
-        // print("response");
-
-        // return t.Result;
-
-
-        // WWWForm form = new WWWForm();
-        // form.AddField("myField", "myData");
-
-
-        // using (UnityWebRequest www = UnityWebRequest.Post(url, form))
-        // {
-        //     www.SetRequestHeader("Cache-Control", "max-age=0, no-cache, no-store");
-        //     www.SetRequestHeader("Pragma", "no-cache");
-        //     print(www.url);
-
-        //     yield return www.SendWebRequest();
-
-        //     if (www.isNetworkError || www.isHttpError)
-        //     {
-        //         Debug.Log(www.error);
-        //         nextPanel.SetActive(true);
-        //         thisPanel.SetActive(false);
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Form upload complete!");
-        //         nextPanel.SetActive(true);
-        //         thisPanel.SetActive(false);
-        //     }
-        // }
     }
 
 }
