@@ -10,10 +10,13 @@ using System.IO;
 public class EnterRoomButton : Link
 {
     public GameObject errorPanel;
+    public GameObject blockedPanel;
     private const string apiURL = "http://thewoods-blocklist-postgres-production.up.railway.app/blocklist/";
 
     public GameObject inputGameObject;
     TMP_InputField input;
+
+    bool blockedRoom = false; // set to `true` if user tried to join a room in the blocklist
 
     void Start()
     {
@@ -27,15 +30,12 @@ public class EnterRoomButton : Link
         string roomName = input.text;
         var blocklist = GetBlocklist(apiURL);
 
-        foreach (string i in blocklist)
-        {
-            print(i);
-        }
         if (blocklist.Contains(roomName))
         {
             print("Tried to join blocked room: " + roomName);
-            errorPanel.SetActive(true);
-            thisPanel.SetActive(false);
+            blockedRoom = true;
+        } else {
+            blockedRoom = false;
         }
 
 
@@ -44,15 +44,23 @@ public class EnterRoomButton : Link
 
     public void errorResponse(bool success, string message)
     {
-        print(success);
-        print(message);
         if (success)
         {
             nextPanel.SetActive(true);
         }
         else
         {
-            errorPanel.SetActive(true);
+            if (blockedRoom == true)
+            {
+                print("ree");
+                blockedPanel.SetActive(true);
+            }
+            else
+            {
+                print("peen");
+                errorPanel.SetActive(true);
+
+            }
         }
         thisPanel.SetActive(false);
     }
