@@ -230,6 +230,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks, IPunObservable
         //send Pd message
         if (!endingGame)
         {
+            PhotonNetwork.Disconnect();
             PhotonNetwork.LoadLevel(2);
         }
 

@@ -19,8 +19,8 @@ public class EULATextFormatter : MonoBehaviour
     {
         //WWW www = new WWW(eulaLink);
         //StartCoroutine(WaitForRequest(www));
-        string eulaText = File.ReadAllText("Assets/Resources/EULA/eula.txt");
-        gameObject.GetComponent<Text>().text = eulaText;
+        //string eulaText = File.ReadAllText("Assets/Resources/EULA/eula.txt");
+        //gameObject.GetComponent<Text>().text = eulaText;
 
     }
 

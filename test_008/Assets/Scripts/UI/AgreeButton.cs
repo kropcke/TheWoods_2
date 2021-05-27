@@ -8,13 +8,13 @@ public class AgreeButton : Link
 
     public GameObject newBackground;
     void Start() {
-        newBackground.gameObject.SetActive(true);
+       // newBackground.gameObject.SetActive(false);
         button = GetComponent<Button>();
         button.onClick.AddListener(visitPage);
     }
 
     public override void visitPage() {
-        newBackground.gameObject.SetActive(false);
+        //newBackground.gameObject.SetActive(true);
         nextPanel.SetActive(true);
         thisPanel.SetActive(false);
     }

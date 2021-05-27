@@ -35,12 +35,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
     private void Start() {
         // Connect to the Photon Network
         print("PUN: Connecting to the Photon Network...");
+         isConnecting = true;
         PhotonNetwork.ConnectUsingSettings();
     }
 
     // Callback executed when PhotonNetwork.ConnectUsingSettings() succeeds
     public override void OnConnectedToMaster() {
         print("PUN: Connected successfully to the Photon Network.");
+        // if (isConnecting)
+        // {
+        //     
+        //     PhotonNetwork.JoinRoom(this.roomName);
+        // }
     }
 
     // Called by UI/CreateRoomButton
@@ -87,12 +93,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
         print("OnJoinRandomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom(this.roomName, new RoomOptions { MaxPlayers = 3 });
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) {
         print("OnCreateRoomFailed() called, creating a new room with room for 3 players");
-        PhotonNetwork.CreateRoom("TheWoods", new RoomOptions { MaxPlayers = 3 });
+        PhotonNetwork.CreateRoom(this.roomName, new RoomOptions { MaxPlayers = 3 });
         // Todo: fix this and add an error screen
     }
     public override void OnDisconnected(DisconnectCause cause) {

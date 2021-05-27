@@ -328,6 +328,7 @@ public class ServerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         yield return null;
         gameStarted = false;
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
     IEnumerator waitBeforeSpawningFirstBird(float t)

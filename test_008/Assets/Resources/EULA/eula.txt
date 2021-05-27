@@ -16,7 +16,7 @@ You are not permitted to:
 •Allow any third party to use the Software on behalf of or for the benefit of any third party
 •Use the Software in any way which breaches any applicable local, national or international law
 •use the Software for any purpose that Wizaga considers is a breach of this EULA agreement
-There is no tolerance for objectionable content or abusive users. Users reported for objectionable behavior will have their rooms blocked.
+<b>There is no tolerance for objectionable content or abusive users. Users reported for objectionable behavior will have their rooms blocked.</b>
 
 <b>Intellectual Property and Ownership</b>
 Wizaga shall at all times retain ownership of the Software as originally downloaded by you and all subsequent downloads of the Software by you. The Software (and the copyright, and other intellectual property rights of whatever nature in the Software, including any modifications made thereto) are and shall remain the property of Wizaga.
