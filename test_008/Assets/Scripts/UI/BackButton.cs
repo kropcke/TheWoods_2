@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackButton : Link {
+public class BackButton : Link
+{
+
     void Start() {
         button = GetComponent<Button>();
         button.onClick.AddListener(visitPage);

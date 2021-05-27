@@ -25,7 +25,7 @@ public class OpenEulaButton : Link
 
     public override void visitPage()
     {
-        Application.OpenURL(eulaLink);
+        //Application.OpenURL(eulaLink);
         PlayerPrefs.SetString(prefsKey, "true");
         nextPanel.SetActive(true);
         thisPanel.SetActive(false);
