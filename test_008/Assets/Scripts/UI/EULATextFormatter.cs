@@ -17,10 +17,10 @@ public class EULATextFormatter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WWW www = new WWW(eulaLink);
-        StartCoroutine(WaitForRequest(www));
-        //string eulaText = File.ReadAllText("Assets/Resources/EULA/eula.html");
-        //gameObject.GetComponent<Text>().text = eulaText;
+        //WWW www = new WWW(eulaLink);
+        //StartCoroutine(WaitForRequest(www));
+        string eulaText = File.ReadAllText("Assets/Resources/EULA/eula.txt");
+        gameObject.GetComponent<Text>().text = eulaText;
 
     }
 
