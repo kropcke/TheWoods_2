@@ -19,6 +19,7 @@ TagManager:
   - ConnectorLink
   - Bird
   - ShowOnFinish
+  - BirdOnBranch
   layers:
   - Default
   - TransparentFX
@@ -29,8 +30,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Branch
+  - Birds
   - 
   - 
   - 
