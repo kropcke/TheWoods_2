@@ -92,9 +92,6 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="VuforiaScripts">
- <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/ScriptAssemblies/VuforiaScripts.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -103,9 +100,6 @@
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="VuforiaEditorScripts">
- <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/ScriptAssemblies/VuforiaEditorScripts.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
@@ -342,7 +336,7 @@
  <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Assets/Plugins/PlayMaker/PlayMaker.dll</HintPath>
  </Reference>
  <Reference Include="Vuforia.UnityExtensions">
- <HintPath>C:/Users/Matt/Documents/github/kropcke/TheWoods_2/test_008/Library/PackageCache/com.ptc.vuforia.engine@8.5.9/Vuforia/Plugins/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
+ <HintPath>C:/Users/Matt/Downloads/com.ptc.vuforia.engine/Vuforia/Plugins/Managed/Runtime/Vuforia.UnityExtensions.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.21f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -703,6 +697,18 @@
     <ProjectReference Include="Obi.csproj">
       <Project>{937CDE13-144B-54C6-8A31-2CD62C1EF267}</Project>
       <Name>Obi</Name>
+    </ProjectReference>
+    <ProjectReference Include="EditorMigrationScripts.csproj">
+      <Project>{09D32653-CE1C-AA76-3217-4EF54E057D30}</Project>
+      <Name>EditorMigrationScripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="VuforiaScripts.csproj">
+      <Project>{49463895-E600-B9EC-06E0-386CCAB3DE42}</Project>
+      <Name>VuforiaScripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="VuforiaEditorScripts.csproj">
+      <Project>{4180A635-2B46-9643-1B57-2494094D7DF8}</Project>
+      <Name>VuforiaEditorScripts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
