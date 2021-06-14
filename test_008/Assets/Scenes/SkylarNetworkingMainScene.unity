@@ -167,7 +167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 68053450}
+  - {fileID: 973760566}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,6 +212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StatusFilter: 2
+  OnTargetFound:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7870174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,13 +232,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mTrackableName: Woods_marker1
-  mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/TheWoodsTargetDatabase.xml
   mAspectRatio: 0.7727255
   mImageTargetType: 0
   mWidth: 0.266
   mHeight: 0.205545
+  mRuntimeTexture: {fileID: 0}
 --- !u!4 &7870175
 Transform:
   m_ObjectHideFlags: 0
@@ -332,34 +339,6 @@ RectTransform:
   m_AnchoredPosition: {x: 760.16016, y: 414.544}
   m_SizeDelta: {x: 1455.6797, y: 962.912}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &68053450
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'Woods_marker1Material
-
-    22744'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 967dae0d7e094e459ce035b820fe9ada, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1001 &86207799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3311,7 +3290,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389906591}
-  m_LocalRotation: {x: 0.28820097, y: 0.7863593, z: 0.513051, w: 0.18803732}
+  m_LocalRotation: {x: -0.10596831, y: 0.7852666, z: 0.60453945, w: -0.08160341}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4182,7 +4161,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789264360}
-  m_LocalRotation: {x: 0.28820097, y: 0.7863593, z: 0.513051, w: 0.18803732}
+  m_LocalRotation: {x: -0.10596831, y: 0.7852666, z: 0.60453945, w: -0.08160341}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5054,6 +5033,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f34dd3e46d794b129a17490c9ea7c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!21 &973760566
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'Woods_marker1Material
+
+    24080'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 967dae0d7e094e459ce035b820fe9ada, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1068339397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1194731074081386, guid: a5428c174b8e79342a5b3468790fa5ab,
@@ -5565,7 +5572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 794324153}
-  frequency: 5
+  frequency: 3
   lookForward: 0
   items:
   - {fileID: 473092, guid: a97c402f591eca34b9d6b591c04a86ba, type: 3}
@@ -5655,7 +5662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 1979573798}
-  frequency: 5
+  frequency: 3
   lookForward: 0
   items:
   - {fileID: 473092, guid: a97c402f591eca34b9d6b591c04a86ba, type: 3}
@@ -5942,7 +5949,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 000000bf0000000057d1c5be000000000000803f000000000000000000000000000000bf0000000057d1c53e000000000000803f00000000000000000000803f0000003f0000000057d1c5be000000000000803f000000000000803f000000000000003f0000000057d1c53e000000000000803f000000000000803f0000803f
+    _typelessdata: 273108be00000000637ad2bd000000000000803f000000000000000000000000273108be00000000637ad23d000000000000803f00000000000000000000803f2731083e00000000637ad2bd000000000000803f000000000000803f000000002731083e00000000637ad23d000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -6217,7 +6224,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882702189}
-  m_LocalRotation: {x: 0.28820097, y: 0.7863593, z: 0.513051, w: 0.18803732}
+  m_LocalRotation: {x: -0.10596831, y: 0.7852666, z: 0.60453945, w: -0.08160341}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6903,7 +6910,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086704178}
-  m_LocalRotation: {x: -0.08657241, y: 0.88782424, z: -0.18673603, w: -0.41158605}
+  m_LocalRotation: {x: -0.10254609, y: 0.60111713, z: -0.078181185, w: -0.78868896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
