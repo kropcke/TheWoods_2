@@ -49,10 +49,12 @@ public class VineController : MonoBehaviour {
         branchTipGameObject = branchTip;
 
         // Set up LineRenderer
+        /*
         line = phone.AddComponent<LineRenderer>();
         line.material = lineMat;
         line.positionCount = 10;
         line.widthMultiplier = 0.004f;
+        */
 
         // Set up Catmul-Rom curve
         waypoints = new Transform[4];
@@ -120,17 +122,13 @@ public class VineController : MonoBehaviour {
             spline.SetControlPoint(3, branchTipGameObject.transform.position);
 
 
-
+            /*
             float resolution = 1f / (float)(line.positionCount - 1);
             for (int i = 0; i < line.positionCount - 1; i++) {
                 line.SetPosition(i, spline.GetPoint((float)i * resolution));
             }
             line.SetPosition(line.positionCount - 1, spline.GetPoint(1f));
-
-            // line.SetPosition(0, phoneGameObject.transform.position);
-            // line.SetPosition(1, A1.transform.position);
-            // line.SetPosition(2, B1.transform.position);
-            // line.SetPosition(3, branchTipGameObject.transform.position);
+            */
 
             DrawSpline(Color.white);
 
