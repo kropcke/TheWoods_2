@@ -504,7 +504,8 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 1
-  cameraUsageDescription: ARKit
+  cameraUsageDescription: Camera is used by this app for delivering the Augmented
+    Reality experience
   locationUsageDescription: 
   microphoneUsageDescription: TheWoods
   switchNetLibKey: 
